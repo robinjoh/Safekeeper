@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3868EBB1D48129800A7210F /* PickItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3868EBA1D48129800A7210F /* PickItemTableViewController.swift */; };
 		B39CD6081D40AF29000D9903 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39CD6071D40AF29000D9903 /* Errors.swift */; };
 		B3ABEEFA1D29CAAE0000873E /* NavbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ABEEF91D29CAAE0000873E /* NavbarViewController.swift */; };
 		B3C3C0F51D32B265004123F4 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C3C0F41D32B265004123F4 /* UIExtensions.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B3868EBA1D48129800A7210F /* PickItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickItemTableViewController.swift; sourceTree = "<group>"; };
 		B39CD6071D40AF29000D9903 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B3ABEEF91D29CAAE0000873E /* NavbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavbarViewController.swift; sourceTree = "<group>"; };
 		B3C3C0F41D32B265004123F4 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */,
 				B3CACF8B1D287FB900027B63 /* AddItemViewController.swift */,
 				B3CACF8F1D28876800027B63 /* ItemTableViewCell.swift */,
+				B3868EBA1D48129800A7210F /* PickItemTableViewController.swift */,
 			);
 			name = itemOverview;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				B3CFAE011D2712FD006C2434 /* AppDelegate.swift in Sources */,
 				B3C3C0F51D32B265004123F4 /* UIExtensions.swift in Sources */,
 				B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */,
+				B3868EBB1D48129800A7210F /* PickItemTableViewController.swift in Sources */,
 				B39CD6081D40AF29000D9903 /* Errors.swift in Sources */,
 				B3CACF8C1D287FB900027B63 /* AddItemViewController.swift in Sources */,
 				B3CACF8A1D281FBA00027B63 /* Item.swift in Sources */,
