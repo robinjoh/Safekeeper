@@ -22,7 +22,6 @@
 		B3CFAE161D2712FD006C2434 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE151D2712FD006C2434 /* SafekeeperTests.swift */; };
 		B3CFAE261D27147A006C2434 /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CFAE251D27147A006C2434 /* EstimoteSDK.framework */; };
 		B3CFAE2B1D2728A9006C2434 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE2A1D2728A9006C2434 /* TabBarViewController.swift */; };
-		B3CFAE2E1D272915006C2434 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE2D1D272915006C2434 /* MapViewController.swift */; };
 		B3CFAE311D272999006C2434 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE301D272999006C2434 /* ItemTableViewController.swift */; };
 		B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */; };
 		B3EE10041D36F794001EC54B /* ItemTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EE10031D36F794001EC54B /* ItemTrackerDelegate.swift */; };
@@ -59,7 +58,6 @@
 		B3CFAE221D271320006C2434 /* ObjCBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCBridge.h; sourceTree = "<group>"; };
 		B3CFAE251D27147A006C2434 /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
 		B3CFAE2A1D2728A9006C2434 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		B3CFAE2D1D272915006C2434 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B3CFAE301D272999006C2434 /* ItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
 		B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailsViewController.swift; sourceTree = "<group>"; };
 		B3EE10031D36F794001EC54B /* ItemTrackerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTrackerDelegate.swift; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 		B3CFAE2C1D2728EE006C2434 /* mapOverview */ = {
 			isa = PBXGroup;
 			children = (
-				B3CFAE2D1D272915006C2434 /* MapViewController.swift */,
 			);
 			name = mapOverview;
 			sourceTree = "<group>";
@@ -314,7 +311,6 @@
 				B3C3C0F51D32B265004123F4 /* UIExtensions.swift in Sources */,
 				B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */,
 				B39CD6081D40AF29000D9903 /* Errors.swift in Sources */,
-				B3CFAE2E1D272915006C2434 /* MapViewController.swift in Sources */,
 				B3CACF8C1D287FB900027B63 /* AddItemViewController.swift in Sources */,
 				B3CACF8A1D281FBA00027B63 /* Item.swift in Sources */,
 				B3CFAE311D272999006C2434 /* ItemTableViewController.swift in Sources */,
