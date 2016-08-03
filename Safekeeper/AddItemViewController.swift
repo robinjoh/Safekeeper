@@ -8,34 +8,50 @@
 
 import UIKit
 
-class AddItemViewController: UIViewController, ItemTrackerDelegate, UITableViewDelegate {
-	private var locationManager = ItemTracker.getInstance()
-    @IBOutlet weak var picker: UIPickerView!
-    @IBOutlet weak var pickerParentView: UIView!
-    
+class AddItemViewController: UITableViewController, ItemTrackerDelegate {
+	private static let SECTION_TITLES = ["Beacon to track", "Name of item", "Item image"]
+	private let nearableManager = ItemTracker.getInstance()
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		navigationItem.titleView = nil
-        // Do any additional setup after loading the view.
+		nearableManager.delegate = self
+		nearableManager.startRangingNearbyItems()
     }
 	
-	func didFindItem(item: String) {
-		//stub
+	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->UITableViewCell {
+		print(indexPath.section)
+		switch indexPath.section {
+		case 0:
+			return tableView.dequeueReusableCellWithIdentifier("beaconCell")!
+		case 1: return tableView.dequeueReusableCellWithIdentifier("nameCell")!
+		case 2: return tableView.dequeueReusableCellWithIdentifier("addImageCell")!
+		default: return UITableViewCell()
+		}
 	}
 	
-	func didLoseItem(item: String) {
-		//stub
+	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		return 3
 	}
 	
-	func didRangeItems(items: [Item]) {
+	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return 1
+	}
+	
+	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return AddItemViewController.SECTION_TITLES[section]
+	}
+	
+	func itemTracker(rangedItems items: [Item]) {
 		
 	}
 	
-	@IBAction func pickBeaconClicked(sender: AnyObject) {
-
+	func itemTracker(found: Bool, item: Item) {
+		
 	}
+
 	
-    /*
+	
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -43,6 +59,4 @@ class AddItemViewController: UIViewController, ItemTrackerDelegate, UITableViewD
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
-
 }

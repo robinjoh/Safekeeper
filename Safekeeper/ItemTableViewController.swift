@@ -15,32 +15,38 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 	private let locationManager = ItemTracker.getInstance()
 	
 	
-    @IBAction func unwindFromSegue(segue: UIStoryboardSegue) {
-        
-    }
+    @IBAction func unwindFromSegue(segue: UIStoryboardSegue) {}
 	
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-		locationManager.stopAllTracking()
 	}
     
     override func viewDidLoad() {
         super.viewDidLoad()
 		items[testId] = Item(id: testId, name: "Plånbok", nearable: ESTNearable())
 		locationManager.delegate = self
-		locationManager.trackItem(items[testId]!)
-    }
+		locationManager.startRangingNearbyItems()
+	}
 	
-	func didFindItem(item: String) {
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		locationManager.delegate = self
+		locationManager.startRangingNearbyItems()
+	}
+	
+	func itemTracker(found: Bool, item: Item) {
 		
 	}
 	
-	func didLoseItem(item: String) {
+	func itemTracker(rangedItems items: [Item]) {
 		
 	}
 	
 	func didRangeItems(items: [Item]) {
-		print(items[0].name)
+		for item in items {
+			print(item.nearable.rssi)
+			print(item.nearable.identifier)
+		}
 	}
 
     override func didReceiveMemoryWarning() {
@@ -98,5 +104,4 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		
     }
-
 }

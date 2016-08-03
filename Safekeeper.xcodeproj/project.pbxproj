@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3868EBB1D48129800A7210F /* PickItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3868EBA1D48129800A7210F /* PickItemTableViewController.swift */; };
 		B39CD6081D40AF29000D9903 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39CD6071D40AF29000D9903 /* Errors.swift */; };
 		B3ABEEFA1D29CAAE0000873E /* NavbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ABEEF91D29CAAE0000873E /* NavbarViewController.swift */; };
-		B3C3C0F51D32B265004123F4 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C3C0F41D32B265004123F4 /* UIExtensions.swift */; };
+		B3C3C0F51D32B265004123F4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C3C0F41D32B265004123F4 /* Extensions.swift */; };
 		B3CACF861D27CD3700027B63 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CACF851D27CD3700027B63 /* MapKit.framework */; };
 		B3CACF8A1D281FBA00027B63 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CACF891D281FBA00027B63 /* Item.swift */; };
 		B3CACF8C1D287FB900027B63 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CACF8B1D287FB900027B63 /* AddItemViewController.swift */; };
@@ -26,6 +25,8 @@
 		B3CFAE311D272999006C2434 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE301D272999006C2434 /* ItemTableViewController.swift */; };
 		B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */; };
 		B3EE10041D36F794001EC54B /* ItemTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EE10031D36F794001EC54B /* ItemTrackerDelegate.swift */; };
+		B3F65BDC1D518A5500DFFAB9 /* PickBeaconTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F65BDB1D518A5500DFFAB9 /* PickBeaconTableViewController.swift */; };
+		B3F65BDE1D5212E000DFFAB9 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F65BDD1D5212E000DFFAB9 /* Distance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,10 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B3868EBA1D48129800A7210F /* PickItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickItemTableViewController.swift; sourceTree = "<group>"; };
 		B39CD6071D40AF29000D9903 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B3ABEEF91D29CAAE0000873E /* NavbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavbarViewController.swift; sourceTree = "<group>"; };
-		B3C3C0F41D32B265004123F4 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		B3C3C0F41D32B265004123F4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B3CACF851D27CD3700027B63 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B3CACF891D281FBA00027B63 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		B3CACF8B1D287FB900027B63 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +63,8 @@
 		B3CFAE301D272999006C2434 /* ItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
 		B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailsViewController.swift; sourceTree = "<group>"; };
 		B3EE10031D36F794001EC54B /* ItemTrackerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTrackerDelegate.swift; sourceTree = "<group>"; };
+		B3F65BDB1D518A5500DFFAB9 /* PickBeaconTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickBeaconTableViewController.swift; sourceTree = "<group>"; };
+		B3F65BDD1D5212E000DFFAB9 /* Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +144,7 @@
 				B3CFAE271D27280A006C2434 /* models */,
 				B3CFAE221D271320006C2434 /* ObjCBridge.h */,
 				B3CFAE001D2712FD006C2434 /* AppDelegate.swift */,
-				B3C3C0F41D32B265004123F4 /* UIExtensions.swift */,
+				B3C3C0F41D32B265004123F4 /* Extensions.swift */,
 				B3CFAE041D2712FD006C2434 /* Main.storyboard */,
 				B3CFAE071D2712FD006C2434 /* Assets.xcassets */,
 				B3CFAE091D2712FD006C2434 /* LaunchScreen.storyboard */,
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				B3CACF891D281FBA00027B63 /* Item.swift */,
+				B3F65BDD1D5212E000DFFAB9 /* Distance.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -191,7 +194,7 @@
 				B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */,
 				B3CACF8B1D287FB900027B63 /* AddItemViewController.swift */,
 				B3CACF8F1D28876800027B63 /* ItemTableViewCell.swift */,
-				B3868EBA1D48129800A7210F /* PickItemTableViewController.swift */,
+				B3F65BDB1D518A5500DFFAB9 /* PickBeaconTableViewController.swift */,
 			);
 			name = itemOverview;
 			sourceTree = "<group>";
@@ -309,14 +312,15 @@
 			files = (
 				B3EE10041D36F794001EC54B /* ItemTrackerDelegate.swift in Sources */,
 				B3CFAE2B1D2728A9006C2434 /* TabBarViewController.swift in Sources */,
+				B3F65BDE1D5212E000DFFAB9 /* Distance.swift in Sources */,
 				B3CACF901D28876800027B63 /* ItemTableViewCell.swift in Sources */,
 				B3CFAE011D2712FD006C2434 /* AppDelegate.swift in Sources */,
-				B3C3C0F51D32B265004123F4 /* UIExtensions.swift in Sources */,
+				B3C3C0F51D32B265004123F4 /* Extensions.swift in Sources */,
 				B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */,
-				B3868EBB1D48129800A7210F /* PickItemTableViewController.swift in Sources */,
 				B39CD6081D40AF29000D9903 /* Errors.swift in Sources */,
 				B3CACF8C1D287FB900027B63 /* AddItemViewController.swift in Sources */,
 				B3CACF8A1D281FBA00027B63 /* Item.swift in Sources */,
+				B3F65BDC1D518A5500DFFAB9 /* PickBeaconTableViewController.swift in Sources */,
 				B3CFAE311D272999006C2434 /* ItemTableViewController.swift in Sources */,
 				B3CACF8E1D2880B200027B63 /* ItemTracker.swift in Sources */,
 				B3ABEEFA1D29CAAE0000873E /* NavbarViewController.swift in Sources */,

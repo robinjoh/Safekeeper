@@ -1,14 +1,14 @@
 //
-//  PickItemTableViewController.swift
+//  PickBeaconTableViewController.swift
 //  Safekeeper
 //
-//  Created by Robin on 2016-07-26.
+//  Created by Robin on 2016-08-03.
 //  Copyright © 2016 Robin. All rights reserved.
 //
 
 import UIKit
 
-class PickItemTableViewController: UITableViewController {
+class PickBeaconTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

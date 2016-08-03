@@ -9,7 +9,6 @@
 import Foundation
 
 protocol ItemTrackerDelegate: class {
-	func didFindItem(item: String)
-	func didLoseItem(item: String)
-	func didRangeItems(items: [Item])
+	func itemTracker(found: Bool, item: Item)
+	func itemTracker(rangedItems items: [Item])
 }

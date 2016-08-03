@@ -27,3 +27,7 @@ extension UIImage {
 		return image
 	}
 }
+
+extension Range : Hashable {
+	public var hashValue: Int { return 10000 * Int(arc4random()) }
+}
