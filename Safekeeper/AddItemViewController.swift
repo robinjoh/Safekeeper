@@ -8,49 +8,57 @@
 
 import UIKit
 
-class AddItemViewController: UITableViewController, ItemTrackerDelegate {
-	private static let SECTION_TITLES = ["Beacon to track", "Name of item", "Item image"]
-	private let nearableManager = ItemTracker.getInstance()
+class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate {
+	private let SECTION_TITLE = "Item"
+	var selectedBeacon: ESTNearable?
+	var selectedImage: UIImage?
+	@IBOutlet weak var nameField: UITextField!
 	
-	override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-		navigationItem.titleView = nil
-		nearableManager.delegate = self
-		nearableManager.startRangingNearbyItems()
+        nameField.attributedPlaceholder = NSAttributedString(string: "ITEM NAME", attributes: [NSForegroundColorAttributeName: (nameField.textColor!)])
+		tableView.tableHeaderView?.backgroundColor = UIColor.NavbarColor()
+        nameField.delegate = self
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+		if (nameField.text?.isEmpty)! {
+			nameField.becomeFirstResponder()
+		}
+
     }
 	
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->UITableViewCell {
-		print(indexPath.section)
-		switch indexPath.section {
-		case 0:
-			return tableView.dequeueReusableCellWithIdentifier("beaconCell")!
-		case 1: return tableView.dequeueReusableCellWithIdentifier("nameCell")!
-		case 2: return tableView.dequeueReusableCellWithIdentifier("addImageCell")!
-		default: return UITableViewCell()
-		}
+	override func viewWillDisappear(animated: Bool) {
+		nameField.resignFirstResponder()
 	}
 	
-	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	func textFieldShouldClear(textField: UITextField) -> Bool {
+        navigationItem.rightBarButtonItem?.enabled = false
+		return textField.text != nil
+	}
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return nameField.resignFirstResponder()
+    }
+    
+    @IBAction func textFieldEdited(sender: UITextField) {
+			navigationItem.rightBarButtonItem?.enabled = !(sender.text?.isEmpty)!
+    }
+	
+	@IBAction func beaconPicked(segue: UIStoryboardSegue){
+		print(segue)
+	}
+	
+	//MARK: - Tableview
+	
+	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 3
 	}
 	
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
 	}
-	
-	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return AddItemViewController.SECTION_TITLES[section]
-	}
-	
-	func itemTracker(rangedItems items: [Item]) {
-		
-	}
-	
-	func itemTracker(found: Bool, item: Item) {
-		
-	}
-
-	
 	
     // MARK: - Navigation
 

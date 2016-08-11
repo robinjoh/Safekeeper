@@ -9,12 +9,11 @@
 /* Begin PBXBuildFile section */
 		B39CD6081D40AF29000D9903 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39CD6071D40AF29000D9903 /* Errors.swift */; };
 		B3ABEEFA1D29CAAE0000873E /* NavbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ABEEF91D29CAAE0000873E /* NavbarViewController.swift */; };
-		B3C3C0F51D32B265004123F4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C3C0F41D32B265004123F4 /* Extensions.swift */; };
+		B3C3C0F51D32B265004123F4 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C3C0F41D32B265004123F4 /* UIExtensions.swift */; };
 		B3CACF861D27CD3700027B63 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CACF851D27CD3700027B63 /* MapKit.framework */; };
 		B3CACF8A1D281FBA00027B63 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CACF891D281FBA00027B63 /* Item.swift */; };
 		B3CACF8C1D287FB900027B63 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CACF8B1D287FB900027B63 /* AddItemViewController.swift */; };
 		B3CACF8E1D2880B200027B63 /* ItemTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CACF8D1D2880B200027B63 /* ItemTracker.swift */; };
-		B3CACF901D28876800027B63 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CACF8F1D28876800027B63 /* ItemTableViewCell.swift */; };
 		B3CFAE011D2712FD006C2434 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE001D2712FD006C2434 /* AppDelegate.swift */; };
 		B3CFAE061D2712FD006C2434 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3CFAE041D2712FD006C2434 /* Main.storyboard */; };
 		B3CFAE081D2712FD006C2434 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3CFAE071D2712FD006C2434 /* Assets.xcassets */; };
@@ -22,11 +21,11 @@
 		B3CFAE161D2712FD006C2434 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE151D2712FD006C2434 /* SafekeeperTests.swift */; };
 		B3CFAE261D27147A006C2434 /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CFAE251D27147A006C2434 /* EstimoteSDK.framework */; };
 		B3CFAE2B1D2728A9006C2434 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE2A1D2728A9006C2434 /* TabBarViewController.swift */; };
-		B3CFAE311D272999006C2434 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE301D272999006C2434 /* ItemTableViewController.swift */; };
+		B3CFAE311D272999006C2434 /* ItemOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE301D272999006C2434 /* ItemOverViewController.swift */; };
 		B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */; };
 		B3EE10041D36F794001EC54B /* ItemTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EE10031D36F794001EC54B /* ItemTrackerDelegate.swift */; };
 		B3F65BDC1D518A5500DFFAB9 /* PickBeaconTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F65BDB1D518A5500DFFAB9 /* PickBeaconTableViewController.swift */; };
-		B3F65BDE1D5212E000DFFAB9 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F65BDD1D5212E000DFFAB9 /* Distance.swift */; };
+		B3FDB44C1D5B1D3F009DE55A /* ShadowedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FDB44B1D5B1D3F009DE55A /* ShadowedUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,12 +41,11 @@
 /* Begin PBXFileReference section */
 		B39CD6071D40AF29000D9903 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B3ABEEF91D29CAAE0000873E /* NavbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavbarViewController.swift; sourceTree = "<group>"; };
-		B3C3C0F41D32B265004123F4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B3C3C0F41D32B265004123F4 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		B3CACF851D27CD3700027B63 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B3CACF891D281FBA00027B63 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		B3CACF8B1D287FB900027B63 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		B3CACF8D1D2880B200027B63 /* ItemTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTracker.swift; sourceTree = "<group>"; };
-		B3CACF8F1D28876800027B63 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		B3CFADFD1D2712FD006C2434 /* Safekeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safekeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3CFAE001D2712FD006C2434 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3CFAE051D2712FD006C2434 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,11 +58,11 @@
 		B3CFAE221D271320006C2434 /* ObjCBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCBridge.h; sourceTree = "<group>"; };
 		B3CFAE251D27147A006C2434 /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
 		B3CFAE2A1D2728A9006C2434 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		B3CFAE301D272999006C2434 /* ItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
+		B3CFAE301D272999006C2434 /* ItemOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemOverViewController.swift; sourceTree = "<group>"; };
 		B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailsViewController.swift; sourceTree = "<group>"; };
 		B3EE10031D36F794001EC54B /* ItemTrackerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTrackerDelegate.swift; sourceTree = "<group>"; };
 		B3F65BDB1D518A5500DFFAB9 /* PickBeaconTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickBeaconTableViewController.swift; sourceTree = "<group>"; };
-		B3F65BDD1D5212E000DFFAB9 /* Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
+		B3FDB44B1D5B1D3F009DE55A /* ShadowedUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowedUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,14 +97,21 @@
 			isa = PBXGroup;
 			children = (
 				B3CACF8D1D2880B200027B63 /* ItemTracker.swift */,
-				B3EE10031D36F794001EC54B /* ItemTrackerDelegate.swift */,
 			);
 			name = tracking;
+			sourceTree = "<group>";
+		};
+		B3B59F201D569CAD00F0F2C7 /* networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = networking;
 			sourceTree = "<group>";
 		};
 		B3CACF911D2887B400027B63 /* protocols */ = {
 			isa = PBXGroup;
 			children = (
+				B3EE10031D36F794001EC54B /* ItemTrackerDelegate.swift */,
 			);
 			name = protocols;
 			sourceTree = "<group>";
@@ -135,6 +140,8 @@
 		B3CFADFF1D2712FD006C2434 /* Safekeeper */ = {
 			isa = PBXGroup;
 			children = (
+				B3FDB44A1D5B1CEE009DE55A /* customViews */,
+				B3B59F201D569CAD00F0F2C7 /* networking */,
 				B39CD6061D40AF19000D9903 /* errors */,
 				B39EA1AE1D3A49AF00A9784F /* tracking */,
 				B3CACF911D2887B400027B63 /* protocols */,
@@ -144,7 +151,7 @@
 				B3CFAE271D27280A006C2434 /* models */,
 				B3CFAE221D271320006C2434 /* ObjCBridge.h */,
 				B3CFAE001D2712FD006C2434 /* AppDelegate.swift */,
-				B3C3C0F41D32B265004123F4 /* Extensions.swift */,
+				B3C3C0F41D32B265004123F4 /* UIExtensions.swift */,
 				B3CFAE041D2712FD006C2434 /* Main.storyboard */,
 				B3CFAE071D2712FD006C2434 /* Assets.xcassets */,
 				B3CFAE091D2712FD006C2434 /* LaunchScreen.storyboard */,
@@ -166,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				B3CACF891D281FBA00027B63 /* Item.swift */,
-				B3F65BDD1D5212E000DFFAB9 /* Distance.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -190,13 +196,20 @@
 		B3CFAE2F1D272953006C2434 /* itemOverview */ = {
 			isa = PBXGroup;
 			children = (
-				B3CFAE301D272999006C2434 /* ItemTableViewController.swift */,
+				B3CFAE301D272999006C2434 /* ItemOverViewController.swift */,
 				B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */,
 				B3CACF8B1D287FB900027B63 /* AddItemViewController.swift */,
-				B3CACF8F1D28876800027B63 /* ItemTableViewCell.swift */,
 				B3F65BDB1D518A5500DFFAB9 /* PickBeaconTableViewController.swift */,
 			);
 			name = itemOverview;
+			sourceTree = "<group>";
+		};
+		B3FDB44A1D5B1CEE009DE55A /* customViews */ = {
+			isa = PBXGroup;
+			children = (
+				B3FDB44B1D5B1D3F009DE55A /* ShadowedUIView.swift */,
+			);
+			name = customViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,7 +268,7 @@
 								enabled = 1;
 							};
 							com.apple.Maps.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -312,16 +325,15 @@
 			files = (
 				B3EE10041D36F794001EC54B /* ItemTrackerDelegate.swift in Sources */,
 				B3CFAE2B1D2728A9006C2434 /* TabBarViewController.swift in Sources */,
-				B3F65BDE1D5212E000DFFAB9 /* Distance.swift in Sources */,
-				B3CACF901D28876800027B63 /* ItemTableViewCell.swift in Sources */,
 				B3CFAE011D2712FD006C2434 /* AppDelegate.swift in Sources */,
-				B3C3C0F51D32B265004123F4 /* Extensions.swift in Sources */,
+				B3C3C0F51D32B265004123F4 /* UIExtensions.swift in Sources */,
 				B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */,
 				B39CD6081D40AF29000D9903 /* Errors.swift in Sources */,
 				B3CACF8C1D287FB900027B63 /* AddItemViewController.swift in Sources */,
 				B3CACF8A1D281FBA00027B63 /* Item.swift in Sources */,
 				B3F65BDC1D518A5500DFFAB9 /* PickBeaconTableViewController.swift in Sources */,
-				B3CFAE311D272999006C2434 /* ItemTableViewController.swift in Sources */,
+				B3CFAE311D272999006C2434 /* ItemOverViewController.swift in Sources */,
+				B3FDB44C1D5B1D3F009DE55A /* ShadowedUIView.swift in Sources */,
 				B3CACF8E1D2880B200027B63 /* ItemTracker.swift in Sources */,
 				B3ABEEFA1D29CAAE0000873E /* NavbarViewController.swift in Sources */,
 			);

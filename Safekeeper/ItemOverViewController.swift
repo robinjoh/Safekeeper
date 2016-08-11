@@ -1,20 +1,18 @@
-//
-//  NearableTableViewController.swift
-//  Safekeeper
-//
-//  Created by Robin on 2016-07-02.
-//  Copyright © 2016 Robin. All rights reserved.
-//
-
 import UIKit
 
 class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
     private var items = [String:Item]()
 	private var indexForItems = [String:NSIndexPath]()
-	let testId = "9dd690633ac0e7f1"
-	private let locationManager = ItemTracker.getInstance()
+	private var itemsForIndex = [NSIndexPath:String]()
+	private var locationManager = ItemTracker.getInstance()
+    
+    @IBOutlet weak var addItemCell: UIView!
+    
+	private struct TableCellTag {
+		static let DistanceLabel = 3
+	}
 	
-	
+	//MARK: - Lifecycle methods
     @IBAction func unwindFromSegue(segue: UIStoryboardSegue) {}
 	
 	override func viewWillDisappear(animated: Bool) {
@@ -23,9 +21,8 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-		items[testId] = Item(id: testId, name: "Plånbok", nearable: ESTNearable())
-		locationManager.delegate = self
-		locationManager.startRangingNearbyItems()
+		self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        loadSavedItems()
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -34,65 +31,63 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 		locationManager.startRangingNearbyItems()
 	}
 	
-	func itemTracker(found: Bool, item: Item) {
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
+	
+	private func loadSavedItems(){
 		
 	}
 	
-	func itemTracker(rangedItems items: [Item]) {
-		
-	}
-	
-	func didRangeItems(items: [Item]) {
-		for item in items {
-			print(item.nearable.rssi)
-			print(item.nearable.identifier)
+	private func saveItems(){
+		for (_, item) in items {
+
 		}
 	}
+	
+	
+	//MARK: - itemtracker methods
+	func itemTracker(didRangeItem item: Item) {
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+	}
+	
+	func itemTracker(didLoseItem item: Item){
 
-    // MARK: - Table view data source
+	}
+	
+	func itemTracker(rangedNearables nearables: [ESTNearable]) {}
 
+    // MARK: - Table view methods
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return items.count
+		return section == 0 ? 5 : items.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath)
-		cell.textLabel!.text = items[testId]?.name
-		indexForItems[testId] = indexPath
+		let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath)
+		//Inte implementerad helt.
         return cell
     }
 	
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
+	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return "Item Overview"
+		
+	}
+	
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+        if let identifier = tableView.cellForRowAtIndexPath(indexPath)?.accessibilityIdentifier where editingStyle == .Delete {
             // Delete the row from the data source
+			items.removeValueForKey(identifier)
+			saveItems()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
-
+	
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
@@ -102,6 +97,10 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		
+		if let cell = sender as? UITableViewCell where segue.identifier == Segue.ShowItemDetails.rawValue && cell.accessibilityIdentifier != nil {
+			if let destination = segue.destinationViewController as? ItemDetailsViewController {
+				destination.item = items[(cell.accessibilityIdentifier)!]
+			}
+		}
     }
 }

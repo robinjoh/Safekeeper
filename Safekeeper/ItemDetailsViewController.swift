@@ -9,12 +9,11 @@
 import UIKit
 
 class ItemDetailsViewController: UIViewController {
-    private var item: Item?
+    var item: Item!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-		self.navigationItem.title = "Item Details"
-		// Do any additional setup after loading the view.
+		self.navigationItem.title = item.name ?? "Item Details"
     }
 
     override func didReceiveMemoryWarning() {

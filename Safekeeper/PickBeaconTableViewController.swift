@@ -8,11 +8,13 @@
 
 import UIKit
 
-class PickBeaconTableViewController: UITableViewController {
-
+class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate {
+	private var locationManager = ItemTracker.getInstance()
+	private var rangedNearables = [String:ESTNearable]()
+	var alreadyTrackedNearablesById = [String]()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -36,8 +38,20 @@ class PickBeaconTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
+	
+	func itemTracker(didLoseItem item: Item) {
+		
+	}
+	
+	func itemTracker(didRangeItem item: Item) {
+		
+	}
+	
+	func itemTracker(rangedNearables nearables: [ESTNearable]) {
+		
+	}
 
-    /*
+	
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
@@ -45,7 +59,7 @@ class PickBeaconTableViewController: UITableViewController {
 
         return cell
     }
-    */
+	
 
     /*
     // Override to support conditional editing of the table view.

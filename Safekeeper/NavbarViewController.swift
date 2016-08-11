@@ -12,18 +12,12 @@ class NavbarViewController: UINavigationController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		let img = UIImage(named:"Brain")
-		let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: img!.size.width, height: img!.size.height))
-		imgView.image = img
-		navigationBar.topItem?.titleView = imgView
-    }
-	
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		
-    }
-	
+		TallerBar.setNavbarAppearance(self)
+//		navigationBar.layer.shadowPath = UIBezierPath(rect: navigationBar.bounds).CGPath
+//		navigationBar.layer.shadowColor = UIColor.blackColor().CGColor
+//		navigationBar.layer.shadowOpacity = 0.5
+//		navigationBar.layer.shadowOffset = CGSize(width: 0, height: 2)
+//		navigationBar.layer.masksToBounds = false
+	}
 
 }
