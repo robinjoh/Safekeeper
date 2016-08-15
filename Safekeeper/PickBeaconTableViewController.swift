@@ -11,99 +11,127 @@ import UIKit
 class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate {
 	private var locationManager = ItemTracker.getInstance()
 	private var rangedNearables = [String:ESTNearable]()
-	var alreadyTrackedNearablesById = [String]()
+	private var _selectedBeacon: ESTNearable?
+	private var beaconView: BeaconTableView! {
+		return tableView as! BeaconTableView
+	}
+	var selectedBeacon: ESTNearable! {
+		get{
+			return _selectedBeacon ?? nil
+		}
+	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+		locationManager.startRangingNearbyItems()
+		locationManager.delegate = self
+	}
+	
+	override func viewDidAppear(animated: Bool) {
+//		super.viewDidAppear(animated)
+//		if rangedNearables.count == 0 {
+//			let view = UIView(frame: CGRect(x: 0, y: 0, width: 600, height: 400))
+//			let lbl = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 200))
+//			lbl.text = "hej"
+//			view.addSubview(lbl)
+//			tableView.backgroundView = view
+//		}
+	}
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+	}
+	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return rangedNearables.count
     }
 	
-	func itemTracker(didLoseItem item: Item) {
-		
+	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return "Nearby Beacons"
 	}
 	
-	func itemTracker(didRangeItem item: Item) {
-		
-	}
+	func itemTracker(didLoseItem item: Item) {}
+	
+	func itemTracker(didRangeItem item: Item) {}
 	
 	func itemTracker(rangedNearables nearables: [ESTNearable]) {
-		
+		refreshModel(nearables)
 	}
-
 	
+	private func nearableForIndexPath(path: NSIndexPath) -> ESTNearable? {
+		if let id = tableView.cellForRowAtIndexPath(path)?.accessibilityIdentifier {
+			return rangedNearables[id]
+		}
+		return nil
+	}
+	
+	@objc private func refreshModel(nearables: [ESTNearable]) {
+		var reload = false
+		for nearable in nearables {
+			if rangedNearables.updateValue(nearable, forKey: nearable.identifier) == nil {
+				reload = true
+			}
+		}
+		let newNearableIds = Set(nearables.map({nearable in
+			return nearable.identifier}))
+		let oldIds = Set(rangedNearables.keys)
+		if let lostNearableIds = hasLostNearables(oldIds, newIds: newNearableIds) {
+			removeLostNearables(lostNearableIds)
+			reload = true
+		}
+		if reload {
+			tableView.reloadData()
+		}
+	}
+	
+	private func hasLostNearables(oldIds: Set<String>, newIds: Set<String>) -> Set<String>? {
+		let remove = oldIds.subtract(newIds)
+		return !remove.isEmpty ? remove : nil
+	}
+	
+	@objc private func removeLostNearables(removeIds: Set<String>) -> Bool {
+		for id in removeIds {
+			if rangedNearables.removeValueForKey(id) != nil {
+				for cell in tableView.subviews where cell is PickBeaconTableViewCell {
+					let castCell = cell as! PickBeaconTableViewCell
+					if cell.accessibilityIdentifier == id {
+						tableView.deleteRowsAtIndexPaths([tableView.indexPathForCell(castCell)!]
+, withRowAnimation: UITableViewRowAnimation.Left)
+					}
+				}
+			}
+		}
+		return !removeIds.isEmpty
+	}
+		
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+		let cell = tableView.dequeueReusableCellWithIdentifier("beaconCell", forIndexPath: indexPath) as! PickBeaconTableViewCell
+		let id = Array(rangedNearables.keys)[indexPath.row]
+		if let nearable = rangedNearables[id] {
+			cell.idLabel.text = PickBeaconTableViewCell.LabelString.Id(id)
+			cell.accessibilityIdentifier = id
+			let type = nearable.type
+			cell.typeLabel.text = PickBeaconTableViewCell.LabelString.Type(type.string)
+			cell.colorLabel.text = PickBeaconTableViewCell.LabelString.Color(nearable.color.string)
+		}
+		beaconView.indexPathForBeaconId[id] = indexPath
         return cell
     }
 	
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+		let nearable = nearableForIndexPath(indexPath)
+		_selectedBeacon = nearable
+		tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+		return indexPath
+	}
 }

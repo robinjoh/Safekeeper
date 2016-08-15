@@ -10,7 +10,7 @@ import UIKit
 
 class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate {
 	private let SECTION_TITLE = "Item"
-	var selectedBeacon: ESTNearable?
+	private var selectedBeacon: ESTNearable?
 	var selectedImage: UIImage?
 	@IBOutlet weak var nameField: UITextField!
 	
@@ -43,11 +43,20 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
     }
     
     @IBAction func textFieldEdited(sender: UITextField) {
-			navigationItem.rightBarButtonItem?.enabled = !(sender.text?.isEmpty)!
+			navigationItem.rightBarButtonItem?.enabled = allRequiredItemsSelected()
     }
 	
 	@IBAction func beaconPicked(segue: UIStoryboardSegue){
-		print(segue)
+		let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 1, inSection: 0))
+		if let ctrl = segue.sourceViewController as? PickBeaconTableViewController where ctrl.selectedBeacon != nil {
+			self.selectedBeacon = ctrl.selectedBeacon
+			cell?.textLabel?.text = ctrl.selectedBeacon.identifier
+			navigationItem.rightBarButtonItem?.enabled = allRequiredItemsSelected()
+		}
+	}
+	
+	private func allRequiredItemsSelected() -> Bool {
+		return (self.selectedBeacon != nil && nameField.text != nil && !(nameField.text?.isEmpty)!)
 	}
 	
 	//MARK: - Tableview

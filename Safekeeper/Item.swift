@@ -91,7 +91,7 @@ public class Item: NSObject, NSCoding {
 		
 		var value: String {
 			switch self {
-			case .Immediate(let val): return val
+			case .Immediate(let val): return val  
 			case .Near(let val): return val
 			case .Far(let val):return val
 			case .Unknown(let val): return val
