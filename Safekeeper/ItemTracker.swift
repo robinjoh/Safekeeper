@@ -47,7 +47,7 @@ public class ItemTracker {
 		let now = NSDate()
 		for (_, item) in trackedItems {
 			if now.timeIntervalSinceDate(item.lastDetected) > NSTimer.NEARABLE_RANGING_LIMIT {
-				self.delegate?.itemTracker(didLoseItem: item)
+				self.delegate?.itemTracker?(didLoseItem: item)
 			}
 		}
 	}
@@ -73,12 +73,12 @@ public class ItemTracker {
 			if let item = master.trackedItems[nearable.identifier] {
 				item.location = Item.Location(nearable.zone())
 				master.trackedItems[item.itemId] = item
-				master.delegate?.itemTracker(didRangeItem: item)
+				master.delegate?.itemTracker?(didRangeItem: item)
 			}
 		}
 		
 		@objc func nearableManager(manager: ESTNearableManager, didRangeNearables nearables: [ESTNearable], withType type: ESTNearableType) {
-			master.delegate?.itemTracker(rangedNearables: nearables)
+			master.delegate?.itemTracker?(rangedNearables: nearables)
 		}
 		
 		@objc func nearableManager(manager: ESTNearableManager, didEnterIdentifierRegion identifier: String) {

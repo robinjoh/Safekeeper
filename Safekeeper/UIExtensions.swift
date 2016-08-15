@@ -33,7 +33,6 @@ extension UIViewController {
 		case ShowItemDetails = "showItemDetails"
 		case PickBeacon = "pickBeacon"
 	}
-	
 }
 
 //Subclass extensions

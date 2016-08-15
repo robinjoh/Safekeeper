@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol ItemTrackerDelegate: class {
-	func itemTracker(didRangeItem item: Item)
-	func itemTracker(didLoseItem item: Item)
-	func itemTracker(rangedNearables nearables: [ESTNearable])
+@objc protocol ItemTrackerDelegate: class {
+	optional func itemTracker(didRangeItem item: Item)
+	optional func itemTracker(didLoseItem item: Item)
+	optional func itemTracker(rangedNearables nearables: [ESTNearable])
 }

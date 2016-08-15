@@ -9,5 +9,13 @@
 import UIKit
 
 class BeaconTableView: UITableView {
-	var indexPathForBeaconId = [String:NSIndexPath]()
+	private var indexPathForBeaconId = [String:NSIndexPath]()
+	
+	func indexPath(forBeaconId: String) -> NSIndexPath? {
+		return indexPathForBeaconId[forBeaconId]
+	}
+	
+	func setIndexPath(forBeaconId: String, indexPath: NSIndexPath) {
+		indexPathForBeaconId[forBeaconId] = indexPath
+	}
 }

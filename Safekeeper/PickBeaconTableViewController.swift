@@ -21,49 +21,19 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 		}
 	}
 	
+	//MARK: View lifecycle methods
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		locationManager.startRangingNearbyItems()
 		locationManager.delegate = self
 	}
 	
-	override func viewDidAppear(animated: Bool) {
-//		super.viewDidAppear(animated)
-//		if rangedNearables.count == 0 {
-//			let view = UIView(frame: CGRect(x: 0, y: 0, width: 600, height: 400))
-//			let lbl = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 200))
-//			lbl.text = "hej"
-//			view.addSubview(lbl)
-//			tableView.backgroundView = view
-//		}
-	}
-
-	override func viewWillDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-	}
-	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rangedNearables.count
-    }
 	
-	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return "Nearby Beacons"
-	}
-	
-	func itemTracker(didLoseItem item: Item) {}
-	
-	func itemTracker(didRangeItem item: Item) {}
-	
+	//MARK: ItemTracker methods
 	func itemTracker(rangedNearables nearables: [ESTNearable]) {
 		refreshModel(nearables)
 	}
@@ -76,10 +46,10 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 	}
 	
 	@objc private func refreshModel(nearables: [ESTNearable]) {
-		var reload = false
+		var shouldReload = false
 		for nearable in nearables {
 			if rangedNearables.updateValue(nearable, forKey: nearable.identifier) == nil {
-				reload = true
+				shouldReload = true
 			}
 		}
 		let newNearableIds = Set(nearables.map({nearable in
@@ -87,33 +57,45 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 		let oldIds = Set(rangedNearables.keys)
 		if let lostNearableIds = hasLostNearables(oldIds, newIds: newNearableIds) {
 			removeLostNearables(lostNearableIds)
-			reload = true
+			shouldReload = true
 		}
-		if reload {
+		if shouldReload {
 			tableView.reloadData()
 		}
 	}
 	
 	private func hasLostNearables(oldIds: Set<String>, newIds: Set<String>) -> Set<String>? {
 		let remove = oldIds.subtract(newIds)
-		return !remove.isEmpty ? remove : nil
+		return remove.isEmpty ? nil : remove
 	}
 	
-	@objc private func removeLostNearables(removeIds: Set<String>) -> Bool {
+	@objc private func removeLostNearables(removeIds: Set<String>) {
 		for id in removeIds {
 			if rangedNearables.removeValueForKey(id) != nil {
-				for cell in tableView.subviews where cell is PickBeaconTableViewCell {
-					let castCell = cell as! PickBeaconTableViewCell
-					if cell.accessibilityIdentifier == id {
-						tableView.deleteRowsAtIndexPaths([tableView.indexPathForCell(castCell)!]
-, withRowAnimation: UITableViewRowAnimation.Left)
-					}
-				}
+				let path = beaconView.indexPath(id)!
+				tableView.deleteRowsAtIndexPaths([path]
+					, withRowAnimation: UITableViewRowAnimation.Left)
+				
 			}
 		}
-		return !removeIds.isEmpty
 	}
-		
+	
+	
+	// MARK: - Table view methods
+	
+	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		return 1
+	}
+	
+	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return rangedNearables.count
+	}
+	
+	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return "Nearby Beacons"
+	}
+	
+	
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("beaconCell", forIndexPath: indexPath) as! PickBeaconTableViewCell
 		let id = Array(rangedNearables.keys)[indexPath.row]
@@ -124,7 +106,7 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 			cell.typeLabel.text = PickBeaconTableViewCell.LabelString.Type(type.string)
 			cell.colorLabel.text = PickBeaconTableViewCell.LabelString.Color(nearable.color.string)
 		}
-		beaconView.indexPathForBeaconId[id] = indexPath
+		beaconView.setIndexPath(id, indexPath: indexPath)
         return cell
     }
 	
