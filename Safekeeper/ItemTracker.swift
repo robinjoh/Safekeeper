@@ -6,14 +6,20 @@ public class ItemTracker {
 	private var trackerDelegate: ItemDelegate!
 	private let locationManager = ESTNearableManager()
 	private (set) var trackedItems = [String:Item]()
-	private var trackEverything = false
-	private var timer: NSTimer!
+	private weak var timer: NSTimer!
+	private var isMonitoring = false
+	private var isRanging = false
+	private var isMonitoringPaused = false
+	
+	enum Activity {
+		case Monitoring
+		case Ranging
+	}
 	
 	private init() {
 		trackerDelegate = ItemDelegate()
 		trackerDelegate.master = self
 		locationManager.delegate = trackerDelegate
-		timer = NSTimer.scheduledTimerWithTimeInterval(NSTimer.NEARABLE_RANGING_LIMIT, target: self, selector: #selector(ItemTracker.findLostItems), userInfo: nil, repeats: true)
 	}
 	
 	static func getInstance() -> ItemTracker {
@@ -25,14 +31,25 @@ public class ItemTracker {
 		}
 	}
 	
+	private func startTimer(){
+		timer = NSTimer.scheduledTimerWithTimeInterval(NSTimer.NEARABLE_RANGING_LIMIT, target: self, selector: #selector(ItemTracker.findLostItems), userInfo: nil, repeats: true)
+	}
+	
 	func trackItem(item: Item){
 		locationManager.startRangingForIdentifier(item.itemId)
 		trackedItems[item.itemId] = item
+		if !isMonitoring {
+			isMonitoring = true
+		}
 	}
 	
-	func stopTrackingItem(item: Item) {
-	if let index = trackedItems.indexForKey(item.itemId) {
+	func stopTrackingItem(withId id: String) {
+	if let index = trackedItems.indexForKey(id) {
 			trackedItems.removeAtIndex(index)
+		}
+		if isMonitoring && trackedItems.isEmpty {
+			startTimer()
+			isMonitoring = false
 		}
 	}
 	
@@ -40,7 +57,7 @@ public class ItemTracker {
 		locationManager.stopMonitoring()
 		locationManager.stopRanging()
 		trackedItems.removeAll()
-		timer.invalidate()
+		timer?.invalidate()
 	}
 	
 	@objc private func findLostItems(){
@@ -54,14 +71,47 @@ public class ItemTracker {
 	
 	func startRangingNearbyItems() {
 		locationManager.startRangingForType(ESTNearableType.All)
+		startTimer()
+		isRanging = true
 	}
 	
 	func stopRangingNearbyItems() {
-		locationManager.stopRangingForType(ESTNearableType.All)
-		if trackedItems.count > 0 {
-			for (id, _) in trackedItems {
-				locationManager.stopRangingForIdentifier(id)
+		locationManager.stopRanging()
+		timer?.invalidate()
+		isRanging = false
+	}
+	
+	func pause(activity: Activity){
+		switch activity {
+		case .Ranging:
+			if isRanging {
+				locationManager.stopRanging()
+				timer?.invalidate()
+				isRanging = false
 			}
+		case .Monitoring:
+			if isMonitoring {
+				locationManager.stopMonitoring()
+				timer?.invalidate()
+				isMonitoringPaused = true
+				isMonitoring = false
+			}
+		}
+	}
+	
+	func resume(activity: Activity){
+		switch activity {
+		case .Monitoring:
+			if isMonitoringPaused {
+			for (id, _) in trackedItems {
+				locationManager.startMonitoringForIdentifier(id)
+			}
+			isMonitoringPaused = false
+			isMonitoring = true
+			startTimer()
+			}
+		case .Ranging:
+			locationManager.startRangingForType(ESTNearableType.All)
 		}
 	}
 	
@@ -71,7 +121,7 @@ public class ItemTracker {
 		
 		@objc func nearableManager(manager: ESTNearableManager, didRangeNearable nearable: ESTNearable) {
 			if let item = master.trackedItems[nearable.identifier] {
-				item.location = Item.Location(nearable.zone())
+				item.location = Item.Location(nearable.zone(), withDescription: nil)
 				master.trackedItems[item.itemId] = item
 				master.delegate?.itemTracker?(didRangeItem: item)
 			}

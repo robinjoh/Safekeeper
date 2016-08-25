@@ -9,7 +9,7 @@
 import UIKit
 
 class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate {
-	private var locationManager = ItemTracker.getInstance()
+	private var locationManager: ItemTracker!
 	private var rangedNearables = [String:ESTNearable]()
 	private var _selectedBeacon: ESTNearable?
 	private var beaconView: BeaconTableView! {
@@ -21,17 +21,16 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 		}
 	}
 	
-	//MARK: View lifecycle methods
-	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-		locationManager.startRangingNearbyItems()
-		locationManager.delegate = self
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		locationManager = ItemTracker.getInstance()
 	}
 	
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+	override func viewWillAppear(animated:Bool) {
+		super.viewWillAppear(animated)
+		locationManager.delegate = self
+		locationManager.startRangingNearbyItems()
+	}
 	
 	//MARK: ItemTracker methods
 	func itemTracker(rangedNearables nearables: [ESTNearable]) {
@@ -52,15 +51,14 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 				shouldReload = true
 			}
 		}
-		let newNearableIds = Set(nearables.map({nearable in
-			return nearable.identifier}))
+		let newNearableIds = Set(nearables.map({nearable in return nearable.identifier}))
 		let oldIds = Set(rangedNearables.keys)
 		if let lostNearableIds = hasLostNearables(oldIds, newIds: newNearableIds) {
 			removeLostNearables(lostNearableIds)
 			shouldReload = true
 		}
 		if shouldReload {
-			tableView.reloadData()
+			UIView.transitionWithView(beaconView, duration: 0.35, options: .TransitionCrossDissolve, animations: { [weak self] in self?.beaconView.reloadData() }, completion: nil)
 		}
 	}
 	
@@ -71,11 +69,10 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 	
 	@objc private func removeLostNearables(removeIds: Set<String>) {
 		for id in removeIds {
-			if rangedNearables.removeValueForKey(id) != nil {
-				let path = beaconView.indexPath(id)!
-				tableView.deleteRowsAtIndexPaths([path]
-					, withRowAnimation: UITableViewRowAnimation.Left)
-				
+			if let path = beaconView.indexPath(forBeaconId: id)
+				where beaconView.cellForRowAtIndexPath(path) != nil {
+				rangedNearables.removeValueForKey(id)
+				beaconView.deleteRowsAtIndexPaths([path], withRowAnimation: UITableViewRowAnimation.Fade)
 			}
 		}
 	}
@@ -95,10 +92,22 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 		return "Nearby Beacons"
 	}
 	
+	override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		let view = UIView(frame: CGRect(x: tableView.bounds.width, y: 0, width: tableView.bounds.width, height: tableView.rowHeight))
+		let indicator = UIActivityIndicatorView(frame: CGRect(x: tableView.bounds.width / 2, y: 10, width: 20, height: 20))
+		indicator.color = UIColor.NavbarColor()
+		indicator.startAnimating()
+		let lbl = UILabel(frame: CGRect(x: tableView.bounds.width / 2, y: 32, width: 150, height: 20))
+		lbl.text = "Nearby Beacons"
+		view.addSubview(lbl)
+		view.addSubview(indicator)
+		return view
+	}
+	
 	
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("beaconCell", forIndexPath: indexPath) as! PickBeaconTableViewCell
-		let id = Array(rangedNearables.keys)[indexPath.row]
+		let id = [String](rangedNearables.keys)[indexPath.row]
 		if let nearable = rangedNearables[id] {
 			cell.idLabel.text = PickBeaconTableViewCell.LabelString.Id(id)
 			cell.accessibilityIdentifier = id
@@ -106,7 +115,6 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 			cell.typeLabel.text = PickBeaconTableViewCell.LabelString.Type(type.string)
 			cell.colorLabel.text = PickBeaconTableViewCell.LabelString.Color(nearable.color.string)
 		}
-		beaconView.setIndexPath(id, indexPath: indexPath)
         return cell
     }
 	

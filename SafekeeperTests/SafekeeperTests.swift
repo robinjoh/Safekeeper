@@ -10,9 +10,11 @@ import XCTest
 @testable import Safekeeper
 
 class SafekeeperTests: XCTestCase {
-    
+	var pickBeaconVC: PickBeaconTableViewController!
+	
     override func setUp() {
         super.setUp()
+		let storyboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     

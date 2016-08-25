@@ -8,14 +8,13 @@
 
 import UIKit
 
-class BeaconTableView: UITableView {
-	private var indexPathForBeaconId = [String:NSIndexPath]()
-	
-	func indexPath(forBeaconId: String) -> NSIndexPath? {
-		return indexPathForBeaconId[forBeaconId]
-	}
-	
-	func setIndexPath(forBeaconId: String, indexPath: NSIndexPath) {
-		indexPathForBeaconId[forBeaconId] = indexPath
+class BeaconTableView: UITableView {	
+	func indexPath(forBeaconId id: String) -> NSIndexPath? {
+		for cell in self.subviews where cell is PickBeaconTableViewCell {
+			if cell.accessibilityIdentifier == id {
+				return self.indexPathForCell(cell as! PickBeaconTableViewCell)
+			}
+		}
+		return nil
 	}
 }

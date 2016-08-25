@@ -16,6 +16,17 @@ extension UIColor {
 
 }
 
+extension CALayer {
+	func layerWithGradientColors(firstColor: CGColor, secondColor: CGColor, bounds: CGRect) -> CAGradientLayer {
+		let lay = CAGradientLayer()
+		lay.frame = bounds
+		lay.colors = [firstColor,secondColor]
+		lay.startPoint = CGPoint(x: 0, y: 0.5)
+		lay.endPoint = CGPoint(x: 1, y: 1)
+		return lay
+	}
+}
+
 extension UIImage {
 	public static func getImageWithColor(color: UIColor) -> UIImage {
 		let rect = CGRect(x: 0,y: 0,width: 1,height: 1)
@@ -32,6 +43,14 @@ extension UIViewController {
 	enum Segue: String {
 		case ShowItemDetails = "showItemDetails"
 		case PickBeacon = "pickBeacon"
+	}
+}
+
+extension UITableViewCell {
+	struct ReuseIdentifier {
+		static let NameCellIdentifier = "nameCell"
+		static let PickBeaconCellIdentifier = "beaconCell"
+		static let SelectImageCellIdentifier = "addImageCell"
 	}
 }
 

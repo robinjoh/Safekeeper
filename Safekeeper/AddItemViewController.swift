@@ -8,17 +8,42 @@
 
 import UIKit
 
-class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate {
+class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	private let SECTION_TITLE = "Item"
-	private var selectedBeacon: ESTNearable?
-	var selectedImage: UIImage?
+	private let ImageRow = 2
+	private var _selectedBeacon: ESTNearable?
+	private(set) var selectedBeacon: ESTNearable! {
+		get {
+			return _selectedBeacon
+		}
+		set {
+			_selectedBeacon = newValue
+		}
+	}
+	private(set) var selectedImage: UIImage?
+	private let imagePicker = UIImagePickerController()
 	@IBOutlet weak var nameField: UITextField!
+	
+	struct AlertTitle {
+		static let Library =  "Choose from Camera Roll"
+		static let Camera = "Take a picture"
+		static let Cancel = "Cancel"
+	}
+	
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameField.attributedPlaceholder = NSAttributedString(string: "ITEM NAME", attributes: [NSForegroundColorAttributeName: (nameField.textColor!)])
+        nameField.attributedPlaceholder = NSAttributedString(string: "Item Name", attributes: [NSForegroundColorAttributeName: (nameField.textColor!)])
 		tableView.tableHeaderView?.backgroundColor = UIColor.NavbarColor()
+		if UIImagePickerController.isSourceTypeAvailable(.Camera){
+			imagePicker.sourceType = .Camera
+		} else {
+			imagePicker.sourceType = .PhotoLibrary
+		}
+		imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         nameField.delegate = self
+		imagePicker.delegate = self
+		
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -49,14 +74,14 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 	@IBAction func beaconPicked(segue: UIStoryboardSegue){
 		let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 1, inSection: 0))
 		if let ctrl = segue.sourceViewController as? PickBeaconTableViewController where ctrl.selectedBeacon != nil {
-			self.selectedBeacon = ctrl.selectedBeacon
+			self._selectedBeacon = ctrl.selectedBeacon
 			cell?.textLabel?.text = ctrl.selectedBeacon.identifier
 			navigationItem.rightBarButtonItem?.enabled = allRequiredItemsSelected()
 		}
 	}
 	
 	private func allRequiredItemsSelected() -> Bool {
-		return (self.selectedBeacon != nil && nameField.text != nil && !(nameField.text?.isEmpty)!)
+		return (self._selectedBeacon != nil && nameField.text != nil && !(nameField.text?.isEmpty)!)
 	}
 	
 	//MARK: - Tableview
@@ -67,6 +92,40 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 	
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
+	}
+	
+	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		if indexPath.row == ImageRow {
+			showImagePickerChoiceDialog()
+		}
+	}
+	
+	private func showImagePickerChoiceDialog() {
+		let alertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+		alertController.addAction(UIAlertAction(title: AlertTitle.Camera, style: UIAlertActionStyle.Default, handler: {[weak self] (action) -> Void in self?.showImagePickerController(.Camera)}))
+		alertController.addAction(UIAlertAction(title: AlertTitle.Library, style: UIAlertActionStyle.Default, handler: { [weak self] (action) -> Void in self?.showImagePickerController(.PhotoLibrary)}))
+		alertController.addAction(UIAlertAction(title: AlertTitle.Cancel, style: UIAlertActionStyle.Cancel, handler: nil))
+		presentViewController(alertController, animated: true, completion: nil)
+		alertController.view.tintColor = UIColor.NavbarColor()
+	}
+	
+	private func showImagePickerController(choice: UIImagePickerControllerSourceType){
+		if choice == .Camera && UIImagePickerController.isSourceTypeAvailable(.Camera){
+			imagePicker.sourceType = .Camera
+		} else {
+			imagePicker.sourceType = .PhotoLibrary
+		}
+		self.presentViewController(imagePicker, animated: true, completion: nil)
+	}
+	
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+		selectedImage = image
+		dismissViewControllerAnimated(true, completion: nil)
+		let path = NSIndexPath(forItem:2, inSection: 0)
+		let cell = tableView.cellForRowAtIndexPath(path)!
+		cell.imageView?.image = selectedImage
+		cell.textLabel?.text = "Choose Item Image"
+		cell.setNeedsLayout()
 	}
 	
     // MARK: - Navigation
