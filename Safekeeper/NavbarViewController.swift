@@ -9,9 +9,15 @@
 import UIKit
 
 class NavbarViewController: UINavigationController {
+	var alreadyUsedIdentifiers = Set<String>()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		TallerBar.setNavbarAppearance(self)
+		for child in childViewControllers {
+			if let addItem = child as? AddItemViewController {
+				addItem.alreadyUsedIdentifiers = alreadyUsedIdentifiers
+			}
+		}
 	}
 }

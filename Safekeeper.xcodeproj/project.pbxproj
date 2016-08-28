@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3608D811D6FAF630056E334 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3608D801D6FAF630056E334 /* DataSource.swift */; };
 		B39569FF1D6243E2004C1C83 /* PickBeaconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */; };
 		B39CD6081D40AF29000D9903 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39CD6071D40AF29000D9903 /* Errors.swift */; };
 		B39D40071D6115A600805722 /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D40061D6115A600805722 /* ModelExtensions.swift */; };
@@ -43,7 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B3608D801D6FAF630056E334 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickBeaconTableViewCell.swift; sourceTree = "<group>"; };
 		B39CD6071D40AF29000D9903 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B39D40061D6115A600805722 /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				B3EE10031D36F794001EC54B /* ItemTrackerDelegate.swift */,
-				B3608D801D6FAF630056E334 /* DataSource.swift */,
 			);
 			name = protocols;
 			sourceTree = "<group>";
@@ -164,7 +161,7 @@
 				B39CD6061D40AF19000D9903 /* errors */,
 				B39EA1AE1D3A49AF00A9784F /* tracking */,
 				B3CACF911D2887B400027B63 /* protocols */,
-				B3CFAE2F1D272953006C2434 /* itemModule */,
+				B3CFAE2F1D272953006C2434 /* main */,
 				B3CFAE2C1D2728EE006C2434 /* mapOverview */,
 				B3CFAE291D27281E006C2434 /* navigation */,
 				B3CFAE271D27280A006C2434 /* models */,
@@ -211,7 +208,7 @@
 			name = mapOverview;
 			sourceTree = "<group>";
 		};
-		B3CFAE2F1D272953006C2434 /* itemModule */ = {
+		B3CFAE2F1D272953006C2434 /* main */ = {
 			isa = PBXGroup;
 			children = (
 				B3CFAE301D272999006C2434 /* ItemOverViewController.swift */,
@@ -219,7 +216,7 @@
 				B3CACF8B1D287FB900027B63 /* AddItemViewController.swift */,
 				B3F65BDB1D518A5500DFFAB9 /* PickBeaconTableViewController.swift */,
 			);
-			name = itemModule;
+			name = main;
 			sourceTree = "<group>";
 		};
 		B3FDB44A1D5B1CEE009DE55A /* customViews */ = {
@@ -344,7 +341,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3EE10041D36F794001EC54B /* ItemTrackerDelegate.swift in Sources */,
-				B3608D811D6FAF630056E334 /* DataSource.swift in Sources */,
 				B3CFAE2B1D2728A9006C2434 /* TabBarViewController.swift in Sources */,
 				B3CFAE011D2712FD006C2434 /* AppDelegate.swift in Sources */,
 				B39D40071D6115A600805722 /* ModelExtensions.swift in Sources */,

@@ -9,9 +9,15 @@
 import UIKit
 
 class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate {
-	private var locationManager: ItemTracker!
-	private var rangedNearables = [String:ESTNearable]()
+	private var itemTracker: ItemTracker!
+	private var rangedNearables = [String:ESTNearable]() {
+		didSet {
+			
+			
+		}
+	}
 	private var _selectedBeacon: ESTNearable?
+	var alreadyUsedIdentifiers = Set<String>()
 	private var beaconView: BeaconTableView! {
 		return tableView as! BeaconTableView
 	}
@@ -23,18 +29,24 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		locationManager = ItemTracker.getInstance()
+		itemTracker = ItemTracker.getInstance()
 	}
 	
 	override func viewWillAppear(animated:Bool) {
 		super.viewWillAppear(animated)
-		locationManager.delegate = self
-		locationManager.startRangingNearbyItems()
+		itemTracker.delegate = self
+		itemTracker.performOperation(ItemTracker.Operation.Ranging(numberOfTimes: 0))
 	}
 	
 	//MARK: ItemTracker methods
 	func itemTracker(rangedNearables nearables: [ESTNearable]) {
-		refreshModel(nearables)
+		var nearablesToRefresh = [ESTNearable]()
+		for nearable in nearables {
+			if !alreadyUsedIdentifiers.contains(nearable.identifier){
+				nearablesToRefresh.append(nearable)
+			}
+		}
+		refreshModel(nearablesToRefresh)
 	}
 	
 	private func nearableForIndexPath(path: NSIndexPath) -> ESTNearable? {
@@ -94,11 +106,13 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 	
 	override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let view = UIView(frame: CGRect(x: tableView.bounds.width, y: 0, width: tableView.bounds.width, height: tableView.rowHeight))
-		let indicator = UIActivityIndicatorView(frame: CGRect(x: tableView.bounds.width / 2, y: 10, width: 20, height: 20))
+		let indicator = UIActivityIndicatorView(frame: CGRect(x: tableView.bounds.width / 2, y: 32, width: 10, height: 10))
 		indicator.color = UIColor.NavbarColor()
 		indicator.startAnimating()
-		let lbl = UILabel(frame: CGRect(x: tableView.bounds.width / 2, y: 32, width: 150, height: 20))
-		lbl.text = "Nearby Beacons"
+		let lbl = UILabel(frame: CGRect(x: 5, y: 30, width: 160, height: 20))
+		lbl.adjustsFontSizeToFitWidth = true
+		lbl.textColor = UIColor.NavbarColor()
+		lbl.text = "Scanning for beacons..."
 		view.addSubview(lbl)
 		view.addSubview(indicator)
 		return view

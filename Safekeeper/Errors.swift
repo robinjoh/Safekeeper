@@ -12,3 +12,7 @@ import Foundation
 enum ItemError: ErrorType {
 	case InvalidItemID(msg: String)
 }
+
+enum FileSystemError: ErrorType {
+	case FilePathNotFound(msg: String, path: String)
+}

@@ -43,14 +43,24 @@ extension UIViewController {
 	enum Segue: String {
 		case ShowItemDetails = "showItemDetails"
 		case PickBeacon = "pickBeacon"
+		case AddItem = "addItem"
 	}
 }
 
 extension UITableViewCell {
 	struct ReuseIdentifier {
-		static let NameCellIdentifier = "nameCell"
-		static let PickBeaconCellIdentifier = "beaconCell"
-		static let SelectImageCellIdentifier = "addImageCell"
+		static let NameCell = "nameCell"
+		static let PickBeaconCell = "beaconCell"
+		static let SelectImageCell = "addImageCell"
+		static let NoItemsCell = "noItemsCell"
+		static let ItemCell = "itemCell"
+	}
+}
+
+extension UIImage {
+	struct Name {
+		static let Wallet = "Wallet Filled"
+		//lägg till fler
 	}
 }
 
@@ -58,16 +68,16 @@ extension UITableViewCell {
 
 class TallerBar: UINavigationBar {
 	override func sizeThatFits(size: CGSize) -> CGSize {
-		return CGSizeMake(self.superview!.frame.width, 60)
+		return CGSizeMake(self.superview!.frame.width, 100)
 	}
 	
 	static func setNavbarAppearance(viewController: NavbarViewController) {
 		let img = UIImage(named:"Brain")
 		let view = UIView(frame: CGRect(x: 0, y: 0, width: img!.size.width, height: img!.size.height))
-		let imgView = UIImageView(frame: CGRect(x: 0, y: -20, width: img!.size.width, height: img!.size.height))
+		let imgView = UIImageView(frame: CGRect(x: 0, y: -40, width: img!.size.width, height: img!.size.height))
 		imgView.image = img
 		view.addSubview(imgView)
-		let lbl = UILabel(frame: CGRect(x: -27, y: imgView.bounds.minY + 10, width: 100, height: 20))
+		let lbl = UILabel(frame: CGRect(x: -27, y: imgView.bounds.size.height + 10, width: 100, height: 20))
 		lbl.textColor = UIColor.whiteColor()
 		lbl.font = UIFont(name: "System Light", size: 13)
 		lbl.text = "Safekeeper"

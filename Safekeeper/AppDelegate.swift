@@ -17,12 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate 
 	private var locationManager = ItemTracker.getInstance()
 	
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
 		self.window?.tintColor = UIColor.whiteColor()
 		UINavigationBar.appearance().barTintColor = UIColor.NavbarColor()
 		
 		UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.classForCoder()]).textColor = UIColor.NavbarColor()
 		bluetoothManager = CBCentralManager(delegate: self, queue: nil)
+		application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound], categories: nil))
 		return true
     }
 
@@ -31,8 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate 
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-		locationManager.pause(ItemTracker.Activity.Monitoring)
-		locationManager.pause(ItemTracker.Activity.Ranging)
+		locationManager.performOperation(ItemTracker.Operation.PauseRanging)
     }
 	
     func applicationWillEnterForeground(application: UIApplication) {
@@ -41,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate 
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-		locationManager.resume(ItemTracker.Activity.Monitoring)
+		locationManager.performOperation(ItemTracker.Operation.ResumeRanging)
     }
 
     func applicationWillTerminate(application: UIApplication) {

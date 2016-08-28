@@ -12,6 +12,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 	private let SECTION_TITLE = "Item"
 	private let ImageRow = 2
 	private var _selectedBeacon: ESTNearable?
+	var alreadyUsedIdentifiers = Set<String>()
 	private(set) var selectedBeacon: ESTNearable! {
 		get {
 			return _selectedBeacon
@@ -128,11 +129,9 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		cell.setNeedsLayout()
 	}
 	
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if let dest = segue.destinationViewController as? PickBeaconTableViewController {
+			dest.alreadyUsedIdentifiers = alreadyUsedIdentifiers
+		}
+	}
 }
