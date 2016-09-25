@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B31BCAC01D9862BD000B8644 /* tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F233B1D98607400BFFCE0 /* tests.swift */; };
-		B31BCAC21D9862F2000B8644 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAC11D9862F2000B8644 /* SafekeeperTests.swift */; };
-		B31BCAC31D98631F000B8644 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAC11D9862F2000B8644 /* SafekeeperTests.swift */; };
 		B33F23391D98602500BFFCE0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B33F23371D98602500BFFCE0 /* Info.plist */; };
 		B39569FF1D6243E2004C1C83 /* PickBeaconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */; };
 		B39CD6081D40AF29000D9903 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39CD6071D40AF29000D9903 /* Errors.swift */; };
@@ -46,7 +44,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B31BCAC11D9862F2000B8644 /* SafekeeperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafekeeperTests.swift; sourceTree = "<group>"; };
 		B33F23371D98602500BFFCE0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B33F233B1D98607400BFFCE0 /* tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tests.swift; sourceTree = "<group>"; };
 		B34597161D985F66009B63E1 /* SafekeeperTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SafekeeperTests-Bridging-Header.h"; path = "Safekeeper/SafekeeperTests-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
@@ -101,7 +98,6 @@
 		B33F23361D98602500BFFCE0 /* SafekeeperTests */ = {
 			isa = PBXGroup;
 			children = (
-				B31BCAC11D9862F2000B8644 /* SafekeeperTests.swift */,
 				B34597161D985F66009B63E1 /* SafekeeperTests-Bridging-Header.h */,
 				B33F23371D98602500BFFCE0 /* Info.plist */,
 				B33F233B1D98607400BFFCE0 /* tests.swift */,
@@ -358,7 +354,6 @@
 				B3CFAE2B1D2728A9006C2434 /* TabBarViewController.swift in Sources */,
 				B3CFAE011D2712FD006C2434 /* AppDelegate.swift in Sources */,
 				B39D40071D6115A600805722 /* ModelExtensions.swift in Sources */,
-				B31BCAC21D9862F2000B8644 /* SafekeeperTests.swift in Sources */,
 				B3C3C0F51D32B265004123F4 /* UIExtensions.swift in Sources */,
 				B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */,
 				B39CD6081D40AF29000D9903 /* Errors.swift in Sources */,
@@ -379,7 +374,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B31BCAC31D98631F000B8644 /* SafekeeperTests.swift in Sources */,
 				B31BCAC01D9862BD000B8644 /* tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

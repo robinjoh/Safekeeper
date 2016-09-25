@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreBluetooth
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate {
@@ -22,7 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate 
 		
 		UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.classForCoder() as! UIAppearanceContainer.Type]).textColor = UIColor.NavbarColor()
 		bluetoothManager = CBCentralManager(delegate: self, queue: nil)
-		application.registerUserNotificationSettings(UIUserNotificationSettings(types: [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound], categories: nil))
+		let center = UNUserNotificationCenter.current()
+		center.requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { (done: Bool, error: Error?) -> Void in
+			guard error == nil else {
+				//felhantering om det inte går att registrera notifikation
+				return
+			}
+		})
 		return true
     }
 
