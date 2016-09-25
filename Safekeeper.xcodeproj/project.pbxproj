@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B31BCAD21D986C92000B8644 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAD11D986C92000B8644 /* SafekeeperTests.swift */; };
 		B39569FF1D6243E2004C1C83 /* PickBeaconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */; };
 		B39CD6081D40AF29000D9903 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39CD6071D40AF29000D9903 /* Errors.swift */; };
 		B39D40071D6115A600805722 /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D40061D6115A600805722 /* ModelExtensions.swift */; };
@@ -33,7 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B31BCAD41D986C92000B8644 /* PBXContainerItemProxy */ = {
+		B31BCAE21D986E3A000B8644 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B3CFADF51D2712FD006C2434 /* Project object */;
 			proxyType = 1;
@@ -43,9 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B31BCACF1D986C92000B8644 /* SafekeeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafekeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B31BCAD11D986C92000B8644 /* SafekeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafekeeperTests.swift; sourceTree = "<group>"; };
-		B31BCAD31D986C92000B8644 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B31BCADD1D986E3A000B8644 /* SafekeeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafekeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickBeaconTableViewCell.swift; sourceTree = "<group>"; };
 		B39CD6071D40AF29000D9903 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B39D40061D6115A600805722 /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
@@ -74,7 +71,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B31BCACC1D986C92000B8644 /* Frameworks */ = {
+		B31BCADA1D986E3A000B8644 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -93,15 +90,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B31BCAD01D986C92000B8644 /* SafekeeperTests */ = {
-			isa = PBXGroup;
-			children = (
-				B31BCAD11D986C92000B8644 /* SafekeeperTests.swift */,
-				B31BCAD31D986C92000B8644 /* Info.plist */,
-			);
-			path = SafekeeperTests;
-			sourceTree = "<group>";
-		};
 		B39CD6061D40AF19000D9903 /* errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,7 +135,6 @@
 			children = (
 				B3CACF851D27CD3700027B63 /* MapKit.framework */,
 				B3CFADFF1D2712FD006C2434 /* Safekeeper */,
-				B31BCAD01D986C92000B8644 /* SafekeeperTests */,
 				B3CFADFE1D2712FD006C2434 /* Products */,
 				B3CFAE251D27147A006C2434 /* EstimoteSDK.framework */,
 			);
@@ -158,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				B3CFADFD1D2712FD006C2434 /* Safekeeper.app */,
-				B31BCACF1D986C92000B8644 /* SafekeeperTests.xctest */,
+				B31BCADD1D986E3A000B8644 /* SafekeeperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,22 +222,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B31BCACE1D986C92000B8644 /* SafekeeperTests */ = {
+		B31BCADC1D986E3A000B8644 /* SafekeeperTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B31BCAD61D986C92000B8644 /* Build configuration list for PBXNativeTarget "SafekeeperTests" */;
+			buildConfigurationList = B31BCAE41D986E3A000B8644 /* Build configuration list for PBXNativeTarget "SafekeeperTests" */;
 			buildPhases = (
-				B31BCACB1D986C92000B8644 /* Sources */,
-				B31BCACC1D986C92000B8644 /* Frameworks */,
-				B31BCACD1D986C92000B8644 /* Resources */,
+				B31BCAD91D986E3A000B8644 /* Sources */,
+				B31BCADA1D986E3A000B8644 /* Frameworks */,
+				B31BCADB1D986E3A000B8644 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B31BCAD51D986C92000B8644 /* PBXTargetDependency */,
+				B31BCAE31D986E3A000B8644 /* PBXTargetDependency */,
 			);
 			name = SafekeeperTests;
 			productName = SafekeeperTests;
-			productReference = B31BCACF1D986C92000B8644 /* SafekeeperTests.xctest */;
+			productReference = B31BCADD1D986E3A000B8644 /* SafekeeperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		B3CFADFC1D2712FD006C2434 /* Safekeeper */ = {
@@ -280,7 +267,7 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Robin;
 				TargetAttributes = {
-					B31BCACE1D986C92000B8644 = {
+					B31BCADC1D986E3A000B8644 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B3CFADFC1D2712FD006C2434;
@@ -314,13 +301,13 @@
 			projectRoot = "";
 			targets = (
 				B3CFADFC1D2712FD006C2434 /* Safekeeper */,
-				B31BCACE1D986C92000B8644 /* SafekeeperTests */,
+				B31BCADC1D986E3A000B8644 /* SafekeeperTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B31BCACD1D986C92000B8644 /* Resources */ = {
+		B31BCADB1D986E3A000B8644 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -340,11 +327,10 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B31BCACB1D986C92000B8644 /* Sources */ = {
+		B31BCAD91D986E3A000B8644 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B31BCAD21D986C92000B8644 /* SafekeeperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,10 +361,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B31BCAD51D986C92000B8644 /* PBXTargetDependency */ = {
+		B31BCAE31D986E3A000B8644 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B3CFADFC1D2712FD006C2434 /* Safekeeper */;
-			targetProxy = B31BCAD41D986C92000B8644 /* PBXContainerItemProxy */;
+			targetProxy = B31BCAE21D986E3A000B8644 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -402,7 +388,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		B31BCAD71D986C92000B8644 /* Debug */ = {
+		B31BCAE51D986E3A000B8644 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -418,7 +404,7 @@
 			};
 			name = Debug;
 		};
-		B31BCAD81D986C92000B8644 /* Release */ = {
+		B31BCAE61D986E3A000B8644 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -558,11 +544,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B31BCAD61D986C92000B8644 /* Build configuration list for PBXNativeTarget "SafekeeperTests" */ = {
+		B31BCAE41D986E3A000B8644 /* Build configuration list for PBXNativeTarget "SafekeeperTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B31BCAD71D986C92000B8644 /* Debug */,
-				B31BCAD81D986C92000B8644 /* Release */,
+				B31BCAE51D986E3A000B8644 /* Debug */,
+				B31BCAE61D986E3A000B8644 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
