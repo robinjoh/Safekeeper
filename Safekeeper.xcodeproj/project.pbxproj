@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B31BCAEA1D986E8A000B8644 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */; };
+		B31BCAEC1D986E99000B8644 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */; };
 		B39569FF1D6243E2004C1C83 /* PickBeaconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */; };
 		B39CD6081D40AF29000D9903 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39CD6071D40AF29000D9903 /* Errors.swift */; };
 		B39D40071D6115A600805722 /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D40061D6115A600805722 /* ModelExtensions.swift */; };
@@ -43,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		B31BCADD1D986E3A000B8644 /* SafekeeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafekeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B31BCAE81D986E8A000B8644 /* SafekeeperTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafekeeperTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafekeeperTests.swift; sourceTree = "<group>"; };
 		B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickBeaconTableViewCell.swift; sourceTree = "<group>"; };
 		B39CD6071D40AF29000D9903 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B39D40061D6115A600805722 /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
@@ -90,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B31BCAE71D986E74000B8644 /* SafekeeperTests */ = {
+			isa = PBXGroup;
+			children = (
+				B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */,
+				B31BCAE81D986E8A000B8644 /* SafekeeperTests-Bridging-Header.h */,
+			);
+			name = SafekeeperTests;
+			sourceTree = "<group>";
+		};
 		B39CD6061D40AF19000D9903 /* errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +146,7 @@
 		B3CFADF41D2712FD006C2434 = {
 			isa = PBXGroup;
 			children = (
+				B31BCAE71D986E74000B8644 /* SafekeeperTests */,
 				B3CACF851D27CD3700027B63 /* MapKit.framework */,
 				B3CFADFF1D2712FD006C2434 /* Safekeeper */,
 				B3CFADFE1D2712FD006C2434 /* Products */,
@@ -269,6 +283,7 @@
 				TargetAttributes = {
 					B31BCADC1D986E3A000B8644 = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B3CFADFC1D2712FD006C2434;
 					};
@@ -331,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B31BCAEC1D986E99000B8644 /* SafekeeperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +358,7 @@
 				B3CFAE2B1D2728A9006C2434 /* TabBarViewController.swift in Sources */,
 				B3CFAE011D2712FD006C2434 /* AppDelegate.swift in Sources */,
 				B39D40071D6115A600805722 /* ModelExtensions.swift in Sources */,
+				B31BCAEA1D986E8A000B8644 /* SafekeeperTests.swift in Sources */,
 				B3C3C0F51D32B265004123F4 /* UIExtensions.swift in Sources */,
 				B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */,
 				B39CD6081D40AF29000D9903 /* Errors.swift in Sources */,
@@ -392,6 +409,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				INFOPLIST_FILE = SafekeeperTests/Info.plist;
@@ -399,6 +417,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Robin.SafekeeperTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "SafekeeperTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Safekeeper.app/Safekeeper";
 			};
@@ -408,12 +428,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				INFOPLIST_FILE = SafekeeperTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Robin.SafekeeperTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SafekeeperTests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Safekeeper.app/Safekeeper";
 			};
