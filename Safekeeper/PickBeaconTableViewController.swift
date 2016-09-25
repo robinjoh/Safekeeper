@@ -9,16 +9,15 @@
 import UIKit
 
 class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate {
-	private var itemTracker: ItemTracker!
-	private var rangedNearables = [String:ESTNearable]() {
+	fileprivate var itemTracker: ItemTracker!
+	fileprivate var rangedNearables = [String:ESTNearable]() {
 		didSet {
-			
-			
+			beaconView.reloadData()
 		}
 	}
-	private var _selectedBeacon: ESTNearable?
+	fileprivate var _selectedBeacon: ESTNearable?
 	var alreadyUsedIdentifiers = Set<String>()
-	private var beaconView: BeaconTableView! {
+	fileprivate var beaconView: BeaconTableView! {
 		return tableView as! BeaconTableView
 	}
 	var selectedBeacon: ESTNearable! {
@@ -32,10 +31,10 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 		itemTracker = ItemTracker.getInstance()
 	}
 	
-	override func viewWillAppear(animated:Bool) {
+	override func viewWillAppear(_ animated:Bool) {
 		super.viewWillAppear(animated)
 		itemTracker.delegate = self
-		itemTracker.performOperation(ItemTracker.Operation.Ranging(numberOfTimes: 0))
+		itemTracker.performOperation(ItemTracker.Operation.ranging(numberOfTimes: 0))
 	}
 	
 	//MARK: ItemTracker methods
@@ -49,14 +48,14 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 		refreshModel(nearablesToRefresh)
 	}
 	
-	private func nearableForIndexPath(path: NSIndexPath) -> ESTNearable? {
-		if let id = tableView.cellForRowAtIndexPath(path)?.accessibilityIdentifier {
+	fileprivate func nearableForIndexPath(_ path: IndexPath) -> ESTNearable? {
+		if let id = tableView.cellForRow(at: path)?.accessibilityIdentifier {
 			return rangedNearables[id]
 		}
 		return nil
 	}
 	
-	@objc private func refreshModel(nearables: [ESTNearable]) {
+	@objc fileprivate func refreshModel(_ nearables: [ESTNearable]) {
 		var shouldReload = false
 		for nearable in nearables {
 			if rangedNearables.updateValue(nearable, forKey: nearable.identifier) == nil {
@@ -70,21 +69,21 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 			shouldReload = true
 		}
 		if shouldReload {
-			UIView.transitionWithView(beaconView, duration: 0.35, options: .TransitionCrossDissolve, animations: { [weak self] in self?.beaconView.reloadData() }, completion: nil)
+			UIView.transition(with: beaconView, duration: 0.35, options: .transitionCrossDissolve, animations: { [weak self] in self?.beaconView.reloadData() }, completion: nil)
 		}
 	}
 	
-	private func hasLostNearables(oldIds: Set<String>, newIds: Set<String>) -> Set<String>? {
-		let remove = oldIds.subtract(newIds)
+	fileprivate func hasLostNearables(_ oldIds: Set<String>, newIds: Set<String>) -> Set<String>? {
+		let remove = oldIds.subtracting(newIds)
 		return remove.isEmpty ? nil : remove
 	}
 	
-	@objc private func removeLostNearables(removeIds: Set<String>) {
+	@objc fileprivate func removeLostNearables(_ removeIds: Set<String>) {
 		for id in removeIds {
 			if let path = beaconView.indexPath(forBeaconId: id)
-				where beaconView.cellForRowAtIndexPath(path) != nil {
-				rangedNearables.removeValueForKey(id)
-				beaconView.deleteRowsAtIndexPaths([path], withRowAnimation: UITableViewRowAnimation.Fade)
+				, beaconView.cellForRow(at: path as IndexPath) != nil {
+				rangedNearables.removeValue(forKey: id)
+				beaconView.deleteRows(at: [path as IndexPath], with: UITableViewRowAnimation.fade)
 			}
 		}
 	}
@@ -92,50 +91,50 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 	
 	// MARK: - Table view methods
 	
-	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 	
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return rangedNearables.count
 	}
 	
-	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		return "Nearby Beacons"
 	}
 	
-	override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		let view = UIView(frame: CGRect(x: tableView.bounds.width, y: 0, width: tableView.bounds.width, height: tableView.rowHeight))
-		let indicator = UIActivityIndicatorView(frame: CGRect(x: tableView.bounds.width / 2, y: 32, width: 10, height: 10))
+	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		let view = UIView(frame: CGRect(x: tableView.bounds.width, y: 5, width: tableView.bounds.width, height: tableView.rowHeight))
+		let indicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 34, width: 10, height: 10))
 		indicator.color = UIColor.NavbarColor()
 		indicator.startAnimating()
-		let lbl = UILabel(frame: CGRect(x: 5, y: 30, width: 160, height: 20))
+		let lbl = UILabel(frame: CGRect(x: indicator.frame.size.width + 17, y: 30, width: 160, height: 20))
 		lbl.adjustsFontSizeToFitWidth = true
 		lbl.textColor = UIColor.NavbarColor()
-		lbl.text = "Scanning for beacons..."
+		lbl.text = "Scanning for beacons"
 		view.addSubview(lbl)
 		view.addSubview(indicator)
 		return view
 	}
 	
 	
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("beaconCell", forIndexPath: indexPath) as! PickBeaconTableViewCell
-		let id = [String](rangedNearables.keys)[indexPath.row]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "beaconCell", for: indexPath) as! PickBeaconTableViewCell
+		let id = [String](rangedNearables.keys)[(indexPath as NSIndexPath).row]
 		if let nearable = rangedNearables[id] {
 			cell.idLabel.text = PickBeaconTableViewCell.LabelString.Id(id)
 			cell.accessibilityIdentifier = id
 			let type = nearable.type
-			cell.typeLabel.text = PickBeaconTableViewCell.LabelString.Type(type.string)
+			cell.typeLabel.text = PickBeaconTableViewCell.LabelString.ItemType(type.string)
 			cell.colorLabel.text = PickBeaconTableViewCell.LabelString.Color(nearable.color.string)
 		}
         return cell
     }
 	
-	override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+	override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
 		let nearable = nearableForIndexPath(indexPath)
 		_selectedBeacon = nearable
-		tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+		tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
 		return indexPath
 	}
 }

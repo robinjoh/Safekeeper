@@ -9,10 +9,10 @@
 import UIKit
 
 class BeaconTableView: UITableView {	
-	func indexPath(forBeaconId id: String) -> NSIndexPath? {
+	func indexPath(forBeaconId id: String) -> IndexPath? {
 		for cell in self.subviews where cell is PickBeaconTableViewCell {
 			if cell.accessibilityIdentifier == id {
-				return self.indexPathForCell(cell as! PickBeaconTableViewCell)
+				return self.indexPath(for: cell as! PickBeaconTableViewCell)
 			}
 		}
 		return nil

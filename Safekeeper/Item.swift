@@ -14,7 +14,7 @@ public func ==(left: Item, right: Item) -> Bool {
 }
 
 
-public class Item: NSObject, NSCoding {
+open class Item: NSObject, NSCoding {
 	struct CodingKeys {
 		static let idKey = "id"
 		static let nameKey = "name"
@@ -24,12 +24,12 @@ public class Item: NSObject, NSCoding {
 		static let imageKey = "image"
 	}
 	
-    private(set) var name: String
-    private(set) var itemId: String
-	private var _location: Location
-	private var _lastDetected: NSDate
-	private var _nearable: ESTNearable!
-	private(set) var image: UIImage?
+    fileprivate(set) var name: String
+    fileprivate(set) var itemId: String
+	fileprivate var _location: Location
+	fileprivate var _lastDetected: Date
+	fileprivate var _nearable: ESTNearable!
+	fileprivate(set) var image: UIImage?
 	var location: Location {
 		get {
 			return _location
@@ -37,19 +37,19 @@ public class Item: NSObject, NSCoding {
 		set {
 			_location = newValue
 			switch _location {
-			case .Far(_): _lastDetected = NSDate()
-			case .Immediate(_): _lastDetected = NSDate()
-			case .Near(_): lastDetected = NSDate()
-			case .Unknown(_): return
+			case .far(_): _lastDetected = Date()
+			case .immediate(_): _lastDetected = Date()
+			case .near(_): lastDetected = Date()
+			case .unknown(_): return
 			}
 		}
 	}
-	var lastDetected: NSDate {
+	var lastDetected: Date {
 		get {
 			return _lastDetected
 		}
 		set {
-			if newValue.laterDate(_lastDetected) == newValue {
+			if (newValue as NSDate).laterDate(_lastDetected) == newValue {
 				_lastDetected = newValue
 			}
 		}
@@ -65,7 +65,7 @@ public class Item: NSObject, NSCoding {
 		}
 	}
     
-	init?(id: String, name: String, nearable: ESTNearable?, image: UIImage?, lastDetected: NSDate?){
+	init?(id: String, name: String, nearable: ESTNearable?, image: UIImage?, lastDetected: Date?){
 		guard id.characters.count == 16 && !name.isEmpty else {
 			return nil
 		}
@@ -73,54 +73,54 @@ public class Item: NSObject, NSCoding {
         self.name = name
 		self._nearable = nearable
 		self.itemId = id
-		self._lastDetected = lastDetected ?? NSDate()
+		self._lastDetected = lastDetected ?? Date()
 		self.image = image
     }
 	
 	required convenience public init?(coder decoder: NSCoder){
-		guard let id = decoder.decodeObjectForKey(CodingKeys.idKey) as? String, let name = decoder.decodeObjectForKey(CodingKeys.nameKey) as? String, let nearable = decoder.decodeObjectForKey(CodingKeys.nearableKey) as? ESTNearable, let lastDetected = decoder.decodeObjectForKey(CodingKeys.lastDetectedKey) as? NSDate else {
+		guard let id = decoder.decodeObject(forKey: CodingKeys.idKey) as? String, let name = decoder.decodeObject(forKey: CodingKeys.nameKey) as? String, let nearable = decoder.decodeObject(forKey: CodingKeys.nearableKey) as? ESTNearable, let lastDetected = decoder.decodeObject(forKey: CodingKeys.lastDetectedKey) as? Date else {
 			return nil
 		}
-		let image = decoder.decodeObjectForKey(CodingKeys.imageKey) as? UIImage
+		let image = decoder.decodeObject(forKey: CodingKeys.imageKey) as? UIImage
 		self.init(id: id, name: name, nearable: nearable, image: image, lastDetected: lastDetected)
 	}
 	
-	public func encodeWithCoder(coder: NSCoder) {
-		coder.encodeObject(self.name, forKey: CodingKeys.nameKey)
-		coder.encodeObject(self.itemId, forKey: CodingKeys.idKey)
-		coder.encodeObject(self.lastDetected, forKey: CodingKeys.lastDetectedKey)
-		coder.encodeObject(self._nearable, forKey: CodingKeys.nearableKey)
-		coder.encodeObject(self.image, forKey: CodingKeys.imageKey)
+	open func encode(with coder: NSCoder) {
+		coder.encode(self.name, forKey: CodingKeys.nameKey)
+		coder.encode(self.itemId, forKey: CodingKeys.idKey)
+		coder.encode(self.lastDetected, forKey: CodingKeys.lastDetectedKey)
+		coder.encode(self._nearable, forKey: CodingKeys.nearableKey)
+		coder.encode(self.image, forKey: CodingKeys.imageKey)
 	}
 	
 	
 	//MARK: Location enum declaration
 	enum Location {
-		case Immediate(description: String)
-		case Near(description: String)
-		case Far(description: String)
-		case Unknown(description: String)
+		case immediate(description: String)
+		case near(description: String)
+		case far(description: String)
+		case unknown(description: String)
 		
 		var description: String {
 			switch self {
-			case let .Immediate(description):return description
-			case let .Near(description):return description
-			case let .Unknown(description):return description
-			case let .Far(description): return description
+			case let .immediate(description):return description
+			case let .near(description):return description
+			case let .unknown(description):return description
+			case let .far(description): return description
 			}
 		}
 		
 		init(){
-			self = .Unknown(description: "Location unknown")
+			self = .unknown(description: "Location unknown")
 		}
 		
 		init(_ zone: ESTNearableZone, withDescription descr: String?) {
 			switch zone.rawValue {
-			case 0: self = .Unknown(description: descr ?? "Location unknown")
-			case 1: self = .Immediate(description: descr ?? "Immediate")
-			case 2: self = .Near(description: descr ?? "Near")
-			case 3: self = .Far(description: descr ?? "Far away")
-			default: self = .Unknown(description: descr ?? "Unknown")
+			case 0: self = .unknown(description: descr ?? "Location unknown")
+			case 1: self = .immediate(description: descr ?? "Immediate")
+			case 2: self = .near(description: descr ?? "Near")
+			case 3: self = .far(description: descr ?? "Far away")
+			default: self = .unknown(description: descr ?? "Unknown")
 			}
 		}
 	}

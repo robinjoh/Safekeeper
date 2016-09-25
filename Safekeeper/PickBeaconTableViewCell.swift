@@ -14,9 +14,9 @@ class PickBeaconTableViewCell: UITableViewCell {
 	@IBOutlet weak var typeLabel: UILabel!
 
 	struct LabelString {
-		static let Id: String -> String = { $0 }
-		static let Type:String -> String = { "Type: " + $0}
-		static let Color:String -> String = { "Color: " + $0}
+		static let Id: (String) -> String = { $0 }
+		static let ItemType:(String) -> String = { "Type: \($0)"}
+		static let Color:(String) -> String = { "Color: \($0)"}
 	}
 	
     override func awakeFromNib() {
@@ -24,7 +24,7 @@ class PickBeaconTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 

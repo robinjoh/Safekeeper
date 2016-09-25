@@ -13,11 +13,12 @@ class ShadowedUIView: UIView {
 	override var bounds: CGRect {
 		didSet{
 			let path = UIBezierPath(rect: bounds)
-			self.layer.shadowColor = UIColor.blackColor().CGColor
-			self.layer.shadowOffset = CGSizeMake(0, 0.5)
-			self.layer.shadowPath = path.CGPath
+			self.layer.shadowColor = UIColor.black.cgColor
+			self.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+			self.layer.shadowPath = path.cgPath
 			self.layer.masksToBounds = false
 			self.layer.shadowOpacity = 0.5
+			self.layer.cornerRadius = 7
 		}
 	}
 	

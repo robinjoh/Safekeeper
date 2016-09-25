@@ -9,10 +9,10 @@
 import Foundation
 
 
-enum ItemError: ErrorType {
-	case InvalidItemID(msg: String)
+enum ItemError: Error {
+	case invalidItemID(msg: String)
 }
 
-enum FileSystemError: ErrorType {
-	case FilePathNotFound(msg: String, path: String)
+enum FileSystemError: Error {
+	case filePathNotFound(msg: String, path: String)
 }

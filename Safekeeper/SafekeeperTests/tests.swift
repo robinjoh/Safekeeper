@@ -1,5 +1,5 @@
 //
-//  SafekeeperTests.swift
+//  tests.swift
 //  Safekeeper
 //
 //  Created by Robin on 2016-09-25.
