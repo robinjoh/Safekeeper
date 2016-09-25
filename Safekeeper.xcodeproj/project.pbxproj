@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B31BCAC71D986A2B000B8644 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B31BCAC51D986A2B000B8644 /* Info.plist */; };
-		B31BCAC81D986A2B000B8644 /* tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAC61D986A2B000B8644 /* tests.swift */; };
 		B39569FF1D6243E2004C1C83 /* PickBeaconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */; };
 		B39CD6081D40AF29000D9903 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39CD6071D40AF29000D9903 /* Errors.swift */; };
 		B39D40071D6115A600805722 /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D40061D6115A600805722 /* ModelExtensions.swift */; };
@@ -45,7 +44,7 @@
 
 /* Begin PBXFileReference section */
 		B31BCAC51D986A2B000B8644 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B31BCAC61D986A2B000B8644 /* tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tests.swift; sourceTree = "<group>"; };
+		B31BCACA1D986B37000B8644 /* SafekeeperTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SafekeeperTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickBeaconTableViewCell.swift; sourceTree = "<group>"; };
 		B39CD6071D40AF29000D9903 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B39D40061D6115A600805722 /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
@@ -97,8 +96,8 @@
 		B31BCAC41D986A2B000B8644 /* SafekeeperTests */ = {
 			isa = PBXGroup;
 			children = (
+				B31BCACA1D986B37000B8644 /* SafekeeperTests-Bridging-Header.h */,
 				B31BCAC51D986A2B000B8644 /* Info.plist */,
-				B31BCAC61D986A2B000B8644 /* tests.swift */,
 			);
 			path = SafekeeperTests;
 			sourceTree = "<group>";
@@ -364,7 +363,6 @@
 				B3FDB44C1D5B1D3F009DE55A /* ShadowedUIView.swift in Sources */,
 				B3CACF8E1D2880B200027B63 /* ItemTracker.swift in Sources */,
 				B3ABEEFA1D29CAAE0000873E /* NavbarViewController.swift in Sources */,
-				B31BCAC81D986A2B000B8644 /* tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
