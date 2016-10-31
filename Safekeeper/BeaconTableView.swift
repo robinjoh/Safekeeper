@@ -8,7 +8,8 @@
 
 import UIKit
 
-class BeaconTableView: UITableView {	
+class BeaconTableView: UITableView {
+	
 	func indexPath(forBeaconId id: String) -> IndexPath? {
 		for cell in self.subviews where cell is PickBeaconTableViewCell {
 			if cell.accessibilityIdentifier == id {
@@ -17,4 +18,5 @@ class BeaconTableView: UITableView {
 		}
 		return nil
 	}
+
 }

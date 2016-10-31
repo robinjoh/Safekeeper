@@ -14,6 +14,7 @@ class ItemDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.navigationItem.title = item.name
+		
     }
 
     override func didReceiveMemoryWarning() {

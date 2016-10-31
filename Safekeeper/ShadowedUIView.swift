@@ -10,19 +10,19 @@ import UIKit
 
 class ShadowedUIView: UIView {
 	
-	override var bounds: CGRect {
-		didSet{
-			let path = UIBezierPath(rect: bounds)
-			self.layer.shadowColor = UIColor.black.cgColor
-			self.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-			self.layer.shadowPath = path.cgPath
-			self.layer.masksToBounds = false
-			self.layer.shadowOpacity = 0.5
-			self.layer.cornerRadius = 7
-		}
+	private struct ShadowAttributes {
+		static let offset = CGSize(width: 0, height: 0.5)
+		static let opacity: Float = 0.8
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
+	override var bounds: CGRect {
+		didSet{
+			self.layer.shadowColor = UIColor.black.cgColor
+			self.layer.shadowOffset = ShadowAttributes.offset
+			self.layer.shadowOpacity = ShadowAttributes.opacity
+			self.layer.borderWidth = 1
+			self.layer.borderColor = UIColor.mainColor.cgColor
+			self.layer.cornerRadius = UIView.StandardRounding
+		}
 	}
 }

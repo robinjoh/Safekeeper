@@ -1,22 +1,22 @@
 import Foundation
 
 open class ItemTracker {
-	static fileprivate var sharedInstance: ItemTracker!
+	static private var sharedInstance: ItemTracker!
 	weak var delegate: ItemTrackerDelegate? {
 		didSet {
 			locationManager.stopRanging()
 			locationManager.stopMonitoring()
 		}
 	}
-	fileprivate var trackerDelegate: ItemDelegate!
-	fileprivate let locationManager = ESTNearableManager()
-	fileprivate (set) var trackedItems = [String:Item]()
-	fileprivate weak var timer: Timer?
-	fileprivate var isMonitoring = false
-	fileprivate (set) var isRanging = false
-	fileprivate var isMonitoringPaused = false
-	fileprivate var performNumberOfRanges = Operation.Infinity
-	fileprivate var rangingCount = 0
+	private var trackerDelegate: ItemDelegate!
+	private let locationManager = ESTNearableManager()
+	private (set) var trackedItems = [String:Item]()
+	private weak var timer: Timer?
+	private var isMonitoring = false
+	private (set) var isRanging = false
+	private var isMonitoringPaused = false
+	private var performNumberOfRanges = Operation.Infinity
+	private var rangingCount = 0
 	
 	enum Operation {
 		case monitoring([Item])
@@ -32,7 +32,7 @@ open class ItemTracker {
 		}
 	}
 	
-	fileprivate init() {
+	private init() {
 		trackerDelegate = ItemDelegate()
 		trackerDelegate.master = self
 		locationManager.delegate = trackerDelegate
@@ -47,17 +47,17 @@ open class ItemTracker {
 		}
 	}
 	
-	fileprivate func startTimer(){
+	private func startTimer(){
 		timer = Timer.scheduledTimer(timeInterval: Timer.NEARABLE_RANGING_LIMIT, target: self, selector: #selector(ItemTracker.findLostItems), userInfo: nil, repeats: true)
 	}
 	
-	fileprivate func stopTimer(){
+	private func stopTimer(){
 		if timer != nil {
 			timer?.invalidate()
 		}
 	}
 	
-	fileprivate func trackItem(_ item: Item){
+	private func trackItem(_ item: Item){
 		locationManager.startMonitoring(forIdentifier: item.itemId)
 		trackedItems[item.itemId] = item
 		if !isMonitoring {
@@ -72,7 +72,7 @@ open class ItemTracker {
 		}
 	}
 	
-	fileprivate func stopTrackingItem(withId id: String) {
+	private func stopTrackingItem(withId id: String) {
 	if let index = trackedItems.index(forKey: id) {
 			trackedItems.remove(at: index)
 		}
@@ -82,13 +82,13 @@ open class ItemTracker {
 		}
 	}
 	
-	fileprivate func stopTrackingItems(_ items: [Item]){
+	private func stopTrackingItems(_ items: [Item]){
 		for item in items {
 			stopTrackingItem(withId: item.itemId)
 		}
 	}
 	
-	fileprivate func stopAllTracking(){
+	private func stopAllTracking(){
 		locationManager.stopMonitoring()
 		locationManager.stopRanging()
 		trackedItems.removeAll()
@@ -140,20 +140,20 @@ open class ItemTracker {
 		}
 	}
 	
-	fileprivate func startRangingNearbyItems() {
+	private func startRangingNearbyItems() {
 		locationManager.startRanging(for: ESTNearableType.all)
 		startTimer()
 		isRanging = true
 	}
 	
-	fileprivate func stopRangingNearbyItems() {
+	private func stopRangingNearbyItems() {
 		locationManager.stopRanging()
 		timer?.invalidate()
 		isRanging = false
 	}
 	
 	//MARK: TrackerDelegate
-	fileprivate class ItemDelegate: NSObject, ESTNearableManagerDelegate {
+	private class ItemDelegate: NSObject, ESTNearableManagerDelegate {
 		weak var master: ItemTracker!
 		
 		@objc func nearableManager(_ manager: ESTNearableManager, didRangeNearable nearable: ESTNearable) {

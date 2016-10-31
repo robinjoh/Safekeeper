@@ -1,21 +1,22 @@
 import UIKit
 
 class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
-	fileprivate var items = [String:Item]() {
+	private var items = [String:Item]() {
 		didSet {
 			if oldValue.count < items.count || items.isEmpty {
 				tableView.reloadData()
 			}
 		}
 	}
-	fileprivate var itemTracker = ItemTracker.getInstance()
-	
+	private var itemTracker = ItemTracker.getInstance()
+    
+    
 	struct Storage {
 		static let StorageDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
 		static let ArchiveURL = StorageDirectory.appendingPathComponent("items")
 	}
     
-	fileprivate struct TableCellTag {
+	private struct TableCellTag {
 		static let ImageView = 1
 		static let NameLabel = 2
 		static let DistanceLabel = 3
@@ -31,7 +32,7 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 				let name = vc.nameField.text
 				let beacon = vc.selectedBeacon
 			if saveItem(Item(id: id, name: name!, nearable: beacon, image: vc.selectedImage, lastDetected: nil)!) {
-				//tableView.reloadData()
+				tableView.reloadData()
 			}
 		}
 	}
@@ -40,9 +41,14 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 		super.viewWillDisappear(animated)
 		self.tableView.isEditing = false
 	}
-    
+	
     override func viewDidLoad() {
         super.viewDidLoad()
+		performSetup()
+		self.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+	}
+	
+	private func performSetup(){
 		do {
 			try loadItems()
 			itemTracker.performOperation(ItemTracker.Operation.ranging(numberOfTimes: ItemTracker.Operation.Infinity))
@@ -118,30 +124,39 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if items.isEmpty{
-			return tableView.dequeueReusableCell(withIdentifier: UITableViewCell.ReuseIdentifier.NoItemsCell)!
+			tableView.isScrollEnabled = false
+			let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.ReuseIdentifier.NoItemsCell)!
+			return cell
+		} else{
+			tableView.isScrollEnabled = true
 		}
 		let cell = configureItemCell(withIdentifier: UITableViewCell.ReuseIdentifier.ItemCell, forIndexPath: indexPath)
 		return cell
     }
 	
-	fileprivate func configureItemCell(withIdentifier id: String, forIndexPath indexPath: IndexPath) -> UITableViewCell {
+	private func configureItemCell(withIdentifier id: String, forIndexPath indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath)
 		let keys = [String](items.keys)
 		let key = keys[(indexPath as NSIndexPath).row]
 		if let item = items[key]{
 			let nameLbl = cell.viewWithTag(TableCellTag.NameLabel) as! UILabel
-			let imageView = cell.viewWithTag(TableCellTag.ImageView) as! UIImageView
+			let imageView = cell.viewWithTag(TableCellTag.ImageView) as! RoundedImageView
 			let distanceLbl = cell.viewWithTag(TableCellTag.DistanceLabel) as! UILabel
 			nameLbl.text = item.name
+			nameLbl.textAlignment = NSTextAlignment.center
 			distanceLbl.text = item.location.description
 			if let img = item.image {
 				imageView.image = img
 			} else {
-				imageView.image = UIImage(named: UIImage.Name.Wallet)
+				imageView.image = UIImage(named: UIImage.Name.Radar)
 			}
 			cell.accessibilityIdentifier = item.itemId
 		}
 		return cell
+	}
+	
+	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		cell.backgroundColor = UIColor.clear
 	}
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -170,6 +185,19 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 		}
 	}
 
+	//MARK: - Animation
+	
+	private func startAnimatingRadar(_ radar: UIImageView){
+		var animation: CABasicAnimation
+		animation = CABasicAnimation(keyPath: "transform.rotation")
+		animation.fromValue = CGFloat(M_PI)
+		animation.byValue = CGFloat((360*M_PI) / 180)
+		animation.repeatCount = 10000000
+		animation.duration = 5.0
+		radar.layer.add(animation, forKey: "transform.rotation")
+	}
+	
+	
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let cell = sender as? UITableViewCell , segue.identifier == Segue.ShowItemDetails.rawValue && cell.accessibilityIdentifier != nil {
@@ -177,13 +205,5 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 				destination.item = items[(cell.accessibilityIdentifier)!]
 			}
 		}
-		if segue.identifier == Segue.AddItem.rawValue {
-				let destination = segue.destination as! NavbarViewController
-				destination.alreadyUsedIdentifiers = Set(items.keys)
-		}
     }
-	
-	@IBAction func addItemButtonPressed(_ sender: UIButton) {
-		performSegue(withIdentifier: Segue.AddItem.rawValue, sender: self)
-	}
 }

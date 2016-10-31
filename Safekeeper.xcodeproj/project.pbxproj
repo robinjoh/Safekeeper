@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		B31BCAEA1D986E8A000B8644 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */; };
 		B31BCAEC1D986E99000B8644 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */; };
+		B333B1D61DC21AB5001FFBA8 /* AddNewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333B1D51DC21AB5001FFBA8 /* AddNewItemView.swift */; };
+		B333F2BF1DC28273007E71A7 /* AddItemViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2BE1DC28273007E71A7 /* AddItemViewControllerNew.swift */; };
+		B333F2C31DC342F7007E71A7 /* RadarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2C21DC342F7007E71A7 /* RadarView.swift */; };
+		B333F2C51DC34595007E71A7 /* BeaconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2C41DC34595007E71A7 /* BeaconView.swift */; };
+		B333F2FD1DC75D3F007E71A7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2FC1DC75D3F007E71A7 /* MapViewController.swift */; };
+		B337D51C1DC7676E00A2B096 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B337D51B1DC7676E00A2B096 /* RoundedImageView.swift */; };
+		B391F6A11D9A534A00FBDAE4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B391F6A01D9A534A00FBDAE4 /* RoundedView.swift */; };
 		B39569FF1D6243E2004C1C83 /* PickBeaconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */; };
 		B39CD6081D40AF29000D9903 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39CD6071D40AF29000D9903 /* Errors.swift */; };
 		B39D40071D6115A600805722 /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D40061D6115A600805722 /* ModelExtensions.swift */; };
@@ -27,7 +34,6 @@
 		B3CFAE2B1D2728A9006C2434 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE2A1D2728A9006C2434 /* TabBarViewController.swift */; };
 		B3CFAE311D272999006C2434 /* ItemOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE301D272999006C2434 /* ItemOverViewController.swift */; };
 		B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */; };
-		B3E664A71D746B3100318A6C /* TrackedItemsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E664A61D746B3100318A6C /* TrackedItemsEmptyView.swift */; };
 		B3EE10041D36F794001EC54B /* ItemTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EE10031D36F794001EC54B /* ItemTrackerDelegate.swift */; };
 		B3F65BDC1D518A5500DFFAB9 /* PickBeaconTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F65BDB1D518A5500DFFAB9 /* PickBeaconTableViewController.swift */; };
 		B3FDB44C1D5B1D3F009DE55A /* ShadowedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FDB44B1D5B1D3F009DE55A /* ShadowedUIView.swift */; };
@@ -47,6 +53,13 @@
 		B31BCADD1D986E3A000B8644 /* SafekeeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafekeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B31BCAE81D986E8A000B8644 /* SafekeeperTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafekeeperTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafekeeperTests.swift; sourceTree = "<group>"; };
+		B333B1D51DC21AB5001FFBA8 /* AddNewItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemView.swift; sourceTree = "<group>"; };
+		B333F2BE1DC28273007E71A7 /* AddItemViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewControllerNew.swift; sourceTree = "<group>"; };
+		B333F2C21DC342F7007E71A7 /* RadarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarView.swift; sourceTree = "<group>"; };
+		B333F2C41DC34595007E71A7 /* BeaconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconView.swift; sourceTree = "<group>"; };
+		B333F2FC1DC75D3F007E71A7 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B337D51B1DC7676E00A2B096 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
+		B391F6A01D9A534A00FBDAE4 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickBeaconTableViewCell.swift; sourceTree = "<group>"; };
 		B39CD6071D40AF29000D9903 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B39D40061D6115A600805722 /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
@@ -68,7 +81,6 @@
 		B3CFAE2A1D2728A9006C2434 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B3CFAE301D272999006C2434 /* ItemOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemOverViewController.swift; sourceTree = "<group>"; };
 		B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailsViewController.swift; sourceTree = "<group>"; };
-		B3E664A61D746B3100318A6C /* TrackedItemsEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackedItemsEmptyView.swift; sourceTree = "<group>"; };
 		B3EE10031D36F794001EC54B /* ItemTrackerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTrackerDelegate.swift; sourceTree = "<group>"; };
 		B3F65BDB1D518A5500DFFAB9 /* PickBeaconTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickBeaconTableViewController.swift; sourceTree = "<group>"; };
 		B3FDB44B1D5B1D3F009DE55A /* ShadowedUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowedUIView.swift; sourceTree = "<group>"; };
@@ -207,6 +219,7 @@
 		B3CFAE2C1D2728EE006C2434 /* mapOverview */ = {
 			isa = PBXGroup;
 			children = (
+				B333F2FC1DC75D3F007E71A7 /* MapViewController.swift */,
 			);
 			name = mapOverview;
 			sourceTree = "<group>";
@@ -218,6 +231,7 @@
 				B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */,
 				B3CACF8B1D287FB900027B63 /* AddItemViewController.swift */,
 				B3F65BDB1D518A5500DFFAB9 /* PickBeaconTableViewController.swift */,
+				B333F2BE1DC28273007E71A7 /* AddItemViewControllerNew.swift */,
 			);
 			name = main;
 			sourceTree = "<group>";
@@ -228,7 +242,11 @@
 				B3FDB44B1D5B1D3F009DE55A /* ShadowedUIView.swift */,
 				B39D400A1D61F1C100805722 /* BeaconTableView.swift */,
 				B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */,
-				B3E664A61D746B3100318A6C /* TrackedItemsEmptyView.swift */,
+				B391F6A01D9A534A00FBDAE4 /* RoundedView.swift */,
+				B333B1D51DC21AB5001FFBA8 /* AddNewItemView.swift */,
+				B333F2C21DC342F7007E71A7 /* RadarView.swift */,
+				B333F2C41DC34595007E71A7 /* BeaconView.swift */,
+				B337D51B1DC7676E00A2B096 /* RoundedImageView.swift */,
 			);
 			name = customViews;
 			sourceTree = "<group>";
@@ -362,15 +380,21 @@
 				B3C3C0F51D32B265004123F4 /* UIExtensions.swift in Sources */,
 				B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */,
 				B39CD6081D40AF29000D9903 /* Errors.swift in Sources */,
+				B337D51C1DC7676E00A2B096 /* RoundedImageView.swift in Sources */,
 				B3CACF8C1D287FB900027B63 /* AddItemViewController.swift in Sources */,
-				B3E664A71D746B3100318A6C /* TrackedItemsEmptyView.swift in Sources */,
+				B333F2FD1DC75D3F007E71A7 /* MapViewController.swift in Sources */,
 				B3CACF8A1D281FBA00027B63 /* Item.swift in Sources */,
 				B3F65BDC1D518A5500DFFAB9 /* PickBeaconTableViewController.swift in Sources */,
 				B39569FF1D6243E2004C1C83 /* PickBeaconTableViewCell.swift in Sources */,
+				B333B1D61DC21AB5001FFBA8 /* AddNewItemView.swift in Sources */,
 				B3CFAE311D272999006C2434 /* ItemOverViewController.swift in Sources */,
 				B39D400B1D61F1C100805722 /* BeaconTableView.swift in Sources */,
+				B391F6A11D9A534A00FBDAE4 /* RoundedView.swift in Sources */,
+				B333F2C31DC342F7007E71A7 /* RadarView.swift in Sources */,
 				B3FDB44C1D5B1D3F009DE55A /* ShadowedUIView.swift in Sources */,
+				B333F2C51DC34595007E71A7 /* BeaconView.swift in Sources */,
 				B3CACF8E1D2880B200027B63 /* ItemTracker.swift in Sources */,
+				B333F2BF1DC28273007E71A7 /* AddItemViewControllerNew.swift in Sources */,
 				B3ABEEFA1D29CAAE0000873E /* NavbarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,6 +597,7 @@
 				B31BCAE61D986E3A000B8644 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B3CFADF81D2712FD006C2434 /* Build configuration list for PBXProject "Safekeeper" */ = {
 			isa = XCConfigurationList;

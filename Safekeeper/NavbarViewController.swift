@@ -9,15 +9,14 @@
 import UIKit
 
 class NavbarViewController: UINavigationController {
-	var alreadyUsedIdentifiers = Set<String>()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		TallerBar.setNavbarAppearance(self)
-		for child in childViewControllers {
-			if let addItem = child as? AddItemViewController {
-				addItem.alreadyUsedIdentifiers = alreadyUsedIdentifiers
-			}
-		}
+		self.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+//		let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+//		effectView.frame = self.navigationBar.bounds
+//		effectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//		self.navigationBar.addSubview(effectView)
+//		self.navigationBar.sendSubview(toBack: effectView)
 	}
 }

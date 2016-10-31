@@ -26,9 +26,13 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 		}
 	}
 	
+	private func performSetup(){
+		itemTracker = ItemTracker.getInstance()
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		itemTracker = ItemTracker.getInstance()
+		performSetup()
 	}
 	
 	override func viewWillAppear(_ animated:Bool) {
@@ -106,11 +110,11 @@ class PickBeaconTableViewController: UITableViewController, ItemTrackerDelegate 
 	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let view = UIView(frame: CGRect(x: tableView.bounds.width, y: 5, width: tableView.bounds.width, height: tableView.rowHeight))
 		let indicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 34, width: 10, height: 10))
-		indicator.color = UIColor.NavbarColor()
+		indicator.color = UIColor.mainColor
 		indicator.startAnimating()
 		let lbl = UILabel(frame: CGRect(x: indicator.frame.size.width + 17, y: 30, width: 160, height: 20))
 		lbl.adjustsFontSizeToFitWidth = true
-		lbl.textColor = UIColor.NavbarColor()
+		lbl.textColor = UIColor.mainColor
 		lbl.text = "Scanning for beacons"
 		view.addSubview(lbl)
 		view.addSubview(indicator)

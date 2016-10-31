@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Using pictures to keep track of items.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We use this picture for you to easily identify which item you are tracking when overviewing the tracked items.</string>
 	<key>CFBundleDevelopmentRegion</key>

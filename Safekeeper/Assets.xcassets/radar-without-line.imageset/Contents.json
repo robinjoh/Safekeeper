@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Delete-40.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Delete-80.png",
+      "filename" : "radar-without-line.png",
       "scale" : "2x"
     },
     {

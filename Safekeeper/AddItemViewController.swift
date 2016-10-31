@@ -31,19 +31,28 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		static let Cancel = "Cancel"
 	}
 	
-	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        nameField.attributedPlaceholder = NSAttributedString(string: "Item Name", attributes: [NSForegroundColorAttributeName: (nameField.textColor!)])
-		tableView.tableHeaderView?.backgroundColor = UIColor.NavbarColor()
+	private func performSetup(){
+		//tableView.setGradientBackground(toView: UIView(frame: tableView.bounds))
+		nameField.attributedPlaceholder = NSAttributedString(string: "Item Name", attributes: [NSForegroundColorAttributeName: (nameField.textColor!)])
+		tableView.tableHeaderView?.backgroundColor = UIColor.mainColor
 		if UIImagePickerController.isSourceTypeAvailable(.camera){
 			imagePicker.sourceType = .camera
 		} else {
 			imagePicker.sourceType = .photoLibrary
 		}
-		imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        nameField.delegate = self
+		imagePicker.navigationBar.tintColor = UIColor.mainTextColor
+		imagePicker.navigationBar.barTintColor = UIColor.navbarColor
+		let font = UIFont(name: "Chalkduster", size: 17)!
+		let attributes = [NSForegroundColorAttributeName: UIColor.mainTextColor,NSFontAttributeName: font] as [String : Any]
+		imagePicker.navigationBar.titleTextAttributes = attributes
+		imagePicker.navigationBar.isTranslucent = false
+		nameField.delegate = self
 		imagePicker.delegate = self
+	}
+	
+    override func viewDidLoad() {
+        super.viewDidLoad()
+		performSetup()
 		
     }
     
@@ -107,7 +116,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		alertController.addAction(UIAlertAction(title: AlertTitle.Library, style: UIAlertActionStyle.default, handler: { [weak self] (action) -> Void in self?.showImagePickerController(.photoLibrary)}))
 		alertController.addAction(UIAlertAction(title: AlertTitle.Cancel, style: UIAlertActionStyle.cancel, handler: nil))
 		present(alertController, animated: true, completion: nil)
-		alertController.view.tintColor = UIColor.NavbarColor()
+		alertController.view.tintColor = UIColor.mainColor
 	}
 	
 	fileprivate func showImagePickerController(_ choice: UIImagePickerControllerSourceType){

@@ -18,10 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate 
 	fileprivate var locationManager = ItemTracker.getInstance()
 	
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-		self.window?.tintColor = UIColor.white
-		UINavigationBar.appearance().barTintColor = UIColor.NavbarColor()
+		let barButton = UIBarButtonItem.appearance()
+		if let font = UIFont(name: "Mark Felt", size: 16) {
+			barButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
+		}
 		
-		UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.classForCoder() as! UIAppearanceContainer.Type]).textColor = UIColor.NavbarColor()
+		UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.classForCoder() as! UIAppearanceContainer.Type]).textColor = UIColor.tableHeaderColor
 		bluetoothManager = CBCentralManager(delegate: self, queue: nil)
 		let center = UNUserNotificationCenter.current()
 		center.requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { (done: Bool, error: Error?) -> Void in

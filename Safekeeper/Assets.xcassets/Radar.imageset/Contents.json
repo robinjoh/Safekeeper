@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Radar Filled-30.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Radar Filled-61.png",
+      "filename" : "radar.png",
       "scale" : "2x"
     },
     {

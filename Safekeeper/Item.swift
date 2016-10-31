@@ -9,12 +9,8 @@
 import Foundation
 import UIKit
 
-public func ==(left: Item, right: Item) -> Bool {
-	return left.itemId == right.itemId && left.name == right.name
-}
-
-
-open class Item: NSObject, NSCoding {
+public class Item: NSObject, NSCoding {
+	
 	struct CodingKeys {
 		static let idKey = "id"
 		static let nameKey = "name"
@@ -91,6 +87,13 @@ open class Item: NSObject, NSCoding {
 		coder.encode(self.lastDetected, forKey: CodingKeys.lastDetectedKey)
 		coder.encode(self._nearable, forKey: CodingKeys.nearableKey)
 		coder.encode(self.image, forKey: CodingKeys.imageKey)
+	}
+	
+	override open func isEqual(_ object: Any?) -> Bool {
+		if let other = object as? Item {
+			return other.itemId == self.itemId && other.name == self.name
+		}
+		return false
 	}
 	
 	

@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Define Location Filled-50.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Define Location Filled-100.png",
+      "filename" : "bigger-icon.png",
       "scale" : "2x"
     },
     {
