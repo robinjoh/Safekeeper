@@ -14,5 +14,12 @@ enum ItemError: Error {
 }
 
 enum FileSystemError: Error {
+	var description: String {
+		switch self {
+		case .filePathNotFound(msg: let msg, path: let path): return "\(msg):" + "\(path)"
+		case .saveFailure(msg: let msg): return msg
+		}
+	}
 	case filePathNotFound(msg: String, path: String)
+	case saveFailure(msg: String)
 }

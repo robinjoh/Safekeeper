@@ -8,12 +8,6 @@
 
 import Foundation
 
-extension Timer {
-	static var NEARABLE_RANGING_LIMIT: Double {
-		return 5
-	}
-}
-
 extension ESTNearableType {
 	
 	var string: String {

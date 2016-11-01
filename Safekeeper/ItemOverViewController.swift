@@ -1,38 +1,29 @@
 import UIKit
 
 class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
-	private var items = [String:Item]() {
-		didSet {
-			if oldValue.count < items.count || items.isEmpty {
-				tableView.reloadData()
-			}
+	private var _itemStorage = ItemStorage()
+	var itemStorage: ItemStorage! {
+		get {
+			return _itemStorage
+		}
+		set {
+			_itemStorage = newValue
 		}
 	}
 	private var itemTracker = ItemTracker.getInstance()
-    
-    
-	struct Storage {
-		static let StorageDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-		static let ArchiveURL = StorageDirectory.appendingPathComponent("items")
-	}
-    
-	private struct TableCellTag {
-		static let ImageView = 1
-		static let NameLabel = 2
-		static let DistanceLabel = 3
-	}
 	
 	//MARK: - Lifecycle methods
-    @IBAction func unwindFromSegue(_ segue: UIStoryboardSegue) {}
 	
 	//UNWIND FROM ADDING A NEW ITEM
 	@IBAction func saveButtonClicked(_ segue: UIStoryboardSegue) {
 		if let vc = segue.source as? AddItemViewController {
 				let id = vc.selectedBeacon.identifier
-				let name = vc.nameField.text
+				let name = vc.nameField.text!
 				let beacon = vc.selectedBeacon
-			if saveItem(Item(id: id, name: name!, nearable: beacon, image: vc.selectedImage, lastDetected: nil)!) {
+				let item = Item(id: id, name: name, nearable: beacon, image: vc.selectedImage, lastDetected: nil)!
+			if itemStorage.saveItem(item) {
 				tableView.reloadData()
+				itemTracker.performOperation(ItemTracker.Operation.monitoring([item]))
 			}
 		}
 	}
@@ -45,23 +36,15 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 		performSetup()
-		self.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
 	}
 	
 	private func performSetup(){
-		do {
-			try loadItems()
-			itemTracker.performOperation(ItemTracker.Operation.ranging(numberOfTimes: ItemTracker.Operation.Infinity))
-		} catch FileSystemError.filePathNotFound(msg: let msg, path: let path) {
-			print("\(msg): \(path)")
-		} catch let error {
-			print("An unknown error occurred: \(error)")
-		}
-		if items.isEmpty {
+		itemTracker.performOperation(ItemTracker.Operation.ranging(numberOfTimes: ItemTracker.Operation.Infinity))
+		if itemStorage.isEmpty {
 			self.navigationItem.leftBarButtonItem?.isEnabled = false
 		} else {
 			itemTracker.delegate = self
-			itemTracker.performOperation(ItemTracker.Operation.monitoring(Array(items.values)))
+			itemTracker.performOperation(ItemTracker.Operation.monitoring(itemStorage.items))
 		}
 	}
 	
@@ -72,36 +55,8 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 		}
 	}
 	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-	}
-	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-		print("Overview fick minnesvarning")
-	}
-	
-	fileprivate func loadItems() throws {
-		guard (Storage.ArchiveURL as NSURL).checkResourceIsReachableAndReturnError(nil) else {
-			throw FileSystemError.filePathNotFound(msg: "Could not load items from path", path: Storage.ArchiveURL.path)
-		}
-		items = NSKeyedUnarchiver.unarchiveObject(withFile: Storage.ArchiveURL.path) as! [String:Item]
-	}
-	
-	fileprivate func saveItems() -> Bool {
-		guard NSKeyedArchiver.archiveRootObject(items, toFile: Storage.ArchiveURL.path) else {
-			//visa en alert om att det inte gick att spara.
-			return false
-		}
-		return true
-	}
-	
-	fileprivate func saveItem(_ item: Item) -> Bool {
-		if items.index(forKey: item.itemId) == nil {
-			itemTracker.performOperation(ItemTracker.Operation.monitoring([item]))
-		}
-		items[item.itemId] = item
-		return saveItems()
 	}
 	
 	//MARK: - itemtracker methods
@@ -119,11 +74,11 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return items.isEmpty ? 1 : items.count
+		return itemStorage.isEmpty ? 1 : itemStorage.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		if items.isEmpty{
+		if itemStorage.isEmpty{
 			tableView.isScrollEnabled = false
 			let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.ReuseIdentifier.NoItemsCell)!
 			return cell
@@ -136,20 +91,20 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 	
 	private func configureItemCell(withIdentifier id: String, forIndexPath indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath)
-		let keys = [String](items.keys)
+		let keys = [String](itemStorage.keys)
 		let key = keys[(indexPath as NSIndexPath).row]
-		if let item = items[key]{
-			let nameLbl = cell.viewWithTag(TableCellTag.NameLabel) as! UILabel
-			let imageView = cell.viewWithTag(TableCellTag.ImageView) as! RoundedImageView
-			let distanceLbl = cell.viewWithTag(TableCellTag.DistanceLabel) as! UILabel
-			nameLbl.text = item.name
-			nameLbl.textAlignment = NSTextAlignment.center
-			distanceLbl.text = item.location.description
-			if let img = item.image {
-				imageView.image = img
-			} else {
-				imageView.image = UIImage(named: UIImage.Name.Radar)
-			}
+		if let item = itemStorage.getItem(key) {
+			//let nameLbl = cell.viewWithTag(TableCellTag.NameLabel) as! UILabel
+			//let imageView = cell.viewWithTag(TableCellTag.ImageView) as! RoundedImageView
+			//let distanceLbl = cell.viewWithTag(TableCellTag.DistanceLabel) as! UILabel
+//			nameLbl.text = item.name
+//			nameLbl.textAlignment = NSTextAlignment.center
+//			distanceLbl.text = item.location.description
+//			if let img = item.image {
+//				imageView.image = img
+//			} else {
+//				imageView.image = UIImage(named: UIImage.Name.Radar)
+//			}
 			cell.accessibilityIdentifier = item.itemId
 		}
 		return cell
@@ -160,27 +115,26 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 	}
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return items.isEmpty ? tableView.bounds.height / 2 : tableView.rowHeight
+		return itemStorage.isEmpty ? tableView.bounds.height / 2 : tableView.rowHeight
 	}
 	
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return items.isEmpty ? nil : "My Tracked Items"
+		return itemStorage.isEmpty ? nil : "My Tracked Items"
 	}
 	
 	override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-		return !items.isEmpty||tableView.cellForRow(at: indexPath)?.reuseIdentifier != UITableViewCell.ReuseIdentifier.NoItemsCell
+		return !itemStorage.isEmpty||tableView.cellForRow(at: indexPath)?.reuseIdentifier != UITableViewCell.ReuseIdentifier.NoItemsCell
 	}
 	
 	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 		if let identifier = tableView.cellForRow(at: indexPath)?.accessibilityIdentifier , editingStyle == .delete {
-			if let item = items.removeValue(forKey: identifier) {
-				if !items.isEmpty{
+			if let item = itemStorage.deleteItem(identifier) {
+				if !itemStorage.isEmpty {
 					tableView.deleteRows(at: [indexPath], with: .fade)
 				} else {
 					tableView.isEditing = false
 				}
 				itemTracker.performOperation(ItemTracker.Operation.stopMonitoring([item]))
-				saveItems()
 			}
 		}
 	}
@@ -202,7 +156,7 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let cell = sender as? UITableViewCell , segue.identifier == Segue.ShowItemDetails.rawValue && cell.accessibilityIdentifier != nil {
 			if let destination = segue.destination as? ItemDetailsViewController {
-				destination.item = items[(cell.accessibilityIdentifier)!]
+				destination.item = itemStorage.getItem(cell.accessibilityIdentifier!)!
 			}
 		}
     }

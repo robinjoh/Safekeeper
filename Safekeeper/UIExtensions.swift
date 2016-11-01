@@ -61,10 +61,6 @@ extension UITableViewCell {
 	}
 }
 
-extension UINavigationBar {
-
-}
-
 extension UIImage {
 	struct Name {
 		static let Wallet = "Wallet Filled"

@@ -21,8 +21,8 @@ class RoundedImageView: UIImageView {
 	override var bounds: CGRect {
 		didSet{
 			if image != nil{
-			layer.cornerRadius = frame.size.width / 2
-			self.clipsToBounds = true
+				layer.cornerRadius = frame.size.width / 2
+				self.clipsToBounds = true
 			}
 		}
 	}

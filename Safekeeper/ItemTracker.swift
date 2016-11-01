@@ -47,10 +47,6 @@ open class ItemTracker {
 		}
 	}
 	
-	private func startTimer(){
-		timer = Timer.scheduledTimer(timeInterval: Timer.NEARABLE_RANGING_LIMIT, target: self, selector: #selector(ItemTracker.findLostItems), userInfo: nil, repeats: true)
-	}
-	
 	private func stopTimer(){
 		if timer != nil {
 			timer?.invalidate()
@@ -62,7 +58,7 @@ open class ItemTracker {
 		trackedItems[item.itemId] = item
 		if !isMonitoring {
 			isMonitoring = true
-			startTimer()
+			//startTimer()
 		}
 	}
 	
@@ -113,7 +109,7 @@ open class ItemTracker {
 				}
 				isMonitoringPaused = false
 				isMonitoring = true
-				startTimer()
+				//startTimer()
 			}
 		case .pauseRanging:
 			if isRanging {
@@ -134,15 +130,15 @@ open class ItemTracker {
 	@objc fileprivate func findLostItems(){
 		let now = Date()
 		for (_, item) in trackedItems {
-			if now.timeIntervalSince(item.lastDetected as Date) > Timer.NEARABLE_RANGING_LIMIT {
-				self.delegate?.itemTracker?(didLoseItem: item)
-			}
+//			if now.timeIntervalSince(item.lastDetected as Date) > Timer.NEARABLE_RANGING_LIMIT {
+//				self.delegate?.itemTracker?(didLoseItem: item)
+//			}
 		}
 	}
 	
 	private func startRangingNearbyItems() {
 		locationManager.startRanging(for: ESTNearableType.all)
-		startTimer()
+		//startTimer()
 		isRanging = true
 	}
 	

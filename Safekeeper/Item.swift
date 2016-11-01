@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 public class Item: NSObject, NSCoding {
+	public static let StorageCatalogName = "items"
 	
 	struct CodingKeys {
 		static let idKey = "id"

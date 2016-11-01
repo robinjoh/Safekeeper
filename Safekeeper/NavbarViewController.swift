@@ -13,10 +13,5 @@ class NavbarViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-//		let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-//		effectView.frame = self.navigationBar.bounds
-//		effectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//		self.navigationBar.addSubview(effectView)
-//		self.navigationBar.sendSubview(toBack: effectView)
 	}
 }

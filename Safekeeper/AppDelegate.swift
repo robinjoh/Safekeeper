@@ -13,16 +13,26 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate {
 
-    var window: UIWindow?
-	fileprivate var bluetoothManager: CBCentralManager?
-	fileprivate var locationManager = ItemTracker.getInstance()
+	var window: UIWindow?
+	private var bluetoothManager: CBCentralManager?
+	private var locationManager = ItemTracker.getInstance()
+	private var itemStorage = ItemStorage()
 	
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+		let rootNavigationController = window?.rootViewController as? UINavigationController
+		let root = rootNavigationController?.viewControllers.first as? ItemOverviewController
+		root?.itemStorage = itemStorage
+		do {
+		 try itemStorage.loadItems()
+		}catch let error as FileSystemError {
+			print(error.description)
+		} catch {
+			print(error.localizedDescription)
+		}
 		let barButton = UIBarButtonItem.appearance()
 		if let font = UIFont(name: "Mark Felt", size: 16) {
 			barButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
 		}
-		
 		UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.classForCoder() as! UIAppearanceContainer.Type]).textColor = UIColor.tableHeaderColor
 		bluetoothManager = CBCentralManager(delegate: self, queue: nil)
 		let center = UNUserNotificationCenter.current()
@@ -54,6 +64,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate 
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+		do {
+			locationManager.performOperation(ItemTracker.Operation.stopRanging)
+			locationManager.performOperation(ItemTracker.Operation.stopMonitoring(itemStorage.items))
+		 try itemStorage.saveItems()
+		}catch let error as FileSystemError {
+			print(error.description)
+		} catch {
+			print(error.localizedDescription)
+		}
 	}
 
 
