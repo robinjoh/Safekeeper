@@ -14,6 +14,10 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 	
 	//MARK: - Lifecycle methods
 	
+	@IBAction func unwindFromSegue(_ segue: UIStoryboardSegue){
+		//cancel from adding an item.
+	}
+	
 	//UNWIND FROM ADDING A NEW ITEM
 	@IBAction func saveButtonClicked(_ segue: UIStoryboardSegue) {
 		if let vc = segue.source as? AddItemViewController {

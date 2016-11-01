@@ -19,10 +19,10 @@
                         <color key="separatorColor" red="0.22675411400000001" green="0.73735243080000001" blue="0.38143306970000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="beaconCell" id="k1Z-iI-byA" customClass="PickBeaconTableViewCell" customModule="Safekeeper" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="56" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k1Z-iI-byA" id="dsL-r0-1gf">
-                                    <frame key="frameInset" width="375" height="74"/>
+                                    <frame key="frameInset" width="375" height="74.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="74" placeholderIntrinsicHeight="65" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="gOM-vV-Yy9">
@@ -271,7 +271,7 @@
         <!--Add Item-->
         <scene sceneID="ETg-Aq-TvZ">
             <objects>
-                <viewController id="wmj-5K-6yW" userLabel="Add Item" customClass="AddItemViewControllerNew" customModule="Safekeeper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wmj-5K-6yW" userLabel="Add Item" customClass="AddItemViewController" customModule="Safekeeper" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4g6-6K-hNe"/>
                         <viewControllerLayoutGuide type="bottom" id="Ut1-1I-W7V"/>
@@ -324,10 +324,10 @@
                                         </textAttributes>
                                         <items>
                                             <navigationItem title="New object" id="nyF-oF-aG2">
-                                                <barButtonItem key="leftBarButtonItem" title="Cancel" id="r6W-Ds-0Ph">
+                                                <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="r6W-Ds-0Ph">
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <connections>
-                                                        <segue destination="RAF-J9-omv" kind="unwind" unwindAction="unwindFromSegue:" id="j9K-Cy-4BI"/>
+                                                        <segue destination="RAF-J9-omv" kind="unwind" unwindAction="unwindFromSegue:" id="ZL6-Cu-Piq"/>
                                                     </connections>
                                                 </barButtonItem>
                                                 <barButtonItem key="rightBarButtonItem" systemItem="done" id="VOb-5A-vTg">
@@ -354,7 +354,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="313" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q9r-SD-wjf" id="r26-2W-pxU">
-                                                    <frame key="frameInset" width="313" height="43"/>
+                                                    <frame key="frameInset" width="313" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>

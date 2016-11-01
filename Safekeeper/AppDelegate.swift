@@ -30,9 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate 
 			print(error.localizedDescription)
 		}
 		let barButton = UIBarButtonItem.appearance()
-		if let font = UIFont(name: "Mark Felt", size: 16) {
-			barButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
-		}
 		UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.classForCoder() as! UIAppearanceContainer.Type]).textColor = UIColor.tableHeaderColor
 		bluetoothManager = CBCentralManager(delegate: self, queue: nil)
 		let center = UNUserNotificationCenter.current()
