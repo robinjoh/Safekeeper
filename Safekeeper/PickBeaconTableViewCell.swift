@@ -9,13 +9,14 @@
 import UIKit
 
 class PickBeaconTableViewCell: UITableViewCell {
-	@IBOutlet weak var colorLabel: UILabel!
-	@IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var idLabel: UILabel!
 	@IBOutlet weak var typeLabel: UILabel!
+	
+	var beaconView = BeaconView()
 
 	struct LabelString {
 		static let Id: (String) -> String = { $0 }
-		static let ItemType:(String) -> String = { "Type: \($0)"}
+		static let ItemType:(String) -> String = { "\($0)"}
 		static let Color:(String) -> String = { "Color: \($0)"}
 	}
 	

@@ -22,9 +22,10 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 	@IBAction func saveButtonClicked(_ segue: UIStoryboardSegue) {
 		if let vc = segue.source as? AddItemViewController {
 				let id = vc.selectedBeacon.identifier
-				let name = vc.nameField.text!
+				//let name = vc.nameField.text!
 				let beacon = vc.selectedBeacon
-				let item = Item(id: id, name: name, nearable: beacon, image: vc.selectedImage, lastDetected: nil)!
+				//fixa name
+				let item = Item(id: id, name: "", nearable: beacon, image: vc.selectedImage, lastDetected: nil)!
 			if itemStorage.saveItem(item) {
 				tableView.reloadData()
 				itemTracker.performOperation(ItemTracker.Operation.monitoring([item]))
@@ -35,6 +36,11 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		self.tableView.isEditing = false
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		itemTracker.delegate = self
 	}
 	
     override func viewDidLoad() {

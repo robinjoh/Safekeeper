@@ -7,22 +7,15 @@
 //
 
 import UIKit
-
+@IBDesignable
 class RoundedImageView: UIImageView {
-	@IBInspectable var cornerRadius: CGFloat {
-		get {
-			return layer.cornerRadius
-		}
-		set {
-			self.layer.cornerRadius = newValue
-		}
-	}
-	
-	override var bounds: CGRect {
-		didSet{
-			if image != nil{
-				layer.cornerRadius = frame.size.width / 2
+	@IBInspectable var setRounded = true {
+		didSet {
+			if setRounded {
+				self.layer.cornerRadius = bounds.size.width / 2
 				self.clipsToBounds = true
+			} else {
+				self.layer.cornerRadius = 0
 			}
 		}
 	}

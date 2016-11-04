@@ -42,7 +42,7 @@ class ItemStorage {
 		_items = NSKeyedUnarchiver.unarchiveObject(withFile: Storage.ArchiveURL.path) as! [String:Item]
 	}
 	
-	func saveItem(_ item: Item) -> Bool {
+	@discardableResult func saveItem(_ item: Item) -> Bool {
 	 do {
 		_items[item.itemId] = item
 		try saveItems()
@@ -62,14 +62,8 @@ class ItemStorage {
 	
 	func deleteItem(_ itemIdentifier: String) -> Item? {
 		if let removed = _items.removeValue(forKey: itemIdentifier) {
-			do {
-				try saveItems()
-				return removed
-			}catch let error as FileSystemError {
-				print(error.description)
-			} catch {
-				print(error.localizedDescription)
-			}
+			try? saveItems()
+			return removed
 		}
 		return nil
 	}

@@ -10,19 +10,15 @@ import UIKit
 
 @IBDesignable
 class RoundedView: UIView {
-	@IBInspectable var cornerRadius: CGFloat {
-		get {
-			return layer.cornerRadius
-		}
-		set {
-			self.layer.cornerRadius = newValue
-		}
-	}
-	
-	override var bounds: CGRect {
-		didSet{
+	@IBInspectable public var setRound = true {
+		didSet {
+			if setRound {
 				layer.cornerRadius = frame.size.width / 2
 				self.clipsToBounds = true
+
+			} else {
+				layer.cornerRadius = 0
+			}
 		}
 	}
 }
