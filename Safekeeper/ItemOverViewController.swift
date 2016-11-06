@@ -1,6 +1,6 @@
 import UIKit
 
-class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
+class ItemOverviewController: UITableViewController {
 	private var _itemStorage = ItemStorage()
 	var itemStorage: ItemStorage! {
 		get {
@@ -22,10 +22,9 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 	@IBAction func saveButtonClicked(_ segue: UIStoryboardSegue) {
 		if let vc = segue.source as? AddItemViewController {
 				let id = vc.selectedBeacon.identifier
-				//let name = vc.nameField.text!
+				let name = vc.itemName!
 				let beacon = vc.selectedBeacon
-				//fixa name
-				let item = Item(id: id, name: "", nearable: beacon, image: vc.selectedImage, lastDetected: nil)!
+				let item = Item(id: id, name: name, nearable: beacon, image: vc.selectedImage, lastDetected: nil)!
 			if itemStorage.saveItem(item) {
 				tableView.reloadData()
 				itemTracker.performOperation(ItemTracker.Operation.monitoring([item]))
@@ -49,7 +48,7 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 	}
 	
 	private func performSetup(){
-		itemTracker.performOperation(ItemTracker.Operation.ranging(numberOfTimes: ItemTracker.Operation.Infinity))
+		itemTracker.performOperation(ItemTracker.Operation.startRanging)
 		if itemStorage.isEmpty {
 			self.navigationItem.leftBarButtonItem?.isEnabled = false
 		} else {
@@ -67,15 +66,6 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-	}
-	
-	//MARK: - itemtracker methods
-	func itemTracker(didRangeItem item: Item) {
-		print("hehe \(item)")
-	}
-	
-	func itemTracker(didLoseItem item: Item){
-		print("förlorade \(item)")
 	}
 	
     // MARK: - Table view methods
@@ -148,19 +138,6 @@ class ItemOverviewController: UITableViewController, ItemTrackerDelegate {
 			}
 		}
 	}
-
-	//MARK: - Animation
-	
-	private func startAnimatingRadar(_ radar: UIImageView){
-		var animation: CABasicAnimation
-		animation = CABasicAnimation(keyPath: "transform.rotation")
-		animation.fromValue = CGFloat(M_PI)
-		animation.byValue = CGFloat((360*M_PI) / 180)
-		animation.repeatCount = 10000000
-		animation.duration = 5.0
-		radar.layer.add(animation, forKey: "transform.rotation")
-	}
-	
 	
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

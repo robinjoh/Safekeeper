@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Safekeeper/ItemOverViewController.swift"
-            timestampString = "499822536.761662"
+            timestampString = "500151279.460094"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "configureItemCell(withIdentifier:forIndexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Safekeeper/ItemOverViewController.swift"
-            timestampString = "499822536.761662"
+            timestampString = "500151279.460094"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "configureItemCell(withIdentifier:forIndexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,43 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Safekeeper/AddItemViewController.swift"
-            timestampString = "499901360.52204"
+            timestampString = "500163741.185943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "sectionHeaderTitle(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Safekeeper/AddItemViewController.swift"
-            timestampString = "499901360.52204"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "imagePickerController(_:didFinishPickingImage:editingInfo:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Safekeeper/AddItemViewController.swift"
-            timestampString = "499901360.52204"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "refreshModel(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -153,13 +121,45 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Safekeeper/AddItemViewController.swift"
-            timestampString = "499901360.52204"
+            filePath = "Safekeeper/UIExtensions.swift"
+            timestampString = "500149020.142012"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
-            landmarkName = "refreshModel(_:)"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "indexPath(forBeaconId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Safekeeper/UIExtensions.swift"
+            timestampString = "500149020.142012"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "indexPath(forBeaconId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Safekeeper/UIExtensions.swift"
+            timestampString = "500149020.142012"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "indexPath(forBeaconId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Safekeeper/AddItemViewController.swift"
-            timestampString = "499901360.52204"
+            timestampString = "500163741.185943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "refreshModel(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -185,126 +185,151 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Safekeeper/AddItemViewController.swift"
-            timestampString = "499901360.52204"
+            filePath = "Safekeeper/RoundedImageView.swift"
+            timestampString = "500147696.649104"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "AddItemViewController"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "RoundedImageView"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Safekeeper/UIExtensions.swift"
-            timestampString = "499872088.952605"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "indexPath(forBeaconId:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Safekeeper/UIExtensions.swift"
-            timestampString = "499872088.952605"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "indexPath(forBeaconId:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Safekeeper/UIExtensions.swift"
-            timestampString = "499872088.952605"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "indexPath(forBeaconId:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Safekeeper/AddItemViewController.swift"
-            timestampString = "499901360.52204"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "imagePickerController(_:didFinishPickingImage:editingInfo:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Safekeeper/AddItemViewController.swift"
-            timestampString = "499901360.52204"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
-            landmarkName = "removeLostNearables(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Safekeeper/AddItemViewController.swift"
-            timestampString = "499901360.52204"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
-            landmarkName = "tableView(_:heightForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Safekeeper/AddItemViewController.swift"
-            timestampString = "499901360.52204"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "309"
-            endingLineNumber = "309"
-            landmarkName = "tableView(_:heightForHeaderInSection:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Safekeeper.RoundedImageView.__deallocating_deinit"
+                  moduleName = "Safekeeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/robinjohansson/Desktop/Safekeeper/Safekeeper/RoundedImageView.swift"
+                  timestampString = "500147697.923312"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Safekeeper.RoundedImageView.init (image : Swift.Optional&lt;__ObjC.UIImage&gt;) -&gt; Safekeeper.RoundedImageView"
+                  moduleName = "Safekeeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/robinjohansson/Desktop/Safekeeper/Safekeeper/RoundedImageView.swift"
+                  timestampString = "500147697.925904"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Safekeeper.RoundedImageView.__allocating_init (image : Swift.Optional&lt;__ObjC.UIImage&gt;) -&gt; Safekeeper.RoundedImageView"
+                  moduleName = "Safekeeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/robinjohansson/Desktop/Safekeeper/Safekeeper/RoundedImageView.swift"
+                  timestampString = "500147697.929863"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Safekeeper.RoundedImageView.init (image : Swift.Optional&lt;__ObjC.UIImage&gt;, highlightedImage : Swift.Optional&lt;__ObjC.UIImage&gt;) -&gt; Safekeeper.RoundedImageView"
+                  moduleName = "Safekeeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/robinjohansson/Desktop/Safekeeper/Safekeeper/RoundedImageView.swift"
+                  timestampString = "500147697.936691"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Safekeeper.RoundedImageView.__allocating_init (image : Swift.Optional&lt;__ObjC.UIImage&gt;, highlightedImage : Swift.Optional&lt;__ObjC.UIImage&gt;) -&gt; Safekeeper.RoundedImageView"
+                  moduleName = "Safekeeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/robinjohansson/Desktop/Safekeeper/Safekeeper/RoundedImageView.swift"
+                  timestampString = "500147697.940367"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Safekeeper.RoundedImageView.init (frame : __C.CGRect) -&gt; Safekeeper.RoundedImageView"
+                  moduleName = "Safekeeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/robinjohansson/Desktop/Safekeeper/Safekeeper/RoundedImageView.swift"
+                  timestampString = "500147697.943008"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Safekeeper.RoundedImageView.__allocating_init (frame : __C.CGRect) -&gt; Safekeeper.RoundedImageView"
+                  moduleName = "Safekeeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/robinjohansson/Desktop/Safekeeper/Safekeeper/RoundedImageView.swift"
+                  timestampString = "500147697.949412"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Safekeeper.RoundedImageView.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Safekeeper.RoundedImageView&gt;"
+                  moduleName = "Safekeeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/robinjohansson/Desktop/Safekeeper/Safekeeper/RoundedImageView.swift"
+                  timestampString = "500147697.954854"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Safekeeper.RoundedImageView.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Safekeeper.RoundedImageView&gt;"
+                  moduleName = "Safekeeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/robinjohansson/Desktop/Safekeeper/Safekeeper/RoundedImageView.swift"
+                  timestampString = "500147697.957773"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

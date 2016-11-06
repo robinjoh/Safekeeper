@@ -15,19 +15,18 @@ open class ItemTracker {
 	private var isMonitoring = false
 	private (set) var isRanging = false
 	private var isMonitoringPaused = false
-	private var performNumberOfRanges = Operation.Infinity
 	private var rangingCount = 0
 	
 	enum Operation {
 		case monitoring([Item])
 		case stopMonitoring([Item])
-		case ranging(numberOfTimes: Int)
+		case startRanging
 		case stopRanging
 		case resumeRanging
 		case resumeMonitoring
 		case pauseMonitoring
 		case pauseRanging
-		static var Infinity: Int {
+		static var infinity: Int {
 			return 0
 		}
 	}
@@ -97,9 +96,8 @@ open class ItemTracker {
 			items.count > 1 ? trackItems(items) : trackItem(items[0])
 		case .stopMonitoring(let items):
 			items.count > 1 ? stopTrackingItems(items) : stopTrackingItem(withId: items[0].itemId)
-		case .ranging(let nrOfTimes):
+		case .startRanging:
 			startRangingNearbyItems()
-			performNumberOfRanges = nrOfTimes
 		case .stopRanging: stopRangingNearbyItems()
 		case .resumeRanging: startRangingNearbyItems()
 		case .resumeMonitoring:
@@ -138,7 +136,6 @@ open class ItemTracker {
 	
 	private func startRangingNearbyItems() {
 		locationManager.startRanging(for: ESTNearableType.all)
-		//startTimer()
 		isRanging = true
 	}
 	
@@ -162,11 +159,6 @@ open class ItemTracker {
 		
 		@objc func nearableManager(_ manager: ESTNearableManager, didRangeNearables nearables: [ESTNearable], with type: ESTNearableType) {
 			master.delegate?.itemTracker?(rangedNearables: nearables)
-			if master.performNumberOfRanges != Operation.Infinity && master.rangingCount == master.performNumberOfRanges {
-				master.stopRangingNearbyItems()
-			} else {
-				master.rangingCount += 1
-			}
 		}
 		
 		@objc func nearableManager(_ manager: ESTNearableManager, didEnterIdentifierRegion identifier: String) {

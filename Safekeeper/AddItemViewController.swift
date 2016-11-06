@@ -8,9 +8,14 @@
 
 import UIKit
 
-class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ItemTrackerDelegate {
-	fileprivate var _selectedBeacon: ESTNearable?
-	fileprivate var selectedCell: UITableViewCell?
+class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+	fileprivate var _selectedBeacon: ESTNearable? {
+		didSet {
+			saveButton.isEnabled = allRequiredItemsSelected()
+		}
+	}
+	private(set) var rangedNearables = [String:ESTNearable]()
+	private var itemTracker = ItemTracker.getInstance()
 	var alreadyUsedIdentifiers = Set<String>()
 	fileprivate(set) var selectedBeacon: ESTNearable! {
 		get {
@@ -22,51 +27,38 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 	}
 	private(set) var selectedImage: UIImage? {
 		didSet{
-			if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: TableSection.ImageSection.sectionNumber)) as? AddItemImageTableViewCell {
+			if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: UITableView.TableSection.ImageSection.sectionNumber)) as? AddItemImageTableViewCell {
 				if selectedImage != nil {
 					cell.chooseImageLbl.text = ""
 				} else {
 					cell.chooseImageLbl.text = cell.chooseImageText
 				}
 			}
+			if allRequiredItemsSelected() {
+				self.saveButton.isEnabled = true
+			}
 		}
 	}
 	private let imagePicker = UIImagePickerController()
-	private var itemTracker: ItemTracker!
-	fileprivate var rangedNearables = [String:ESTNearable]()
-	private(set) var itemName: String?
-	fileprivate var nameCell: NameTableViewCell?
-
+	private(set) var itemName: String? {
+		didSet {
+			saveButton.isEnabled = allRequiredItemsSelected()
+		}
+	}
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
 	private struct AlertTitle {
 		static let Library =  "Choose from Camera Roll"
 		static let Camera = "Take a picture"
 		static let Cancel = "Cancel"
 	}
 	
-	fileprivate struct TableSection {
-		static let numberOfSections = 3
-		
-		struct NameSection {
-			static let sectionNumber = 0
-			static let sectionHeaderTitle = "NAME"
-		}
-		struct ImageSection {
-			static let sectionNumber = 1
-			static let sectionHeaderTitle = "IMAGE"
-		}
-		struct BeaconSection{
-			static let sectionNumber = 2
-			static let sectionHeaderTitle = "PICK BEACON"
-			static let sectionFooterText = "Select one of the beacon IDs showing up in the list to connect it to the item you are about to create."
-		}
-		
-		static func sectionHeaderTitle(_ sectionNumber: Int) -> String {
-			return sectionNumber == NameSection.sectionNumber ? NameSection.sectionHeaderTitle : sectionNumber == ImageSection.sectionNumber ? ImageSection.sectionHeaderTitle : sectionNumber == BeaconSection.sectionNumber ? BeaconSection.sectionHeaderTitle : ""
-		}
-	}
-
+	
 	private func performSetup(){
 		tableView.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark))
+		tableView.backgroundView?.setGradientBackground([UIColor.mainColor.cgColor, UIColor.mainTextColor.cgColor], locations: [0, 0.7, 1.0], startPoint: CGPoint(x: 0.5, y:0), endPoint: CGPoint(x: 1, y: 1), bounds: tableView.bounds)
+		tableView.estimatedRowHeight = 210
+		tableView.rowHeight = UITableViewAutomaticDimension
 		if UIImagePickerController.isSourceTypeAvailable(.camera){
 			imagePicker.sourceType = .camera
 		} else {
@@ -76,21 +68,15 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		imagePicker.navigationBar.barTintColor = UIColor.navbarColor
 		imagePicker.navigationBar.isTranslucent = false
 		imagePicker.delegate = self
-		itemTracker = ItemTracker.getInstance()
+		itemTracker.delegate = self
+		itemTracker.performOperation(ItemTracker.Operation.startRanging)
 	}
-
-
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		performSetup()
     }
-	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		itemTracker.delegate = self
-		itemTracker.performOperation(ItemTracker.Operation.ranging(numberOfTimes: 0))
-	}
+
 	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -98,11 +84,11 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
     }
     
 	@IBAction func textFieldEdited(_ sender: UITextField) {
-		navigationItem.rightBarButtonItem?.isEnabled = allRequiredItemsSelected()
+		itemName = sender.text
 	}
 	
 	fileprivate func allRequiredItemsSelected() -> Bool {
-		return (self._selectedBeacon != nil && itemName != nil && !(itemName?.isEmpty)!)
+		return (self._selectedBeacon != nil && itemName != nil && !(itemName!).isEmpty && selectedImage != nil)
 	}
 	
 	
@@ -112,11 +98,8 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 	}
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		return (nameCell?.nameField.resignFirstResponder())!
-	}
-	
-	func textFieldDidEndEditing(_ textField: UITextField) {
 		itemName = textField.text
+		return textField.resignFirstResponder()
 	}
 	
 	func showImagePickerChoiceDialog() {
@@ -125,7 +108,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		alertController.addAction(UIAlertAction(title: AlertTitle.Library, style: UIAlertActionStyle.default, handler: { [weak self] (action) -> Void in self?.showImagePickerController(.photoLibrary)}))
 		alertController.addAction(UIAlertAction(title: AlertTitle.Cancel, style: UIAlertActionStyle.cancel, handler: nil))
 		present(alertController, animated: true, completion: nil)
-		alertController.view.tintColor = UIColor.mainColor
+		alertController.view.tintColor = UIColor.navbarColor
 	}
 	
 	private func showImagePickerController(_ choice: UIImagePickerControllerSourceType){
@@ -136,34 +119,8 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		}
 		self.present(imagePicker, animated: true, completion: nil)
 	}
-
 	
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-		selectedImage = image
-		dismiss(animated: true, completion: nil)
-		let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 1))! as!AddItemImageTableViewCell
-		cell.roundedImageView.image = image
-	}
-	
-	//MARK: ItemTracker methods
-	func itemTracker(rangedNearables nearables: [ESTNearable]) {
-		var nearablesToRefresh = [ESTNearable]()
-		for nearable in nearables {
-			if !alreadyUsedIdentifiers.contains(nearable.identifier){
-				nearablesToRefresh.append(nearable)
-			}
-		}
-		refreshModel(nearablesToRefresh)
-	}
-	
-	fileprivate func nearableForIndexPath(_ path: IndexPath) -> ESTNearable? {
-		if let id = self.tableView.cellForRow(at: path)?.accessibilityIdentifier {
-			return rangedNearables[id]
-		}
-		return nil
-	}
-	
-	@objc private func refreshModel(_ nearables: [ESTNearable]) {
+	@objc func refreshModel(_ nearables: [ESTNearable]) {
 		var shouldRefresh = false
 		for nearable in nearables {
 			if rangedNearables.updateValue(nearable, forKey: nearable.identifier) == nil {
@@ -172,56 +129,47 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		}
 		let newNearableIds = Set(nearables.map({nearable in return nearable.identifier}))
 		let oldIds = Set(rangedNearables.keys)
+		var indexPathsForDeletedCells = [IndexPath]()
 		if let lostNearableIds = hasLostNearables(oldIds, newIds: newNearableIds) {
-			removeLostNearables(lostNearableIds)
+			indexPathsForDeletedCells = removeLostNearables(lostNearableIds)
 		}
-		if shouldRefresh {
+		if shouldRefresh || !indexPathsForDeletedCells.isEmpty {
 			tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.automatic)
 		}
 	}
-	
 	fileprivate func hasLostNearables(_ oldIds: Set<String>, newIds: Set<String>) -> Set<String>? {
 		let remove = oldIds.subtracting(newIds)
 		return remove.isEmpty ? nil : remove
 	}
 	
-	@objc fileprivate func removeLostNearables(_ removeIds: Set<String>) {
+	@objc fileprivate func removeLostNearables(_ removeIds: Set<String>) -> [IndexPath] {
+		var refreshPaths = [IndexPath]();
 		for id in removeIds {
 			if let path = tableView.indexPath(forBeaconId: id)
 				, tableView.cellForRow(at: path as IndexPath) != nil {
 				rangedNearables.removeValue(forKey: id)
-				tableView.deleteRows(at: [path as IndexPath], with: UITableViewRowAnimation.automatic)
+				refreshPaths.append(path)
 			}
 		}
+		return refreshPaths
 	}
-}
-
-
-
-//MARK: TABLEVIEW DELEGATE METHODS
-extension AddItemViewController {
-//	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//		var view:UIView? = nil
-//		if section == TableSection.BeaconSection.sectionNumber {
-//			view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.rowHeight))
-//			let lbl = UILabel(frame: CGRect(x: 15, y: 6, width: 100, height: 20))
-//			lbl.adjustsFontSizeToFitWidth = true
-//			lbl.font = UIFont.systemFont(ofSize: 13.5)
-//			lbl.textColor = UIColor.gray
-//			lbl.text = TableSection.sectionHeaderTitle(section)
-//			let indicator = UIActivityIndicatorView(frame: CGRect(x: lbl.bounds.width + 15, y: 10, width: 10, height: 10))
-//			indicator.color = UIColor.mainTextColor
-//			indicator.startAnimating()
-//			view!.backgroundColor = UIColor.tableSectionHeaderBackgroundColor
-//			view!.addSubview(lbl)
-//			view!.addSubview(indicator)
-//		}
-//		return view
-//	}
+	
+	private func nearableForIndexPath(path: IndexPath) -> ESTNearable? {
+		if let id = tableView.cellForRow(at: path)?.accessibilityIdentifier {
+			return rangedNearables[id]
+		}
+		return nil
+	}
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+		selectedImage = image
+		dismiss(animated: true, completion: nil)
+		let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 1))! as!AddItemImageTableViewCell
+		cell.roundedImageView.image = image
+	}
 	
 	override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
 		if let headerView = view as? UITableViewHeaderFooterView {
-			headerView.textLabel?.textColor = UIColor.darkGray
 			headerView.backgroundView?.backgroundColor = UIColor.clear
 		}
 	}
@@ -232,103 +180,38 @@ extension AddItemViewController {
 		}
 	}
 	
-	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		if indexPath.section == TableSection.BeaconSection.sectionNumber {
-			let pickBeaconCell = cell as! PickBeaconTableViewCell
-			let id = [String](rangedNearables.keys)[indexPath.row]
-			if let nearable = rangedNearables[id] {
-				pickBeaconCell.typeLabel.text = PickBeaconTableViewCell.LabelString.ItemType(nearable.type.string)
-				pickBeaconCell.idLabel.text = PickBeaconTableViewCell.LabelString.Id(id)
-				pickBeaconCell.accessibilityIdentifier = id
-			}
-		}
-	}
-
-	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return TableSection.sectionHeaderTitle(section)
-	}
-	override func numberOfSections(in tableView: UITableView) -> Int {
-		return TableSection.numberOfSections
-	}
-	
-	//TODO: använd cellerna istället för hårdkodade värden för höjd.
-	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		var cell = UITableViewCell()
-		switch indexPath.section {
-		case TableSection.NameSection.sectionNumber:
-			if let nameCell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.ReuseIdentifier.ItemNameCell) {
-				cell = nameCell
-			}
-			break
-		case TableSection.ImageSection.sectionNumber:
-			if let imageCell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.ReuseIdentifier.ItemImageCell) {
-				cell = imageCell
-			}
-			break
-		case TableSection.BeaconSection.sectionNumber:
-			if let beaconCell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.ReuseIdentifier.PickBeaconCell) {
-				cell = beaconCell
-			}
-		default:
-			break
-		}
-		return cell.bounds.size.height
-	}
-	
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return section == TableSection.BeaconSection.sectionNumber ? rangedNearables.count : 1
-	}
 	
 	override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
 		switch indexPath.section {
-		case TableSection.BeaconSection.sectionNumber:
-			let cell = tableView.cellForRow(at: indexPath) as! PickBeaconTableViewCell
-			selectedCell?.accessoryType = UITableViewCellAccessoryType.none
-			selectedCell = cell
-			_selectedBeacon = rangedNearables[cell.idLabel.text!]
-			cell.accessoryType = UITableViewCellAccessoryType.checkmark
-			let nearable = nearableForIndexPath(indexPath)
-			_selectedBeacon = nearable
-			break
-		case TableSection.ImageSection.sectionNumber:
+		case UITableView.TableSection.ImageSection.sectionNumber:
 			showImagePickerChoiceDialog()
 			break;
-		default: return nil
+		default: return indexPath
 		}
 		return indexPath
 	}
 	
-	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-		return section == TableSection.BeaconSection.sectionNumber ? TableSection.BeaconSection.sectionFooterText : nil
-	}
-	
-	override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-		return UITableView.footerHeight
-	}
-	
-	override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		return UITableView.headerHeight
-	}
-	
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		var cell = UITableViewCell()
-		switch indexPath.section {
-		case TableSection.NameSection.sectionNumber:
-			cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.ReuseIdentifier.ItemNameCell, for: indexPath)
-			let nameCell = cell as! NameTableViewCell
-			self.nameCell = nameCell
-			nameCell.nameField.delegate = self
-			break
-		case TableSection.ImageSection.sectionNumber:
-			cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.ReuseIdentifier.ItemImageCell, for: indexPath)
-			break
-		case TableSection.BeaconSection.sectionNumber:
-			cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.ReuseIdentifier.PickBeaconCell, for: indexPath)
-			break
-		default:
-			cell = UITableViewCell()
-			break
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if indexPath.section == UITableView.TableSection.BeaconSection.sectionNumber {
+			let cell = tableView.cellForRow(at: indexPath) as! PickBeaconTableViewCell
+			let nearable = rangedNearables[(cell.idLabel.text)!]!
+			if let beacon = _selectedBeacon {
+				if let idxPath = tableView.indexPath(forBeaconId: beacon.identifier){
+					let cell = tableView.cellForRow(at:idxPath)
+					cell?.accessoryType = UITableViewCellAccessoryType.none
+				}
+			}
+			_selectedBeacon = nearable
+			cell.accessoryType = UITableViewCellAccessoryType.checkmark
 		}
-		return cell
+	}
+	
+	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		if let beacon = _selectedBeacon, beacon.identifier == cell.accessibilityIdentifier {
+			cell.accessoryType = UITableViewCellAccessoryType.checkmark
+		} else {
+			cell.accessoryType = UITableViewCellAccessoryType.none
+		}
 	}
 }
+

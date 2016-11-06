@@ -20,7 +20,7 @@ extension UIColor {
 	}
 	
 	public static var mainColor: UIColor {
-		return UIColor(red: 28 / 255, green: 28 / 255, blue: 28 / 255, alpha: 1)
+		return UIColor(red: 28 / 255, green: 28 / 255, blue: 40 / 255, alpha: 1)
 	}
 
 	public static var mainTextColor: UIColor {
@@ -28,11 +28,14 @@ extension UIColor {
 	}
 	
 	public static var navbarColor: UIColor {
-		return UIColor(red: 28 / 255, green: 28 / 255, blue: 28 / 255, alpha: 1)
+		return UIColor(red: 33 / 255, green: 65 / 255, blue: 87 / 255, alpha: 1)
 	}
 
 	public static var tableHeaderColor: UIColor {
 		return UIColor(red: 129 / 255, green: 95 / 255, blue: 92 / 255, alpha: 1)
+	}
+	public static var tableHeaderTitleColor: UIColor {
+		return UIColor(red: 34 / 255, green: 135, blue: 215, alpha: 1)
 	}
 }
 extension UIViewController {
@@ -55,7 +58,7 @@ extension UIView {
 			lay.locations = locations
 			lay.startPoint = startPoint
 			lay.endPoint = endPoint
-			self.layer.insertSublayer(layer, at: 0)
+			self.layer.insertSublayer(lay, at: 0)
 	}
 }
 
@@ -73,7 +76,6 @@ extension UITableViewCell {
 extension UIImage {
 	struct Name {
 		static let Radar = "radar"
-		//lägg till fler
 	}
 }
 
@@ -82,7 +84,7 @@ extension UITableView {
 	static var footerHeight: CGFloat { return 50}
 	
 	func indexPath(forBeaconId id: String) -> IndexPath? {
-		for cell in self.subviews where cell is PickBeaconTableViewCell {
+		for cell in self.visibleCells where cell is PickBeaconTableViewCell {
 			if cell.accessibilityIdentifier == id {
 				return self.indexPath(for: cell as! PickBeaconTableViewCell)
 			}
@@ -90,6 +92,26 @@ extension UITableView {
 		return nil
 	}
 
-	
+	struct TableSection {
+			static let numberOfSections = 3
+			
+			struct NameSection {
+				static let sectionNumber = 0
+				static let sectionHeaderTitle = "NAME"
+			}
+			struct ImageSection {
+				static let sectionNumber = 1
+				static let sectionHeaderTitle = "IMAGE"
+			}
+			struct BeaconSection{
+				static let sectionNumber = 2
+				static let sectionHeaderTitle = "PICK BEACON"
+				static let sectionFooterText = "Select one of the beacon IDs showing up in the list to connect it to the item you are about to create."
+			}
+			
+			static func sectionHeaderTitle(_ sectionNumber: Int) -> String {
+				return sectionNumber == NameSection.sectionNumber ? NameSection.sectionHeaderTitle : sectionNumber == ImageSection.sectionNumber ? ImageSection.sectionHeaderTitle : sectionNumber == BeaconSection.sectionNumber ? BeaconSection.sectionHeaderTitle : ""
+			}
+	}
 }
 
