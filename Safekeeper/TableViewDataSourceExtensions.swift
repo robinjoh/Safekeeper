@@ -34,7 +34,7 @@ extension AddItemViewController {
 		var cell = UITableViewCell()
 		switch indexPath.section {
 		case UITableView.TableSection.NameSection.sectionNumber:
-			cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.ReuseIdentifier.ItemNameCell, for: indexPath)
+			cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.ReuseIdentifier.ItemNameCell)!
 			(cell as! NameTableViewCell).nameField.delegate = self
 			break
 		case UITableView.TableSection.ImageSection.sectionNumber:

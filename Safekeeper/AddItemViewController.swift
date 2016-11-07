@@ -56,6 +56,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 	
 	private func performSetup(){
 		tableView.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark))
+		tableView.backgroundView?.backgroundColor = UIColor.clear
 		tableView.backgroundView?.setGradientBackground([UIColor.mainColor.cgColor, UIColor.mainTextColor.cgColor], locations: [0, 0.7, 1.0], startPoint: CGPoint(x: 0.5, y:0), endPoint: CGPoint(x: 1, y: 1), bounds: tableView.bounds)
 		tableView.estimatedRowHeight = 210
 		tableView.rowHeight = UITableViewAutomaticDimension
@@ -120,11 +121,15 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		self.present(imagePicker, animated: true, completion: nil)
 	}
 	
-	@objc func refreshModel(_ nearables: [ESTNearable]) {
-		var shouldRefresh = false
+	func refreshModel(_ nearables: [ESTNearable]) -> (Bool, [IndexPath]) {
+		var shouldRefreshTable = false
 		for nearable in nearables {
-			if rangedNearables.updateValue(nearable, forKey: nearable.identifier) == nil {
-				shouldRefresh = true
+			if let value = rangedNearables.updateValue(nearable, forKey: nearable.identifier) {
+				if !value.isEqual(nearable) {
+					shouldRefreshTable = true
+				}
+			} else {
+				shouldRefreshTable = true
 			}
 		}
 		let newNearableIds = Set(nearables.map({nearable in return nearable.identifier}))
@@ -133,9 +138,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		if let lostNearableIds = hasLostNearables(oldIds, newIds: newNearableIds) {
 			indexPathsForDeletedCells = removeLostNearables(lostNearableIds)
 		}
-		if shouldRefresh || !indexPathsForDeletedCells.isEmpty {
-			tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.automatic)
-		}
+		return (shouldRefreshTable, indexPathsForDeletedCells)
 	}
 	fileprivate func hasLostNearables(_ oldIds: Set<String>, newIds: Set<String>) -> Set<String>? {
 		let remove = oldIds.subtracting(newIds)
@@ -143,15 +146,15 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 	}
 	
 	@objc fileprivate func removeLostNearables(_ removeIds: Set<String>) -> [IndexPath] {
-		var refreshPaths = [IndexPath]();
+		var removeTableCells = [IndexPath]();
 		for id in removeIds {
 			if let path = tableView.indexPath(forBeaconId: id)
 				, tableView.cellForRow(at: path as IndexPath) != nil {
 				rangedNearables.removeValue(forKey: id)
-				refreshPaths.append(path)
+				removeTableCells.append(path)
 			}
 		}
-		return refreshPaths
+		return removeTableCells
 	}
 	
 	private func nearableForIndexPath(path: IndexPath) -> ESTNearable? {
@@ -168,25 +171,10 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		cell.roundedImageView.image = image
 	}
 	
-	override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-		if let headerView = view as? UITableViewHeaderFooterView {
-			headerView.backgroundView?.backgroundColor = UIColor.clear
-		}
-	}
-	
-	override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-		if let footerView = view as? UITableViewHeaderFooterView {
-			footerView.backgroundView?.backgroundColor = UIColor.clear
-		}
-	}
-	
 	
 	override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-		switch indexPath.section {
-		case UITableView.TableSection.ImageSection.sectionNumber:
+		if indexPath.section == UITableView.TableSection.ImageSection.sectionNumber {
 			showImagePickerChoiceDialog()
-			break;
-		default: return indexPath
 		}
 		return indexPath
 	}

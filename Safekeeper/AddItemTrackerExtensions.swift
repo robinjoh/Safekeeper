@@ -19,7 +19,17 @@ extension AddItemViewController: ItemTrackerDelegate {
 				nearablesToRefresh.append(nearable)
 			}
 		}
-		refreshModel(nearablesToRefresh)
+		let result = refreshModel(nearablesToRefresh)
+		let nearablesInserted = result.0
+		let deleteRowsAt = result.1
+		if !deleteRowsAt.isEmpty {
+			tableView.deleteRows(at: deleteRowsAt, with: UITableViewRowAnimation.fade)
+		}
+		if nearablesInserted {
+			tableView.reloadSections(IndexSet(integer: UITableView.TableSection.BeaconSection.sectionNumber), with: UITableViewRowAnimation.automatic)
+		}
+		
+	
 	}
 	
 }
