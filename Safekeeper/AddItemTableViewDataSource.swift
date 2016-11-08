@@ -11,26 +11,26 @@ import UIKit
 
 
 //MARK: TableViewDataSource methods.
-extension AddItemViewController {
+extension AddItemViewController: UITableViewDataSource {
 	
 	//MARK: TABLEVIEWDATASOURCE
-	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		return UITableView.TableSection.sectionHeaderTitle(section)
 	}
 	
-	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+	func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
 		return section == UITableView.TableSection.BeaconSection.sectionNumber ? UITableView.TableSection.BeaconSection.sectionFooterText : nil
 	}
 	
-	override func numberOfSections(in tableView: UITableView) -> Int {
+	func numberOfSections(in tableView: UITableView) -> Int {
 		return UITableView.TableSection.numberOfSections
 	}
 	
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return section == UITableView.TableSection.BeaconSection.sectionNumber ? rangedNearables.count : 1
 	}
 	
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+	 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		var cell = UITableViewCell()
 		switch indexPath.section {
 		case UITableView.TableSection.NameSection.sectionNumber:

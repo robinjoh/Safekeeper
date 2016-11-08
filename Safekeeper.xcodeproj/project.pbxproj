@@ -10,7 +10,7 @@
 		B31BCAEA1D986E8A000B8644 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */; };
 		B31BCAEC1D986E99000B8644 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */; };
 		B31E615F1DCFE65F001D8D87 /* OverViewTrackerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E615E1DCFE65F001D8D87 /* OverViewTrackerExtension.swift */; };
-		B31E61611DCFE717001D8D87 /* ItemOverViewDataSourceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E61601DCFE717001D8D87 /* ItemOverViewDataSourceExtension.swift */; };
+		B31E61611DCFE717001D8D87 /* ItemOverViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E61601DCFE717001D8D87 /* ItemOverViewDataSource.swift */; };
 		B333F2BF1DC28273007E71A7 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2BE1DC28273007E71A7 /* AddItemViewController.swift */; };
 		B333F2C31DC342F7007E71A7 /* RadarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2C21DC342F7007E71A7 /* RadarView.swift */; };
 		B333F2C51DC34595007E71A7 /* BeaconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2C41DC34595007E71A7 /* BeaconView.swift */; };
@@ -20,11 +20,12 @@
 		B391F6A11D9A534A00FBDAE4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B391F6A01D9A534A00FBDAE4 /* RoundedView.swift */; };
 		B39569FF1D6243E2004C1C83 /* PickBeaconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */; };
 		B395AB661DCBDF1A00104837 /* AddItemImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395AB651DCBDF1A00104837 /* AddItemImageTableViewCell.swift */; };
-		B395AB6C1DCFD47D00104837 /* TableViewDataSourceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395AB6B1DCFD47D00104837 /* TableViewDataSourceExtensions.swift */; };
-		B395AB6E1DCFD55700104837 /* AddItemTrackerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395AB6D1DCFD55700104837 /* AddItemTrackerExtensions.swift */; };
+		B395AB6C1DCFD47D00104837 /* AddItemTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395AB6B1DCFD47D00104837 /* AddItemTableViewDataSource.swift */; };
+		B395AB6E1DCFD55700104837 /* AddItemTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395AB6D1DCFD55700104837 /* AddItemTrackerDelegate.swift */; };
 		B39CD6081D40AF29000D9903 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39CD6071D40AF29000D9903 /* Errors.swift */; };
 		B39D40071D6115A600805722 /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D40061D6115A600805722 /* ModelExtensions.swift */; };
 		B3ABEEFA1D29CAAE0000873E /* NavbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ABEEF91D29CAAE0000873E /* NavbarViewController.swift */; };
+		B3B418511DD158AD000D2E78 /* ArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B418501DD158AD000D2E78 /* ArrayDataSource.swift */; };
 		B3C3C0F51D32B265004123F4 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C3C0F41D32B265004123F4 /* UIKitExtensions.swift */; };
 		B3CACF861D27CD3700027B63 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CACF851D27CD3700027B63 /* MapKit.framework */; };
 		B3CACF8A1D281FBA00027B63 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CACF891D281FBA00027B63 /* Item.swift */; };
@@ -57,7 +58,7 @@
 		B31BCAE81D986E8A000B8644 /* SafekeeperTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafekeeperTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafekeeperTests.swift; sourceTree = "<group>"; };
 		B31E615E1DCFE65F001D8D87 /* OverViewTrackerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverViewTrackerExtension.swift; sourceTree = "<group>"; };
-		B31E61601DCFE717001D8D87 /* ItemOverViewDataSourceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemOverViewDataSourceExtension.swift; sourceTree = "<group>"; };
+		B31E61601DCFE717001D8D87 /* ItemOverViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemOverViewDataSource.swift; sourceTree = "<group>"; };
 		B333F2BE1DC28273007E71A7 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		B333F2C21DC342F7007E71A7 /* RadarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarView.swift; sourceTree = "<group>"; };
 		B333F2C41DC34595007E71A7 /* BeaconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconView.swift; sourceTree = "<group>"; };
@@ -67,11 +68,12 @@
 		B391F6A01D9A534A00FBDAE4 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickBeaconTableViewCell.swift; sourceTree = "<group>"; };
 		B395AB651DCBDF1A00104837 /* AddItemImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemImageTableViewCell.swift; sourceTree = "<group>"; };
-		B395AB6B1DCFD47D00104837 /* TableViewDataSourceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceExtensions.swift; sourceTree = "<group>"; };
-		B395AB6D1DCFD55700104837 /* AddItemTrackerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemTrackerExtensions.swift; sourceTree = "<group>"; };
+		B395AB6B1DCFD47D00104837 /* AddItemTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemTableViewDataSource.swift; sourceTree = "<group>"; };
+		B395AB6D1DCFD55700104837 /* AddItemTrackerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemTrackerDelegate.swift; sourceTree = "<group>"; };
 		B39CD6071D40AF29000D9903 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B39D40061D6115A600805722 /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
 		B3ABEEF91D29CAAE0000873E /* NavbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavbarViewController.swift; sourceTree = "<group>"; };
+		B3B418501DD158AD000D2E78 /* ArrayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayDataSource.swift; sourceTree = "<group>"; };
 		B3C3C0F41D32B265004123F4 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		B3CACF851D27CD3700027B63 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B3CACF891D281FBA00027B63 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -125,7 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				B31E615E1DCFE65F001D8D87 /* OverViewTrackerExtension.swift */,
-				B31E61601DCFE717001D8D87 /* ItemOverViewDataSourceExtension.swift */,
+				B31E61601DCFE717001D8D87 /* ItemOverViewDataSource.swift */,
 				B3CFAE301D272999006C2434 /* ItemOverViewController.swift */,
 			);
 			name = ItemOverView;
@@ -138,8 +140,8 @@
 				B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */,
 				B3E00B451DCAACE30030064A /* NameTableViewCell.swift */,
 				B333F2C41DC34595007E71A7 /* BeaconView.swift */,
-				B395AB6B1DCFD47D00104837 /* TableViewDataSourceExtensions.swift */,
-				B395AB6D1DCFD55700104837 /* AddItemTrackerExtensions.swift */,
+				B395AB6B1DCFD47D00104837 /* AddItemTableViewDataSource.swift */,
+				B395AB6D1DCFD55700104837 /* AddItemTrackerDelegate.swift */,
 				B333F2BE1DC28273007E71A7 /* AddItemViewController.swift */,
 			);
 			name = AddNewItem;
@@ -151,6 +153,7 @@
 				B3CFAE001D2712FD006C2434 /* AppDelegate.swift */,
 				B3CACF8D1D2880B200027B63 /* ItemTracker.swift */,
 				B3E00B431DCAA9350030064A /* NotificationManager.swift */,
+				B3B418501DD158AD000D2E78 /* ArrayDataSource.swift */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -400,14 +403,14 @@
 				B3EE10041D36F794001EC54B /* ItemTrackerDelegate.swift in Sources */,
 				B3E00B461DCAACE30030064A /* NameTableViewCell.swift in Sources */,
 				B3CFAE011D2712FD006C2434 /* AppDelegate.swift in Sources */,
-				B395AB6E1DCFD55700104837 /* AddItemTrackerExtensions.swift in Sources */,
+				B395AB6E1DCFD55700104837 /* AddItemTrackerDelegate.swift in Sources */,
 				B39D40071D6115A600805722 /* ModelExtensions.swift in Sources */,
 				B31BCAEA1D986E8A000B8644 /* SafekeeperTests.swift in Sources */,
 				B3C3C0F51D32B265004123F4 /* UIKitExtensions.swift in Sources */,
 				B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */,
 				B39CD6081D40AF29000D9903 /* Errors.swift in Sources */,
 				B3853F741DC9298400A93E77 /* ItemStorage.swift in Sources */,
-				B395AB6C1DCFD47D00104837 /* TableViewDataSourceExtensions.swift in Sources */,
+				B395AB6C1DCFD47D00104837 /* AddItemTableViewDataSource.swift in Sources */,
 				B337D51C1DC7676E00A2B096 /* RoundedImageView.swift in Sources */,
 				B333F2FD1DC75D3F007E71A7 /* MapViewController.swift in Sources */,
 				B3CACF8A1D281FBA00027B63 /* Item.swift in Sources */,
@@ -415,11 +418,12 @@
 				B3CFAE311D272999006C2434 /* ItemOverViewController.swift in Sources */,
 				B391F6A11D9A534A00FBDAE4 /* RoundedView.swift in Sources */,
 				B395AB661DCBDF1A00104837 /* AddItemImageTableViewCell.swift in Sources */,
+				B3B418511DD158AD000D2E78 /* ArrayDataSource.swift in Sources */,
 				B333F2C31DC342F7007E71A7 /* RadarView.swift in Sources */,
 				B31E615F1DCFE65F001D8D87 /* OverViewTrackerExtension.swift in Sources */,
 				B3FDB44C1D5B1D3F009DE55A /* ShadowedUIView.swift in Sources */,
 				B333F2C51DC34595007E71A7 /* BeaconView.swift in Sources */,
-				B31E61611DCFE717001D8D87 /* ItemOverViewDataSourceExtension.swift in Sources */,
+				B31E61611DCFE717001D8D87 /* ItemOverViewDataSource.swift in Sources */,
 				B3CACF8E1D2880B200027B63 /* ItemTracker.swift in Sources */,
 				B333F2BF1DC28273007E71A7 /* AddItemViewController.swift in Sources */,
 				B3ABEEFA1D29CAAE0000873E /* NavbarViewController.swift in Sources */,

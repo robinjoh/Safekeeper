@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	fileprivate var _selectedBeacon: ESTNearable? {
 		didSet {
 			saveButton.isEnabled = allRequiredItemsSelected()
@@ -46,7 +46,8 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		}
 	}
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    
+	@IBOutlet weak var tableView: UITableView!
+	
 	private struct AlertTitle {
 		static let Library =  "Choose from Camera Roll"
 		static let Camera = "Take a picture"
@@ -55,9 +56,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 	
 	
 	private func performSetup(){
-		tableView.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark))
-		tableView.backgroundView?.backgroundColor = UIColor.clear
-		tableView.backgroundView?.setGradientBackground([UIColor.mainColor.cgColor, UIColor.mainTextColor.cgColor], locations: [0, 0.7, 1.0], startPoint: CGPoint(x: 0.5, y:0), endPoint: CGPoint(x: 1, y: 1), bounds: tableView.bounds)
+		self.view.setGradientBackground([UIColor.mainColor.cgColor, UIColor.mainTextColor.cgColor], locations: [0, 0.7, 1.0], startPoint: CGPoint(x: 0.3, y:0), endPoint: CGPoint(x: 1, y: 1), bounds: view.bounds)
 		tableView.estimatedRowHeight = 210
 		tableView.rowHeight = UITableViewAutomaticDimension
 		if UIImagePickerController.isSourceTypeAvailable(.camera){
@@ -70,6 +69,8 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		imagePicker.navigationBar.isTranslucent = false
 		imagePicker.delegate = self
 		itemTracker.delegate = self
+		tableView.delegate = self
+		tableView.dataSource = self
 		itemTracker.performOperation(ItemTracker.Operation.startRanging)
 	}
 	
@@ -77,12 +78,15 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
         super.viewDidLoad()
 		performSetup()
     }
-
 	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	func resetTrackedNearables(){
+		rangedNearables.removeAll()
+	}
     
 	@IBAction func textFieldEdited(_ sender: UITextField) {
 		itemName = sender.text
@@ -121,10 +125,10 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		self.present(imagePicker, animated: true, completion: nil)
 	}
 	
-	func refreshModel(_ nearables: [ESTNearable]) -> (Bool, [IndexPath]) {
+	func refreshModel(_ nearables: [ESTNearable]) -> Bool {
 		var shouldRefreshTable = false
 		for nearable in nearables {
-			if let value = rangedNearables.updateValue(nearable, forKey: nearable.identifier) {
+			if let value = rangedNearables.updateValue(nearable, forKey: nearable.identifier), value.isEqual(nearable) {
 				if !value.isEqual(nearable) {
 					shouldRefreshTable = true
 				}
@@ -134,34 +138,22 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		}
 		let newNearableIds = Set(nearables.map({nearable in return nearable.identifier}))
 		let oldIds = Set(rangedNearables.keys)
-		var indexPathsForDeletedCells = [IndexPath]()
 		if let lostNearableIds = hasLostNearables(oldIds, newIds: newNearableIds) {
-			indexPathsForDeletedCells = removeLostNearables(lostNearableIds)
+			shouldRefreshTable = shouldRefreshTable||removeLostNearables(lostNearableIds)
 		}
-		return (shouldRefreshTable, indexPathsForDeletedCells)
+		return shouldRefreshTable
 	}
 	fileprivate func hasLostNearables(_ oldIds: Set<String>, newIds: Set<String>) -> Set<String>? {
 		let remove = oldIds.subtracting(newIds)
 		return remove.isEmpty ? nil : remove
 	}
 	
-	@objc fileprivate func removeLostNearables(_ removeIds: Set<String>) -> [IndexPath] {
-		var removeTableCells = [IndexPath]();
+	@objc fileprivate func removeLostNearables(_ removeIds: Set<String>) -> Bool {
+		let removed = !removeIds.isDisjoint(with: Set(rangedNearables.keys))
 		for id in removeIds {
-			if let path = tableView.indexPath(forBeaconId: id)
-				, tableView.cellForRow(at: path as IndexPath) != nil {
-				rangedNearables.removeValue(forKey: id)
-				removeTableCells.append(path)
-			}
+			rangedNearables.removeValue(forKey: id)
 		}
-		return removeTableCells
-	}
-	
-	private func nearableForIndexPath(path: IndexPath) -> ESTNearable? {
-		if let id = tableView.cellForRow(at: path)?.accessibilityIdentifier {
-			return rangedNearables[id]
-		}
-		return nil
+		return removed
 	}
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
@@ -172,14 +164,14 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 	}
 	
 	
-	override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+	func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
 		if indexPath.section == UITableView.TableSection.ImageSection.sectionNumber {
 			showImagePickerChoiceDialog()
 		}
 		return indexPath
 	}
 	
-	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.section == UITableView.TableSection.BeaconSection.sectionNumber {
 			let cell = tableView.cellForRow(at: indexPath) as! PickBeaconTableViewCell
 			let nearable = rangedNearables[(cell.idLabel.text)!]!
@@ -194,7 +186,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate, UIImage
 		}
 	}
 	
-	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		if let beacon = _selectedBeacon, beacon.identifier == cell.accessibilityIdentifier {
 			cell.accessoryType = UITableViewCellAccessoryType.checkmark
 		} else {
