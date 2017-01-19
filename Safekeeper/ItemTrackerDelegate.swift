@@ -11,5 +11,7 @@ import Foundation
 @objc protocol ItemTrackerDelegate: class {
 	@objc optional func itemTracker(didRangeItem item: Item)
 	@objc optional func itemTracker(didLoseItem item: Item)
+	@objc optional func itemTracker(didFindMonitoredItem item: Item)
 	@objc optional func itemTracker(rangedNearables nearables: [ESTNearable])
+	@objc optional func itemTracker(rangedItems items: [Item])
 }

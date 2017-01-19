@@ -56,7 +56,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewD
 	
 	
 	private func performSetup(){
-		self.view.setGradientBackground([UIColor.mainColor.cgColor, UIColor.mainTextColor.cgColor], locations: [0, 0.7, 1.0], startPoint: CGPoint(x: 0.3, y:0), endPoint: CGPoint(x: 1, y: 1), bounds: view.bounds)
+		self.view.setGradientBackground([UIColor.mainTextColor.cgColor, UIColor.mainColor.cgColor, UIColor.mainColor.cgColor, UIColor.mainTextColor.cgColor], locations: [0,1], startPoint: CGPoint(x: 0.7, y:0), endPoint: CGPoint(x: 0.9, y: 1), bounds: view.bounds)
 		tableView.estimatedRowHeight = 210
 		tableView.rowHeight = UITableViewAutomaticDimension
 		if UIImagePickerController.isSourceTypeAvailable(.camera){
@@ -71,13 +71,22 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewD
 		itemTracker.delegate = self
 		tableView.delegate = self
 		tableView.dataSource = self
-		itemTracker.performOperation(ItemTracker.Operation.startRanging)
+		if !itemTracker.isRanging{
+			itemTracker.performOperation(ItemTracker.Operation.startRanging)
+		}
 	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		performSetup()
     }
+	
+	override func viewDidAppear(_ animated: Bool) {
+		itemTracker.delegate = self
+		if !itemTracker.isRanging {
+			itemTracker.performOperation(ItemTracker.Operation.startRanging)
+		}
+	}
 	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -87,9 +96,34 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewD
 	func resetTrackedNearables(){
 		rangedNearables.removeAll()
 	}
+	
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		let txt = textField.text as NSString?
+		var test = txt?.replacingCharacters(in: range, with: string)
+		if test != nil && (test?.characters.count)! > 0 && allRequiredItemsSelected(){
+			navigationItem.rightBarButtonItem?.isEnabled = true
+		}else {
+			navigationItem.rightBarButtonItem?.isEnabled = false
+		}
+		return true
+	}
+	
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		navigationItem.rightBarButtonItem?.isEnabled = false
+	}
+	
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		itemName = textField.text
+		if allRequiredItemsSelected() {
+			navigationItem.rightBarButtonItem?.isEnabled = true
+		}
+	}
     
 	@IBAction func textFieldEdited(_ sender: UITextField) {
 		itemName = sender.text
+		if allRequiredItemsSelected(){
+		navigationItem.rightBarButtonItem?.isEnabled = true
+		}
 	}
 	
 	fileprivate func allRequiredItemsSelected() -> Bool {
@@ -143,6 +177,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewD
 		}
 		return shouldRefreshTable
 	}
+	
 	fileprivate func hasLostNearables(_ oldIds: Set<String>, newIds: Set<String>) -> Set<String>? {
 		let remove = oldIds.subtracting(newIds)
 		return remove.isEmpty ? nil : remove

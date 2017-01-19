@@ -12,7 +12,7 @@ extension ItemOverviewController: ItemTrackerDelegate {
 	
 	//MARK: - itemtracker methods
 	func itemTracker(didRangeItem item: Item) {
-		print("hehe \(item)")
+		print("hittade \(item)")
 	}
 	
 	func itemTracker(didLoseItem item: Item){

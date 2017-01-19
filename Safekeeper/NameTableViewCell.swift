@@ -2,8 +2,8 @@
 //  NameTableViewCell.swift
 //  Safekeeper
 //
-//  Created by Robin on 2016-11-03.
-//  Copyright © 2016 Robin. All rights reserved.
+//  Created by Robin on 2017-01-19.
+//  Copyright © 2017 Robin. All rights reserved.
 //
 
 import UIKit

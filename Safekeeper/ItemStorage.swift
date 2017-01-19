@@ -22,6 +22,15 @@ class ItemStorage {
 	var count: Int {
 		return _items.count
 	}
+	fileprivate static var _instance: ItemStorage?
+	static var instance: ItemStorage {
+		get {
+			if _instance == nil {
+				_instance = ItemStorage()
+			}
+			return _instance!
+		}
+	}
 	
 	private struct Storage {
 		static let StorageDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -29,7 +38,7 @@ class ItemStorage {
 	}
 	
 	func saveItems() throws {
-		guard NSKeyedArchiver.archiveRootObject(items, toFile: Storage.ArchiveURL.path) else {
+		guard NSKeyedArchiver.archiveRootObject(_items, toFile: Storage.ArchiveURL.path) else {
 			//visa en alert om att det inte gick att spara.
 			throw FileSystemError.saveFailure(msg: "An error occurred when trying to save items.")
 		}
@@ -62,7 +71,6 @@ class ItemStorage {
 	
 	func deleteItem(_ itemIdentifier: String) -> Item? {
 		if let removed = _items.removeValue(forKey: itemIdentifier) {
-			try? saveItems()
 			return removed
 		}
 		return nil
@@ -74,5 +82,9 @@ class ItemStorage {
 	
 	func contains(_ item: Item) -> Bool {
 		return _items.index(forKey: item.itemId) != nil
+	}
+	
+	func contains(_ itemId: String) -> Bool {
+		return _items.keys.contains(itemId)
 	}
 }

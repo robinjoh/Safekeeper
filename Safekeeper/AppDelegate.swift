@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate,
 	var window: UIWindow?
 	private var bluetoothManager: CBCentralManager?
 	private var locationManager = ItemTracker.getInstance()
-	private var itemStorage = ItemStorage()
-	private let notificationManager = NotificationManager()
+	private var itemStorage = ItemStorage.instance
+	private let backgroundTrackingDelegate = BackgroundTracker()
 	private var visibleViewController: UIViewController?
 	
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -32,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate,
 		} catch {
 			print(error.localizedDescription)
 		}
-		
 		
 		bluetoothManager = CBCentralManager(delegate: self, queue: nil)
 		let notificationCenter = UNUserNotificationCenter.current()
@@ -50,14 +49,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate,
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-		locationManager.performOperation(ItemTracker.Operation.stopRanging)
-    }
+		if locationManager.isRanging {
+			locationManager.performOperation(ItemTracker.Operation.stopRanging)
+		}
+		locationManager.performOperation(ItemTracker.Operation.startMonitoring(itemStorage.items))
+		locationManager.delegate = backgroundTrackingDelegate
+		backgroundTrackingDelegate.startLostItemsChecking()
+		do {
+			try itemStorage.saveItems()
+		} catch let error as FileSystemError {
+			print(error.description)
+		} catch {
+			print(error.localizedDescription)
+		}
+	}
 	
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-		locationManager.performOperation(ItemTracker.Operation.startRanging)
-		
-
 	}
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -65,6 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate,
 		if let addItem = visibleViewController as? AddItemViewController {
 		addItem.resetTrackedNearables()
 		}
+		backgroundTrackingDelegate.stopLostItemsChecking()
+		application.applicationIconBadgeNumber = 0
     }
 	
 	func applicationWillResignActive(_ application: UIApplication) {
@@ -74,8 +84,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate,
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 		do {
+			if locationManager.isRanging{
 			locationManager.performOperation(ItemTracker.Operation.stopRanging)
-			locationManager.performOperation(ItemTracker.Operation.stopMonitoring(itemStorage.items))
+			}
 		 try itemStorage.saveItems()
 		}catch let error as FileSystemError {
 			print(error.description)
@@ -85,16 +96,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate,
 	}
 	
 	func getVisibleViewController(_ rootViewController: UIViewController?) -> UIViewController? {
-		
 		var rootVC = rootViewController
 		if rootVC == nil {
 			rootVC = UIApplication.shared.keyWindow?.rootViewController
 		}
-		
 		if rootVC?.presentedViewController == nil {
 			return rootVC
 		}
-		
 		if let presented = rootVC?.presentedViewController {
 			if presented.isKind(of: UINavigationController.self) {
 				let navigationController = presented as! UINavigationController
@@ -110,7 +118,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate,
 		}
 		return nil
 	}
-
-
 }
 

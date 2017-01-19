@@ -1,24 +1,25 @@
 import Foundation
 
-open class ItemTracker {
+public final class ItemTracker {
 	static private var sharedInstance: ItemTracker!
 	weak var delegate: ItemTrackerDelegate? {
 		didSet {
+			if delegate == nil {
 			locationManager.stopRanging()
 			locationManager.stopMonitoring()
+			}
 		}
 	}
 	private var trackerDelegate: ItemDelegate!
 	private let locationManager = ESTNearableManager()
 	private (set) var trackedItems = [String:Item]()
-	private weak var timer: Timer?
-	private var isMonitoring = false
+	private (set) var isMonitoring = false
 	private (set) var isRanging = false
 	private var isMonitoringPaused = false
 	private var rangingCount = 0
 	
 	enum Operation {
-		case monitoring([Item])
+		case startMonitoring([Item])
 		case stopMonitoring([Item])
 		case startRanging
 		case stopRanging
@@ -46,18 +47,11 @@ open class ItemTracker {
 		}
 	}
 	
-	private func stopTimer(){
-		if timer != nil {
-			timer?.invalidate()
-		}
-	}
-	
 	private func trackItem(_ item: Item){
 		locationManager.startMonitoring(forIdentifier: item.itemId)
 		trackedItems[item.itemId] = item
 		if !isMonitoring {
 			isMonitoring = true
-			//startTimer()
 		}
 	}
 	
@@ -72,7 +66,6 @@ open class ItemTracker {
 			trackedItems.remove(at: index)
 		}
 		if isMonitoring && trackedItems.isEmpty {
-			stopTimer()
 			isMonitoring = false
 		}
 	}
@@ -87,17 +80,19 @@ open class ItemTracker {
 		locationManager.stopMonitoring()
 		locationManager.stopRanging()
 		trackedItems.removeAll()
-		timer?.invalidate()
 	}
 	
 	func performOperation(_ operation: Operation){
 		switch operation {
-		case .monitoring(let items):
-			items.count > 1 ? trackItems(items) : trackItem(items[0])
+		case .startMonitoring(let items):
+			if !items.isEmpty{
+				trackItems(items)
+			}
 		case .stopMonitoring(let items):
-			items.count > 1 ? stopTrackingItems(items) : stopTrackingItem(withId: items[0].itemId)
-		case .startRanging:
-			startRangingNearbyItems()
+			if !items.isEmpty{
+				stopTrackingItems(items)
+			}
+		case .startRanging: startRangingNearbyItems()
 		case .stopRanging: stopRangingNearbyItems()
 		case .resumeRanging: startRangingNearbyItems()
 		case .resumeMonitoring:
@@ -112,25 +107,14 @@ open class ItemTracker {
 		case .pauseRanging:
 			if isRanging {
 				locationManager.stopRanging()
-				timer?.invalidate()
 				isRanging = false
 			}
 		case .pauseMonitoring:
 			if isMonitoring {
 				locationManager.stopMonitoring()
-				timer?.invalidate()
 				isMonitoringPaused = true
 				isMonitoring = false
 			}
-		}
-	}
-	
-	@objc fileprivate func findLostItems(){
-		let now = Date()
-		for (_, item) in trackedItems {
-//			if now.timeIntervalSince(item.lastDetected as Date) > Timer.NEARABLE_RANGING_LIMIT {
-//				self.delegate?.itemTracker?(didLoseItem: item)
-//			}
 		}
 	}
 	
@@ -141,9 +125,9 @@ open class ItemTracker {
 	
 	private func stopRangingNearbyItems() {
 		locationManager.stopRanging()
-		timer?.invalidate()
 		isRanging = false
 	}
+
 	
 	//MARK: TrackerDelegate
 	private class ItemDelegate: NSObject, ESTNearableManagerDelegate {
@@ -159,11 +143,20 @@ open class ItemTracker {
 		
 		@objc func nearableManager(_ manager: ESTNearableManager, didRangeNearables nearables: [ESTNearable], with type: ESTNearableType) {
 			master.delegate?.itemTracker?(rangedNearables: nearables)
+			if !master.trackedItems.isEmpty {
+				var items = [Item]()
+				for nearable in nearables {
+					if master.trackedItems.keys.contains(nearable.identifier){
+						items.append(master.trackedItems[nearable.identifier]!)
+					}
+				}
+				master.delegate?.itemTracker?(rangedItems: items)
+			}
 		}
 		
 		@objc func nearableManager(_ manager: ESTNearableManager, didEnterIdentifierRegion identifier: String) {
 				if let item = master.trackedItems[identifier] {
-					master.delegate?.itemTracker?(didRangeItem: item)
+					master.delegate?.itemTracker?(didFindMonitoredItem: item)
 				}
 		}
 		

@@ -12,13 +12,8 @@ import UIKit
 class RoundedView: UIView {
 	@IBInspectable public var setRound = true {
 		didSet {
-			if setRound {
-				layer.cornerRadius = frame.size.width / 2
-				self.clipsToBounds = true
-
-			} else {
-				layer.cornerRadius = 0
-			}
+			layer.cornerRadius = frame.size.width / 2
+			self.clipsToBounds = true
 		}
 	}
 }

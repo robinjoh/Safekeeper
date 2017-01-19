@@ -70,6 +70,12 @@ extension UITableViewCell {
 		static let NoItemsCell = "noItemsCell"
 		static let ItemCell = "itemCell"
 	}
+	struct CellTag {
+		static let ItemNameLabelTag = 2
+		static let ItemImageTag = 1
+		static let ItemLocationTag = 3
+		
+	}
 }
 
 
@@ -93,8 +99,8 @@ extension UITableView {
 	}
 
 	struct TableSection {
-			static let numberOfSections = 3
-			
+			static let addItemTableViewNumberOfSections = 3
+		
 			struct NameSection {
 				static let sectionNumber = 0
 				static let sectionHeaderTitle = "NAME"
@@ -106,7 +112,7 @@ extension UITableView {
 			struct BeaconSection{
 				static let sectionNumber = 2
 				static let sectionHeaderTitle = "PICK BEACON"
-				static let sectionFooterText = "Select one of the beacon IDs showing up in the list to connect it to the item you are about to create."
+				static let sectionFooterText = "Select one of the beacon IDs showing up in the list to connect it to the item you want to create."
 			}
 			
 			static func sectionHeaderTitle(_ sectionNumber: Int) -> String {

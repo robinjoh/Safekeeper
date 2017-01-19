@@ -23,7 +23,7 @@ extension AddItemViewController: UITableViewDataSource {
 	}
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return UITableView.TableSection.numberOfSections
+		return UITableView.TableSection.addItemTableViewNumberOfSections
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

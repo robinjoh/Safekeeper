@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		B31BCAEA1D986E8A000B8644 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */; };
 		B31BCAEC1D986E99000B8644 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */; };
-		B31E615F1DCFE65F001D8D87 /* OverViewTrackerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E615E1DCFE65F001D8D87 /* OverViewTrackerExtension.swift */; };
-		B31E61611DCFE717001D8D87 /* ItemOverViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E61601DCFE717001D8D87 /* ItemOverViewDataSource.swift */; };
+		B31E615F1DCFE65F001D8D87 /* ItemOverViewTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E615E1DCFE65F001D8D87 /* ItemOverViewTrackerDelegate.swift */; };
 		B333F2BF1DC28273007E71A7 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2BE1DC28273007E71A7 /* AddItemViewController.swift */; };
 		B333F2C31DC342F7007E71A7 /* RadarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2C21DC342F7007E71A7 /* RadarView.swift */; };
 		B333F2C51DC34595007E71A7 /* BeaconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2C41DC34595007E71A7 /* BeaconView.swift */; };
 		B333F2FD1DC75D3F007E71A7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2FC1DC75D3F007E71A7 /* MapViewController.swift */; };
 		B337D51C1DC7676E00A2B096 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B337D51B1DC7676E00A2B096 /* RoundedImageView.swift */; };
 		B3853F741DC9298400A93E77 /* ItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3853F731DC9298400A93E77 /* ItemStorage.swift */; };
+		B38694E11E2EE41800BDD2BD /* BackgroundTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38694E01E2EE41800BDD2BD /* BackgroundTracker.swift */; };
 		B391F6A11D9A534A00FBDAE4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B391F6A01D9A534A00FBDAE4 /* RoundedView.swift */; };
 		B39569FF1D6243E2004C1C83 /* PickBeaconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */; };
 		B395AB661DCBDF1A00104837 /* AddItemImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395AB651DCBDF1A00104837 /* AddItemImageTableViewCell.swift */; };
@@ -25,7 +25,6 @@
 		B39CD6081D40AF29000D9903 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39CD6071D40AF29000D9903 /* Errors.swift */; };
 		B39D40071D6115A600805722 /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D40061D6115A600805722 /* ModelExtensions.swift */; };
 		B3ABEEFA1D29CAAE0000873E /* NavbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ABEEF91D29CAAE0000873E /* NavbarViewController.swift */; };
-		B3B418511DD158AD000D2E78 /* ArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B418501DD158AD000D2E78 /* ArrayDataSource.swift */; };
 		B3C3C0F51D32B265004123F4 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C3C0F41D32B265004123F4 /* UIKitExtensions.swift */; };
 		B3CACF861D27CD3700027B63 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CACF851D27CD3700027B63 /* MapKit.framework */; };
 		B3CACF8A1D281FBA00027B63 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CACF891D281FBA00027B63 /* Item.swift */; };
@@ -37,8 +36,7 @@
 		B3CFAE261D27147A006C2434 /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CFAE251D27147A006C2434 /* EstimoteSDK.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		B3CFAE311D272999006C2434 /* ItemOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE301D272999006C2434 /* ItemOverViewController.swift */; };
 		B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */; };
-		B3E00B441DCAA9350030064A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E00B431DCAA9350030064A /* NotificationManager.swift */; };
-		B3E00B461DCAACE30030064A /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E00B451DCAACE30030064A /* NameTableViewCell.swift */; };
+		B3DD990A1E30E7C3002DF7A9 /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DD99091E30E7C3002DF7A9 /* NameTableViewCell.swift */; };
 		B3EE10041D36F794001EC54B /* ItemTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EE10031D36F794001EC54B /* ItemTrackerDelegate.swift */; };
 		B3FDB44C1D5B1D3F009DE55A /* ShadowedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FDB44B1D5B1D3F009DE55A /* ShadowedUIView.swift */; };
 /* End PBXBuildFile section */
@@ -57,14 +55,14 @@
 		B31BCADD1D986E3A000B8644 /* SafekeeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafekeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B31BCAE81D986E8A000B8644 /* SafekeeperTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafekeeperTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafekeeperTests.swift; sourceTree = "<group>"; };
-		B31E615E1DCFE65F001D8D87 /* OverViewTrackerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverViewTrackerExtension.swift; sourceTree = "<group>"; };
-		B31E61601DCFE717001D8D87 /* ItemOverViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemOverViewDataSource.swift; sourceTree = "<group>"; };
+		B31E615E1DCFE65F001D8D87 /* ItemOverViewTrackerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemOverViewTrackerDelegate.swift; sourceTree = "<group>"; };
 		B333F2BE1DC28273007E71A7 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		B333F2C21DC342F7007E71A7 /* RadarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarView.swift; sourceTree = "<group>"; };
 		B333F2C41DC34595007E71A7 /* BeaconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconView.swift; sourceTree = "<group>"; };
 		B333F2FC1DC75D3F007E71A7 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B337D51B1DC7676E00A2B096 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		B3853F731DC9298400A93E77 /* ItemStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemStorage.swift; sourceTree = "<group>"; };
+		B38694E01E2EE41800BDD2BD /* BackgroundTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTracker.swift; sourceTree = "<group>"; };
 		B391F6A01D9A534A00FBDAE4 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickBeaconTableViewCell.swift; sourceTree = "<group>"; };
 		B395AB651DCBDF1A00104837 /* AddItemImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -73,7 +71,6 @@
 		B39CD6071D40AF29000D9903 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B39D40061D6115A600805722 /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
 		B3ABEEF91D29CAAE0000873E /* NavbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavbarViewController.swift; sourceTree = "<group>"; };
-		B3B418501DD158AD000D2E78 /* ArrayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayDataSource.swift; sourceTree = "<group>"; };
 		B3C3C0F41D32B265004123F4 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		B3CACF851D27CD3700027B63 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B3CACF891D281FBA00027B63 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -88,8 +85,7 @@
 		B3CFAE251D27147A006C2434 /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
 		B3CFAE301D272999006C2434 /* ItemOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemOverViewController.swift; sourceTree = "<group>"; };
 		B3CFAE321D2729DA006C2434 /* ItemDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailsViewController.swift; sourceTree = "<group>"; };
-		B3E00B431DCAA9350030064A /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		B3E00B451DCAACE30030064A /* NameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
+		B3DD99091E30E7C3002DF7A9 /* NameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
 		B3EE10031D36F794001EC54B /* ItemTrackerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTrackerDelegate.swift; sourceTree = "<group>"; };
 		B3FDB44B1D5B1D3F009DE55A /* ShadowedUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowedUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,8 +122,7 @@
 		B31E61621DCFE729001D8D87 /* ItemOverView */ = {
 			isa = PBXGroup;
 			children = (
-				B31E615E1DCFE65F001D8D87 /* OverViewTrackerExtension.swift */,
-				B31E61601DCFE717001D8D87 /* ItemOverViewDataSource.swift */,
+				B31E615E1DCFE65F001D8D87 /* ItemOverViewTrackerDelegate.swift */,
 				B3CFAE301D272999006C2434 /* ItemOverViewController.swift */,
 			);
 			name = ItemOverView;
@@ -138,7 +133,7 @@
 			children = (
 				B395AB651DCBDF1A00104837 /* AddItemImageTableViewCell.swift */,
 				B39569FE1D6243E2004C1C83 /* PickBeaconTableViewCell.swift */,
-				B3E00B451DCAACE30030064A /* NameTableViewCell.swift */,
+				B3DD99091E30E7C3002DF7A9 /* NameTableViewCell.swift */,
 				B333F2C41DC34595007E71A7 /* BeaconView.swift */,
 				B395AB6B1DCFD47D00104837 /* AddItemTableViewDataSource.swift */,
 				B395AB6D1DCFD55700104837 /* AddItemTrackerDelegate.swift */,
@@ -152,8 +147,7 @@
 			children = (
 				B3CFAE001D2712FD006C2434 /* AppDelegate.swift */,
 				B3CACF8D1D2880B200027B63 /* ItemTracker.swift */,
-				B3E00B431DCAA9350030064A /* NotificationManager.swift */,
-				B3B418501DD158AD000D2E78 /* ArrayDataSource.swift */,
+				B38694E01E2EE41800BDD2BD /* BackgroundTracker.swift */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -401,7 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3EE10041D36F794001EC54B /* ItemTrackerDelegate.swift in Sources */,
-				B3E00B461DCAACE30030064A /* NameTableViewCell.swift in Sources */,
+				B38694E11E2EE41800BDD2BD /* BackgroundTracker.swift in Sources */,
 				B3CFAE011D2712FD006C2434 /* AppDelegate.swift in Sources */,
 				B395AB6E1DCFD55700104837 /* AddItemTrackerDelegate.swift in Sources */,
 				B39D40071D6115A600805722 /* ModelExtensions.swift in Sources */,
@@ -416,18 +410,16 @@
 				B3CACF8A1D281FBA00027B63 /* Item.swift in Sources */,
 				B39569FF1D6243E2004C1C83 /* PickBeaconTableViewCell.swift in Sources */,
 				B3CFAE311D272999006C2434 /* ItemOverViewController.swift in Sources */,
+				B3DD990A1E30E7C3002DF7A9 /* NameTableViewCell.swift in Sources */,
 				B391F6A11D9A534A00FBDAE4 /* RoundedView.swift in Sources */,
 				B395AB661DCBDF1A00104837 /* AddItemImageTableViewCell.swift in Sources */,
-				B3B418511DD158AD000D2E78 /* ArrayDataSource.swift in Sources */,
 				B333F2C31DC342F7007E71A7 /* RadarView.swift in Sources */,
-				B31E615F1DCFE65F001D8D87 /* OverViewTrackerExtension.swift in Sources */,
+				B31E615F1DCFE65F001D8D87 /* ItemOverViewTrackerDelegate.swift in Sources */,
 				B3FDB44C1D5B1D3F009DE55A /* ShadowedUIView.swift in Sources */,
 				B333F2C51DC34595007E71A7 /* BeaconView.swift in Sources */,
-				B31E61611DCFE717001D8D87 /* ItemOverViewDataSource.swift in Sources */,
 				B3CACF8E1D2880B200027B63 /* ItemTracker.swift in Sources */,
 				B333F2BF1DC28273007E71A7 /* AddItemViewController.swift in Sources */,
 				B3ABEEFA1D29CAAE0000873E /* NavbarViewController.swift in Sources */,
-				B3E00B441DCAA9350030064A /* NotificationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +586,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Safekeeper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Robin.Safekeeper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -611,6 +604,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Safekeeper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Robin.Safekeeper;
 				PRODUCT_NAME = "$(TARGET_NAME)";

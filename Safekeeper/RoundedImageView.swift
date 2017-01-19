@@ -9,6 +9,12 @@
 import UIKit
 @IBDesignable
 class RoundedImageView: UIImageView {
+	override var image: UIImage? {
+		didSet{
+			super.image = image
+			setRounded = true
+		}
+	}
 	@IBInspectable var setRounded = true {
 		didSet {
 			if setRounded {

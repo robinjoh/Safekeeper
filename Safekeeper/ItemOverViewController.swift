@@ -1,4 +1,6 @@
+
 import UIKit
+import UserNotifications
 
 class ItemOverviewController: UITableViewController {
 	private var _itemStorage = ItemStorage()
@@ -25,16 +27,22 @@ class ItemOverviewController: UITableViewController {
 				let name = vc.itemName!
 				let beacon = vc.selectedBeacon
 				let item = Item(id: id, name: name, nearable: beacon, image: vc.selectedImage, lastDetected: nil)!
-			if itemStorage.saveItem(item) {
-				tableView.reloadData()
-				itemTracker.performOperation(ItemTracker.Operation.monitoring([item]))
+			DispatchQueue(label: "save").async { [weak self] () -> Void in
+				if let mySelf = self, mySelf._itemStorage.saveItem(item) {
+				mySelf.itemTracker.performOperation(ItemTracker.Operation.startMonitoring([item]))
+				}
 			}
-		}
+			tableView.reloadData()
+			}
+		
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		self.tableView.isEditing = false
+		if itemTracker.isRanging {
+			itemTracker.performOperation(ItemTracker.Operation.stopRanging)
+		}
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -53,14 +61,7 @@ class ItemOverviewController: UITableViewController {
 			self.navigationItem.leftBarButtonItem?.isEnabled = false
 		} else {
 			itemTracker.delegate = self
-			itemTracker.performOperation(ItemTracker.Operation.monitoring(itemStorage.items))
-		}
-	}
-	
-	override func viewDidDisappear(_ animated: Bool) {
-		super.viewDidDisappear(animated)
-		if itemTracker.isRanging {
-			itemTracker.performOperation(ItemTracker.Operation.stopRanging)
+			itemTracker.performOperation(ItemTracker.Operation.startMonitoring(itemStorage.items))
 		}
 	}
 	
@@ -74,7 +75,7 @@ class ItemOverviewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return itemStorage.isEmpty ? 1 : itemStorage.count
+		return _itemStorage.isEmpty ? 1 : _itemStorage.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,17 +95,17 @@ class ItemOverviewController: UITableViewController {
 		let keys = [String](itemStorage.keys)
 		let key = keys[(indexPath as NSIndexPath).row]
 		if let item = itemStorage.getItem(key) {
-			//let nameLbl = cell.viewWithTag(TableCellTag.NameLabel) as! UILabel
-			//let imageView = cell.viewWithTag(TableCellTag.ImageView) as! RoundedImageView
-			//let distanceLbl = cell.viewWithTag(TableCellTag.DistanceLabel) as! UILabel
-//			nameLbl.text = item.name
-//			nameLbl.textAlignment = NSTextAlignment.center
-//			distanceLbl.text = item.location.description
-//			if let img = item.image {
-//				imageView.image = img
-//			} else {
-//				imageView.image = UIImage(named: UIImage.Name.Radar)
-//			}
+			let nameLbl = cell.viewWithTag(UITableViewCell.CellTag.ItemNameLabelTag) as! UILabel
+			let imageView = cell.viewWithTag(UITableViewCell.CellTag.ItemImageTag) as! RoundedImageView
+			let distanceLbl = cell.viewWithTag(UITableViewCell.CellTag.ItemLocationTag) as! UILabel
+			nameLbl.text = item.name
+			nameLbl.textAlignment = NSTextAlignment.center
+			distanceLbl.text = item.location.description
+			if let img = item.image {
+				imageView.image = img
+			} else {
+				imageView.image = UIImage(named: UIImage.Name.Radar)
+			}
 			cell.accessibilityIdentifier = item.itemId
 		}
 		return cell
@@ -115,7 +116,7 @@ class ItemOverviewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return itemStorage.isEmpty ? tableView.bounds.height / 2 : tableView.rowHeight
+		return itemStorage.isEmpty ? tableView.bounds.height : tableView.rowHeight
 	}
 	
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -127,11 +128,16 @@ class ItemOverviewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-		if let identifier = tableView.cellForRow(at: indexPath)?.accessibilityIdentifier , editingStyle == .delete {
+		if let identifier = tableView.cellForRow(at: indexPath)?.accessibilityIdentifier, editingStyle == .delete {
 			if let item = itemStorage.deleteItem(identifier) {
-				if !itemStorage.isEmpty {
-					tableView.deleteRows(at: [indexPath], with: .fade)
+				if !itemStorage.isEmpty{
+					let queue = DispatchQueue(label: "saveQueue")
+					queue.async { [weak self] () -> Void in
+						try? self?.itemStorage.saveItems()
+					}
+					tableView.deleteRows(at: [indexPath], with: .automatic)
 				} else {
+					tableView.reloadData()
 					tableView.isEditing = false
 				}
 				itemTracker.performOperation(ItemTracker.Operation.stopMonitoring([item]))
@@ -144,6 +150,13 @@ class ItemOverviewController: UITableViewController {
 		if let cell = sender as? UITableViewCell , segue.identifier == Segue.ShowItemDetails.rawValue && cell.accessibilityIdentifier != nil {
 			if let destination = segue.destination as? ItemDetailsViewController {
 				destination.item = itemStorage.getItem(cell.accessibilityIdentifier!)!
+			}
+		}
+		else if segue.identifier == Segue.AddItem.rawValue {
+			if let destination = segue.destination as? NavbarViewController {
+				if let addItemViewCtrl = destination.viewControllers[0] as? AddItemViewController{
+					addItemViewCtrl.alreadyUsedIdentifiers = Set(itemStorage.keys)
+				}
 			}
 		}
     }
