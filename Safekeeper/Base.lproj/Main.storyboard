@@ -268,26 +268,30 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="imageCell" rowHeight="210" id="wo8-zS-2Tr" customClass="AddItemImageTableViewCell" customModule="Safekeeper" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="95.5" width="375" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" ambiguous="YES" tableViewCell="wo8-zS-2Tr" id="R7f-5c-8rb">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="wo8-zS-2Tr" id="R7f-5c-8rb">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="209.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yig-X8-ygV" customClass="RoundedImageView" customModule="Safekeeper" customModuleProvider="target">
+                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yig-X8-ygV" customClass="RoundedImageView" customModule="Safekeeper" customModuleProvider="target">
                                                     <rect key="frame" x="83" y="0.0" width="209" height="209"/>
-                                                    <color key="backgroundColor" red="0.11764705882352941" green="0.23921568627450979" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.19873966770000001" green="0.41201741539999998" blue="0.57916114060000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Yig-X8-ygV" secondAttribute="height" multiplier="1:1" id="GdD-in-YRs"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="setRounded" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="EJz-AP-yXA" appends="YES" id="IiK-EV-GWq"/>
+                                                    </connections>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="CHOOSE IMAGE" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="OBJ-pP-7FQ">
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHOOSE IMAGE" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="OBJ-pP-7FQ">
                                                     <rect key="frame" x="156" y="100" width="63" height="11"/>
                                                     <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
-                                                    <color key="textColor" red="0.23137254900000001" green="0.55294117649999996" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.119107566" green="0.2461866949" blue="0.34039290449999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="PKt-bj-Hlo" appends="YES" id="gkN-5p-rAD"/>
+                                                    </connections>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -310,17 +314,17 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="pickBeaconCell" rowHeight="85" id="cmH-fx-Dzy" customClass="PickBeaconTableViewCell" customModule="Safekeeper" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="305.5" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cmH-fx-Dzy" id="szS-hD-qdp">
+                                        <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cmH-fx-Dzy" id="szS-hD-qdp">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fk-oy-ggs">
                                                     <rect key="frame" x="8" y="0.0" width="66" height="84"/>
                                                     <subviews>
-                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCl-2s-7gF" customClass="BeaconView" customModule="Safekeeper" customModuleProvider="target">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCl-2s-7gF">
                                                             <rect key="frame" x="0.0" y="0.0" width="66" height="84"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Sxe-ej-RoT">
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Sxe-ej-RoT">
                                                                     <rect key="frame" x="16" y="30" width="42" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="42" id="ali-28-V2r"/>
@@ -399,6 +403,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ygt-eO-A2T" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="97r-0B-29K" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="EJz-AP-yXA">
+                    <connections>
+                        <action selector="chooseImage:" destination="enc-xZ-Ilb" id="muc-Hp-am9"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="PKt-bj-Hlo">
+                    <connections>
+                        <action selector="chooseImage:" destination="enc-xZ-Ilb" id="rbL-J1-TBC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-386.39999999999998" y="803.74812593703155"/>
         </scene>

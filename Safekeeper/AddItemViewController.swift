@@ -141,6 +141,9 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewD
 		return textField.resignFirstResponder()
 	}
 	
+	@IBAction func chooseImage(_ sender: UITapGestureRecognizer) {
+		showImagePickerChoiceDialog()
+	}
 	func showImagePickerChoiceDialog() {
 		let alertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
 		alertController.addAction(UIAlertAction(title: AlertTitle.Camera, style: UIAlertActionStyle.default, handler: {[weak self] (action) -> Void in self?.showImagePickerController(.camera)}))
@@ -201,7 +204,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewD
 	
 	func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
 		if indexPath.section == UITableView.TableSection.ImageSection.sectionNumber {
-			showImagePickerChoiceDialog()
+			//showImagePickerChoiceDialog()
 		}
 		return indexPath
 	}

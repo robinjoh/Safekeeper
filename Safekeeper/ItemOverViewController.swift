@@ -27,13 +27,15 @@ class ItemOverviewController: UITableViewController {
 				let name = vc.itemName!
 				let beacon = vc.selectedBeacon
 				let item = Item(id: id, name: name, nearable: beacon, image: vc.selectedImage, lastDetected: nil)!
-			DispatchQueue(label: "save").async { [weak self] () -> Void in
+			DispatchQueue.global(qos: .userInitiated).async { [weak self] () -> Void in
 				if let mySelf = self, mySelf._itemStorage.saveItem(item) {
 				mySelf.itemTracker.performOperation(ItemTracker.Operation.startMonitoring([item]))
+					DispatchQueue.main.async {
+						mySelf.tableView.reloadData()
+					}
 				}
 			}
-			tableView.reloadData()
-			}
+		}
 		
 	}
 	

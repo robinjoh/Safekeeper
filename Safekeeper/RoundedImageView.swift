@@ -12,18 +12,14 @@ class RoundedImageView: UIImageView {
 	override var image: UIImage? {
 		didSet{
 			super.image = image
-			setRounded = true
+			self.layer.cornerRadius = bounds.size.width / 2
+			self.clipsToBounds = true
 		}
 	}
-	@IBInspectable var setRounded = true {
-		didSet {
-			if setRounded {
-				self.layer.cornerRadius = bounds.size.width / 2
-				self.clipsToBounds = true
-			} else {
-				self.layer.cornerRadius = 0
-			}
-		}
+	
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		self.layer.cornerRadius = bounds.size.width / 2
+		clipsToBounds = true
 	}
-
 }
