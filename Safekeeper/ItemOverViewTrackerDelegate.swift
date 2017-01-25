@@ -15,6 +15,10 @@ extension ItemOverviewController: ItemTrackerDelegate {
 		print("hittade \(item)")
 	}
 	
+	func itemTracker(rangedItems items: [Item]){
+		
+	}
+	
 	func itemTracker(didLoseItem item: Item){
 		print("förlorade \(item)")
 	}

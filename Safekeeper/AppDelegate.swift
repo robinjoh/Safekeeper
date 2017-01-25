@@ -52,9 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate,
 		if locationManager.isRanging {
 			locationManager.performOperation(ItemTracker.Operation.stopRanging)
 		}
-		locationManager.performOperation(ItemTracker.Operation.startMonitoring(itemStorage.items))
 		locationManager.delegate = backgroundTrackingDelegate
-		backgroundTrackingDelegate.startLostItemsChecking()
+		if !itemStorage.isEmpty {
+			locationManager.performOperation(ItemTracker.Operation.startMonitoring(itemStorage.items))
+			backgroundTrackingDelegate.startLostItemsChecking()
+		}
 		do {
 			try itemStorage.saveItems()
 		} catch let error as FileSystemError {
@@ -71,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate,
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 		if let addItem = visibleViewController as? AddItemViewController {
-		addItem.resetTrackedNearables()
+			locationManager.delegate = addItem
 		}
 		backgroundTrackingDelegate.stopLostItemsChecking()
 		application.applicationIconBadgeNumber = 0
@@ -79,6 +81,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBCentralManagerDelegate,
 	
 	func applicationWillResignActive(_ application: UIApplication) {
 		visibleViewController = getVisibleViewController(window?.rootViewController)
+		if !locationManager.isRanging {
+			locationManager.delegate = visibleViewController as? ItemOverviewController
+			locationManager.performOperation(ItemTracker.Operation.startRanging)
+		}
 	}
 
     func applicationWillTerminate(_ application: UIApplication) {

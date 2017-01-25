@@ -16,8 +16,9 @@ class BackgroundTracker: ItemTrackerDelegate {
 	fileprivate var itemStorage = ItemStorage.instance
 	fileprivate var potentiallyLostItems = [String:Item]()
 	fileprivate var timer = Timer()
-	fileprivate let ELAPSED_TIME_BEFORE_NOTIFYING = 180
+	fileprivate let ELAPSED_TIME_BEFORE_NOTIFYING = 10
 	fileprivate var badges = UIApplication.shared.applicationIconBadgeNumber
+	fileprivate var itemsLastDetected = [String:Date]()
 	
 	struct LostItemNotificationText {
 		static let title = "ITEM LOST!"
@@ -27,7 +28,6 @@ class BackgroundTracker: ItemTrackerDelegate {
 	}
 	
 	func startLostItemsChecking(_ interval: Double? = DEFAULT_INTERVAL) {
-		stopLostItemsChecking()
 		timer = Timer.scheduledTimer(timeInterval: interval!, target: self, selector: #selector(checkForLostItems), userInfo: nil, repeats: true)
 	}
 	
@@ -39,9 +39,11 @@ class BackgroundTracker: ItemTrackerDelegate {
 	
 	@objc private func checkForLostItems() {
 		let items = Set(potentiallyLostItems.values)
+		print(items)
 		for item in items {
-			let elapsed = Date().timeIntervalSince(item.lastDetected)
+			let elapsed = Date().timeIntervalSince(itemsLastDetected[item.itemId]!)
 			let seconds = Int(elapsed)
+			print(seconds)
 			if seconds > ELAPSED_TIME_BEFORE_NOTIFYING {
 				let center = UNUserNotificationCenter.current()
 				let content = UNMutableNotificationContent()
@@ -58,11 +60,14 @@ class BackgroundTracker: ItemTrackerDelegate {
 	}
 	
 	func itemTracker(didLoseItem item: Item) {
-		item.lastDetected = Date() //tiden då föremålet försvann
+		print("lost item")
+		itemsLastDetected[item.itemId] = Date()
+		item.lastDetected = Date()//tiden då föremålet försvann
 		potentiallyLostItems[item.itemId] = item
 	}
 	
 	func itemTracker(didFindMonitoredItem item: Item) {
+		print("Found item")
 		potentiallyLostItems.removeValue(forKey: item.itemId)
 	}
 }

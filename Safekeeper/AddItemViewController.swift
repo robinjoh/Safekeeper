@@ -78,8 +78,13 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewD
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		//NotificationCenter.default.addObserver(self, selector: #selector(appeared), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
 		performSetup()
     }
+	
+//	@objc func appeared() {
+//		print("appeared")
+//	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		itemTracker.delegate = self

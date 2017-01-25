@@ -46,7 +46,7 @@
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="itemCell" id="7fK-rG-Xnz">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="135"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7fK-rG-Xnz" id="5sp-UY-31I">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
@@ -111,7 +111,7 @@
                                 <color key="tintColor" red="0.33989656169999999" green="0.55315131309999999" blue="0.70753205129999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="noItemsCell" rowHeight="260" id="F9C-G6-5VZ">
-                                <rect key="frame" x="0.0" y="190.5" width="375" height="260"/>
+                                <rect key="frame" x="0.0" y="191" width="375" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="310" tableViewCell="F9C-G6-5VZ" id="TQs-CA-HgW">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
@@ -124,7 +124,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="327" height="73"/>
                                                     <subviews>
                                                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="71" placeholderIntrinsicHeight="71" image="radar" translatesAutoresizingMaskIntoConstraints="NO" id="0Na-aH-14W">
-                                                            <rect key="frame" x="127.5" y="0.0" width="71" height="72"/>
+                                                            <rect key="frame" x="128" y="0.0" width="71" height="72"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="0Na-aH-14W" secondAttribute="height" multiplier="70:71" id="hgx-yj-2RV"/>
                                                             </constraints>
@@ -154,7 +154,7 @@
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                                     <state key="normal" title="Add item"/>
                                                     <connections>
-                                                        <segue destination="pnW-dU-zaU" kind="presentation" identifier="" modalPresentationStyle="overCurrentContext" id="bel-KJ-v6c"/>
+                                                        <segue destination="pnW-dU-zaU" kind="presentation" id="ZEs-Bj-ktn"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -187,8 +187,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GNm-s4-At5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="1zs-Wt-eeU"/>
-                <tapGestureRecognizer id="mup-6R-qNN"/>
             </objects>
             <point key="canvasLocation" x="-1479.2" y="20.239880059970016"/>
         </scene>
@@ -242,10 +240,10 @@
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="nameCell" rowHeight="40" id="9PN-3Z-Bhh" customClass="NameTableViewCell" customModule="Safekeeper" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9PN-3Z-Bhh" id="oWv-Jg-VnR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="39"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Item name" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UQu-5x-ISR">
@@ -266,13 +264,13 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="imageCell" rowHeight="210" id="wo8-zS-2Tr" customClass="AddItemImageTableViewCell" customModule="Safekeeper" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="95.5" width="375" height="210"/>
+                                        <rect key="frame" x="0.0" y="96" width="375" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="wo8-zS-2Tr" id="R7f-5c-8rb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="209.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" ambiguous="YES" tableViewCell="wo8-zS-2Tr" id="R7f-5c-8rb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="209"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yig-X8-ygV" customClass="RoundedImageView" customModule="Safekeeper" customModuleProvider="target">
+                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yig-X8-ygV" customClass="RoundedImageView" customModule="Safekeeper" customModuleProvider="target">
                                                     <rect key="frame" x="83" y="0.0" width="209" height="209"/>
                                                     <color key="backgroundColor" red="0.19873966770000001" green="0.41201741539999998" blue="0.57916114060000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <gestureRecognizers/>
@@ -283,7 +281,7 @@
                                                         <outletCollection property="gestureRecognizers" destination="EJz-AP-yXA" appends="YES" id="IiK-EV-GWq"/>
                                                     </connections>
                                                 </imageView>
-                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHOOSE IMAGE" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="OBJ-pP-7FQ">
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="CHOOSE IMAGE" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="OBJ-pP-7FQ">
                                                     <rect key="frame" x="156" y="100" width="63" height="11"/>
                                                     <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
@@ -312,20 +310,20 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="pickBeaconCell" rowHeight="85" id="cmH-fx-Dzy" customClass="PickBeaconTableViewCell" customModule="Safekeeper" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="305.5" width="375" height="85"/>
+                                        <rect key="frame" x="0.0" y="306" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cmH-fx-Dzy" id="szS-hD-qdp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fk-oy-ggs">
-                                                    <rect key="frame" x="8" y="0.0" width="66" height="84"/>
+                                                    <rect key="frame" x="8" y="0.0" width="66" height="83"/>
                                                     <subviews>
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCl-2s-7gF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="66" height="84"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="66" height="83"/>
                                                             <subviews>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Sxe-ej-RoT">
-                                                                    <rect key="frame" x="16" y="30" width="42" height="21"/>
+                                                                    <rect key="frame" x="16" y="30" width="42" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="42" id="ali-28-V2r"/>
                                                                     </constraints>
@@ -351,10 +349,10 @@
                                                     </constraints>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="160" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="pZc-hG-UCy">
-                                                    <rect key="frame" x="107" y="-1" width="160" height="93"/>
+                                                    <rect key="frame" x="107" y="-1" width="160" height="92"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="160" placeholderIntrinsicHeight="67" text="ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2i1-t9-8Ug">
-                                                            <rect key="frame" x="0.0" y="0.0" width="160" height="93"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="160" height="92"/>
                                                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
                                                             <color key="textColor" red="0.23137254900000001" green="0.55294117649999996" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -453,7 +451,7 @@
         <image name="radar" width="55" height="55"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bel-KJ-v6c"/>
+        <segue reference="ngY-dt-u22"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.23137254900000001" green="0.55294117649999996" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

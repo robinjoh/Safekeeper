@@ -3,18 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B31BCAEA1D986E8A000B8644 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */; };
-		B31BCAEC1D986E99000B8644 /* SafekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */; };
 		B31E615F1DCFE65F001D8D87 /* ItemOverViewTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E615E1DCFE65F001D8D87 /* ItemOverViewTrackerDelegate.swift */; };
 		B333F2BF1DC28273007E71A7 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2BE1DC28273007E71A7 /* AddItemViewController.swift */; };
 		B333F2C31DC342F7007E71A7 /* RadarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2C21DC342F7007E71A7 /* RadarView.swift */; };
 		B333F2C51DC34595007E71A7 /* BeaconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2C41DC34595007E71A7 /* BeaconView.swift */; };
 		B333F2FD1DC75D3F007E71A7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333F2FC1DC75D3F007E71A7 /* MapViewController.swift */; };
 		B337D51C1DC7676E00A2B096 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B337D51B1DC7676E00A2B096 /* RoundedImageView.swift */; };
+		B376ADDF1E33BB8C000C6C57 /* SafekeeperTests2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B376ADDE1E33BB8C000C6C57 /* SafekeeperTests2.swift */; };
+		B376ADE81E33BDF2000C6C57 /* ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B376ADE71E33BDF2000C6C57 /* ItemTests.swift */; };
 		B3853F741DC9298400A93E77 /* ItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3853F731DC9298400A93E77 /* ItemStorage.swift */; };
 		B38694E11E2EE41800BDD2BD /* BackgroundTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38694E01E2EE41800BDD2BD /* BackgroundTracker.swift */; };
 		B391F6A11D9A534A00FBDAE4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B391F6A01D9A534A00FBDAE4 /* RoundedView.swift */; };
@@ -42,7 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B31BCAE21D986E3A000B8644 /* PBXContainerItemProxy */ = {
+		B376ADE11E33BB8C000C6C57 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B3CFADF51D2712FD006C2434 /* Project object */;
 			proxyType = 1;
@@ -52,15 +52,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B31BCADD1D986E3A000B8644 /* SafekeeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafekeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B31BCAE81D986E8A000B8644 /* SafekeeperTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafekeeperTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafekeeperTests.swift; sourceTree = "<group>"; };
 		B31E615E1DCFE65F001D8D87 /* ItemOverViewTrackerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemOverViewTrackerDelegate.swift; sourceTree = "<group>"; };
 		B333F2BE1DC28273007E71A7 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		B333F2C21DC342F7007E71A7 /* RadarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarView.swift; sourceTree = "<group>"; };
 		B333F2C41DC34595007E71A7 /* BeaconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconView.swift; sourceTree = "<group>"; };
 		B333F2FC1DC75D3F007E71A7 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B337D51B1DC7676E00A2B096 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
+		B376ADA11E338B42000C6C57 /* EstimoteSDK 3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "EstimoteSDK 3.framework"; sourceTree = "<group>"; };
+		B376ADAC1E33919A000C6C57 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B376ADDC1E33BB8C000C6C57 /* SafekeeperTests2.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafekeeperTests2.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B376ADDE1E33BB8C000C6C57 /* SafekeeperTests2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafekeeperTests2.swift; sourceTree = "<group>"; };
+		B376ADE01E33BB8C000C6C57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B376ADE71E33BDF2000C6C57 /* ItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTests.swift; sourceTree = "<group>"; };
 		B3853F731DC9298400A93E77 /* ItemStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemStorage.swift; sourceTree = "<group>"; };
 		B38694E01E2EE41800BDD2BD /* BackgroundTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTracker.swift; sourceTree = "<group>"; };
 		B391F6A01D9A534A00FBDAE4 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
@@ -91,7 +94,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B31BCADA1D986E3A000B8644 /* Frameworks */ = {
+		B376ADD91E33BB8C000C6C57 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -110,15 +113,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B31BCAE71D986E74000B8644 /* SafekeeperTests */ = {
-			isa = PBXGroup;
-			children = (
-				B31BCAE91D986E8A000B8644 /* SafekeeperTests.swift */,
-				B31BCAE81D986E8A000B8644 /* SafekeeperTests-Bridging-Header.h */,
-			);
-			name = SafekeeperTests;
-			sourceTree = "<group>";
-		};
 		B31E61621DCFE729001D8D87 /* ItemOverView */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +154,25 @@
 			name = ItemDetails;
 			sourceTree = "<group>";
 		};
+		B376ADA01E338B42000C6C57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B376ADAC1E33919A000C6C57 /* XCTest.framework */,
+				B376ADA11E338B42000C6C57 /* EstimoteSDK 3.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B376ADDD1E33BB8C000C6C57 /* SafekeeperTests2 */ = {
+			isa = PBXGroup;
+			children = (
+				B376ADDE1E33BB8C000C6C57 /* SafekeeperTests2.swift */,
+				B376ADE01E33BB8C000C6C57 /* Info.plist */,
+				B376ADE71E33BDF2000C6C57 /* ItemTests.swift */,
+			);
+			path = SafekeeperTests2;
+			sourceTree = "<group>";
+		};
 		B39CD6061D40AF19000D9903 /* errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,11 +208,12 @@
 		B3CFADF41D2712FD006C2434 = {
 			isa = PBXGroup;
 			children = (
-				B31BCAE71D986E74000B8644 /* SafekeeperTests */,
 				B3CACF851D27CD3700027B63 /* MapKit.framework */,
 				B3CFADFF1D2712FD006C2434 /* Safekeeper */,
+				B376ADDD1E33BB8C000C6C57 /* SafekeeperTests2 */,
 				B3CFADFE1D2712FD006C2434 /* Products */,
 				B3CFAE251D27147A006C2434 /* EstimoteSDK.framework */,
+				B376ADA01E338B42000C6C57 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -208,7 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				B3CFADFD1D2712FD006C2434 /* Safekeeper.app */,
-				B31BCADD1D986E3A000B8644 /* SafekeeperTests.xctest */,
+				B376ADDC1E33BB8C000C6C57 /* SafekeeperTests2.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -276,22 +290,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B31BCADC1D986E3A000B8644 /* SafekeeperTests */ = {
+		B376ADDB1E33BB8C000C6C57 /* SafekeeperTests2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B31BCAE41D986E3A000B8644 /* Build configuration list for PBXNativeTarget "SafekeeperTests" */;
+			buildConfigurationList = B376ADE31E33BB8C000C6C57 /* Build configuration list for PBXNativeTarget "SafekeeperTests2" */;
 			buildPhases = (
-				B31BCAD91D986E3A000B8644 /* Sources */,
-				B31BCADA1D986E3A000B8644 /* Frameworks */,
-				B31BCADB1D986E3A000B8644 /* Resources */,
+				B376ADD81E33BB8C000C6C57 /* Sources */,
+				B376ADD91E33BB8C000C6C57 /* Frameworks */,
+				B376ADDA1E33BB8C000C6C57 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B31BCAE31D986E3A000B8644 /* PBXTargetDependency */,
+				B376ADE21E33BB8C000C6C57 /* PBXTargetDependency */,
 			);
-			name = SafekeeperTests;
-			productName = SafekeeperTests;
-			productReference = B31BCADD1D986E3A000B8644 /* SafekeeperTests.xctest */;
+			name = SafekeeperTests2;
+			productName = SafekeeperTests2;
+			productReference = B376ADDC1E33BB8C000C6C57 /* SafekeeperTests2.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		B3CFADFC1D2712FD006C2434 /* Safekeeper */ = {
@@ -317,13 +331,12 @@
 		B3CFADF51D2712FD006C2434 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Robin;
 				TargetAttributes = {
-					B31BCADC1D986E3A000B8644 = {
-						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0800;
+					B376ADDB1E33BB8C000C6C57 = {
+						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B3CFADFC1D2712FD006C2434;
 					};
@@ -343,7 +356,7 @@
 				};
 			};
 			buildConfigurationList = B3CFADF81D2712FD006C2434 /* Build configuration list for PBXProject "Safekeeper" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -356,13 +369,13 @@
 			projectRoot = "";
 			targets = (
 				B3CFADFC1D2712FD006C2434 /* Safekeeper */,
-				B31BCADC1D986E3A000B8644 /* SafekeeperTests */,
+				B376ADDB1E33BB8C000C6C57 /* SafekeeperTests2 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B31BCADB1D986E3A000B8644 /* Resources */ = {
+		B376ADDA1E33BB8C000C6C57 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -382,11 +395,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B31BCAD91D986E3A000B8644 /* Sources */ = {
+		B376ADD81E33BB8C000C6C57 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B31BCAEC1D986E99000B8644 /* SafekeeperTests.swift in Sources */,
+				B376ADE81E33BDF2000C6C57 /* ItemTests.swift in Sources */,
+				B376ADDF1E33BB8C000C6C57 /* SafekeeperTests2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +413,6 @@
 				B3CFAE011D2712FD006C2434 /* AppDelegate.swift in Sources */,
 				B395AB6E1DCFD55700104837 /* AddItemTrackerDelegate.swift in Sources */,
 				B39D40071D6115A600805722 /* ModelExtensions.swift in Sources */,
-				B31BCAEA1D986E8A000B8644 /* SafekeeperTests.swift in Sources */,
 				B3C3C0F51D32B265004123F4 /* UIKitExtensions.swift in Sources */,
 				B3CFAE331D2729DA006C2434 /* ItemDetailsViewController.swift in Sources */,
 				B39CD6081D40AF29000D9903 /* Errors.swift in Sources */,
@@ -426,10 +439,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B31BCAE31D986E3A000B8644 /* PBXTargetDependency */ = {
+		B376ADE21E33BB8C000C6C57 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B3CFADFC1D2712FD006C2434 /* Safekeeper */;
-			targetProxy = B31BCAE21D986E3A000B8644 /* PBXContainerItemProxy */;
+			targetProxy = B376ADE11E33BB8C000C6C57 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -453,37 +466,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		B31BCAE51D986E3A000B8644 /* Debug */ = {
+		B376ADE41E33BB8C000C6C57 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				INFOPLIST_FILE = SafekeeperTests/Info.plist;
+				DEVELOPMENT_TEAM = 34UZ6KG8WC;
+				INFOPLIST_FILE = SafekeeperTests2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Robin.SafekeeperTests;
+				PRODUCT_BUNDLE_IDENTIFIER = Robin.SafekeeperTests2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "SafekeeperTests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Safekeeper.app/Safekeeper";
 			};
 			name = Debug;
 		};
-		B31BCAE61D986E3A000B8644 /* Release */ = {
+		B376ADE51E33BB8C000C6C57 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				INFOPLIST_FILE = SafekeeperTests/Info.plist;
+				DEVELOPMENT_TEAM = 34UZ6KG8WC;
+				INFOPLIST_FILE = SafekeeperTests2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Robin.SafekeeperTests;
+				PRODUCT_BUNDLE_IDENTIFIER = Robin.SafekeeperTests2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SafekeeperTests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Safekeeper.app/Safekeeper";
 			};
@@ -599,6 +609,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -616,14 +627,13 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B31BCAE41D986E3A000B8644 /* Build configuration list for PBXNativeTarget "SafekeeperTests" */ = {
+		B376ADE31E33BB8C000C6C57 /* Build configuration list for PBXNativeTarget "SafekeeperTests2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B31BCAE51D986E3A000B8644 /* Debug */,
-				B31BCAE61D986E3A000B8644 /* Release */,
+				B376ADE41E33BB8C000C6C57 /* Debug */,
+				B376ADE51E33BB8C000C6C57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		B3CFADF81D2712FD006C2434 /* Build configuration list for PBXProject "Safekeeper" */ = {
 			isa = XCConfigurationList;

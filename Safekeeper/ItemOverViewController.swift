@@ -23,15 +23,16 @@ class ItemOverviewController: UITableViewController {
 	//UNWIND FROM ADDING A NEW ITEM
 	@IBAction func saveButtonClicked(_ segue: UIStoryboardSegue) {
 		if let vc = segue.source as? AddItemViewController {
-				let id = vc.selectedBeacon.identifier
-				let name = vc.itemName!
-				let beacon = vc.selectedBeacon
-				let item = Item(id: id, name: name, nearable: beacon, image: vc.selectedImage, lastDetected: nil)!
-			DispatchQueue.global(qos: .userInitiated).async { [weak self] () -> Void in
-				if let mySelf = self, mySelf._itemStorage.saveItem(item) {
-				mySelf.itemTracker.performOperation(ItemTracker.Operation.startMonitoring([item]))
-					DispatchQueue.main.async {
-						mySelf.tableView.reloadData()
+			let id = vc.selectedBeacon.identifier
+			let name = vc.itemName!
+			let beacon = vc.selectedBeacon
+			if let item = Item(id: id, name: name, nearable: beacon, image: vc.selectedImage, lastDetected: nil) {
+				DispatchQueue.global(qos: .userInitiated).async { [weak self] () -> Void in
+					if let mySelf = self, mySelf._itemStorage.saveItem(item) {
+						mySelf.itemTracker.performOperation(ItemTracker.Operation.startMonitoring([item]))
+						DispatchQueue.main.async {
+							mySelf.tableView.reloadData()
+						}
 					}
 				}
 			}
@@ -52,8 +53,8 @@ class ItemOverviewController: UITableViewController {
 		itemTracker.delegate = self
 	}
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		performSetup()
 	}
 	
@@ -71,16 +72,16 @@ class ItemOverviewController: UITableViewController {
 		super.didReceiveMemoryWarning()
 	}
 	
-    // MARK: - Table view methods
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	// MARK: - Table view methods
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
+	}
+	
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return _itemStorage.isEmpty ? 1 : _itemStorage.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+	}
+	
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if itemStorage.isEmpty{
 			tableView.isScrollEnabled = false
 			let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.ReuseIdentifier.NoItemsCell)!
@@ -90,7 +91,7 @@ class ItemOverviewController: UITableViewController {
 		}
 		let cell = configureItemCell(withIdentifier: UITableViewCell.ReuseIdentifier.ItemCell, forIndexPath: indexPath)
 		return cell
-    }
+	}
 	
 	private func configureItemCell(withIdentifier id: String, forIndexPath indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath)
@@ -147,8 +148,8 @@ class ItemOverviewController: UITableViewController {
 		}
 	}
 	
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+	// MARK: - Navigation
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let cell = sender as? UITableViewCell , segue.identifier == Segue.ShowItemDetails.rawValue && cell.accessibilityIdentifier != nil {
 			if let destination = segue.destination as? ItemDetailsViewController {
 				destination.item = itemStorage.getItem(cell.accessibilityIdentifier!)!
@@ -161,5 +162,5 @@ class ItemOverviewController: UITableViewController {
 				}
 			}
 		}
-    }
+	}
 }

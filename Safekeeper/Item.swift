@@ -21,11 +21,12 @@ public class Item: NSObject, NSCoding {
 		static let imageKey = "image"
 	}
 	
-    fileprivate(set) var name: String
-    fileprivate(set) var itemId: String
+	fileprivate(set) var name: String
+	fileprivate(set) var itemId: String
 	fileprivate var _location: Location
 	fileprivate var _lastDetected: Date
-	fileprivate var _nearable: ESTNearable!
+	fileprivate var _nearable: ESTNearable?
+	fileprivate var _inRange: Bool
 	fileprivate(set) var image: UIImage?
 	var location: Location {
 		get {
@@ -51,28 +52,33 @@ public class Item: NSObject, NSCoding {
 			}
 		}
 	}
-	var nearable: ESTNearable! {
+	var nearable: ESTNearable? {
 		get {
 			return _nearable
 		}
 		set {
-			if newValue.identifier.characters.count == 16 && newValue.zone().rawValue >= 0 || newValue.zone().rawValue <= 3 {
+			if let unwrapped = newValue, unwrapped.identifier.characters.count == 16 && unwrapped.zone().rawValue >= 0 || unwrapped.zone().rawValue <= 3 {
 				self.nearable = newValue
 			}
 		}
 	}
-    
-	init?(id: String, name: String, nearable: ESTNearable?, image: UIImage?, lastDetected: Date?){
+	var inRange: Bool {
+		get { return _inRange}
+		set { _inRange = newValue }
+	}
+	
+	init?(id: String, name: String, nearable: ESTNearable?, image: UIImage?, lastDetected: Date? = Date()){
 		guard id.characters.count == 16 && !name.isEmpty else {
 			return nil
 		}
 		self._location = Location()
-        self.name = name
+		self.name = name
 		self._nearable = nearable
 		self.itemId = id
-		self._lastDetected = lastDetected ?? Date()
+		self._lastDetected = lastDetected!
 		self.image = image
-    }
+		self._inRange = true
+	}
 	
 	required convenience public init?(coder decoder: NSCoder){
 		guard let id = decoder.decodeObject(forKey: CodingKeys.idKey) as? String, let name = decoder.decodeObject(forKey: CodingKeys.nameKey) as? String, let nearable = decoder.decodeObject(forKey: CodingKeys.nearableKey) as? ESTNearable, let lastDetected = decoder.decodeObject(forKey: CodingKeys.lastDetectedKey) as? Date else {

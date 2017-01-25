@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Safekeeper.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B376ADC01E3393EB000C6C57"
+               BuildableName = "SafekeeperTests.xctest"
+               BlueprintName = "SafekeeperTests"
+               ReferencedContainer = "container:Safekeeper.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -32,9 +46,19 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B31BCACE1D986C92000B8644"
+               BlueprintIdentifier = "B376ADC01E3393EB000C6C57"
                BuildableName = "SafekeeperTests.xctest"
                BlueprintName = "SafekeeperTests"
+               ReferencedContainer = "container:Safekeeper.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B376ADDB1E33BB8C000C6C57"
+               BuildableName = "SafekeeperTests2.xctest"
+               BlueprintName = "SafekeeperTests2"
                ReferencedContainer = "container:Safekeeper.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -49,6 +73,16 @@
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "DYLD_PRINT_LIBRARIES"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "DYLD_PRINT_APIS"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction

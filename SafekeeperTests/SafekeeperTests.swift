@@ -2,8 +2,8 @@
 //  SafekeeperTests.swift
 //  SafekeeperTests
 //
-//  Created by Robin on 2016-09-25.
-//  Copyright © 2016 Robin. All rights reserved.
+//  Created by Robin on 2017-01-21.
+//  Copyright © 2017 Robin. All rights reserved.
 //
 
 import XCTest
@@ -31,5 +31,4 @@ class SafekeeperTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
 }
