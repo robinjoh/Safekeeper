@@ -37,6 +37,10 @@ extension UIColor {
 	public static var tableHeaderTitleColor: UIColor {
 		return UIColor(red: 34 / 255, green: 135, blue: 215, alpha: 1)
 	}
+	
+	public static var imageBorderColor: UIColor {
+		return UIColor(red: 28 / 255, green: 28/255, blue: 40/255, alpha: 0.5)
+	}
 }
 extension UIViewController {
 	enum Segue: String {

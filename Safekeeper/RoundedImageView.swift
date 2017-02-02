@@ -14,6 +14,9 @@ class RoundedImageView: UIImageView {
 			super.image = image
 			self.layer.cornerRadius = bounds.size.width / 2
 			self.clipsToBounds = true
+			if image != nil {
+				self.layer.opacity = 1.0
+			}
 		}
 	}
 	
@@ -25,5 +28,8 @@ class RoundedImageView: UIImageView {
 		super.init(coder: aDecoder)
 		self.layer.cornerRadius = bounds.size.width / 2
 		clipsToBounds = true
+		self.layer.borderColor = UIColor.imageBorderColor.cgColor
+		self.layer.borderWidth = 2
+		
 	}
 }

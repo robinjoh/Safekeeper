@@ -26,7 +26,7 @@ class ItemOverviewController: UITableViewController {
 			let id = vc.selectedBeacon.identifier
 			let name = vc.itemName!
 			let beacon = vc.selectedBeacon
-			if let item = Item(id: id, name: name, nearable: beacon, image: vc.selectedImage, lastDetected: nil) {
+			if let item = Item(id: id, name: name, nearable: beacon, image: vc.selectedImage) {
 				DispatchQueue.global(qos: .userInitiated).async { [weak self] () -> Void in
 					if let mySelf = self, mySelf._itemStorage.saveItem(item) {
 						mySelf.itemTracker.performOperation(ItemTracker.Operation.startMonitoring([item]))

@@ -28,7 +28,9 @@ class BackgroundTracker: ItemTrackerDelegate {
 	}
 	
 	func startLostItemsChecking(_ interval: Double? = DEFAULT_INTERVAL) {
+		if !itemStorage.isEmpty{
 		timer = Timer.scheduledTimer(timeInterval: interval!, target: self, selector: #selector(checkForLostItems), userInfo: nil, repeats: true)
+		}
 	}
 	
 	func stopLostItemsChecking() {

@@ -57,7 +57,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewD
 	
 	private func performSetup(){
 		self.view.setGradientBackground([UIColor.mainTextColor.cgColor, UIColor.mainColor.cgColor, UIColor.mainColor.cgColor, UIColor.mainTextColor.cgColor], locations: [0,1], startPoint: CGPoint(x: 0.7, y:0), endPoint: CGPoint(x: 0.9, y: 1), bounds: view.bounds)
-		tableView.estimatedRowHeight = 210
+		tableView.estimatedRowHeight = 250
 		tableView.rowHeight = UITableViewAutomaticDimension
 		if UIImagePickerController.isSourceTypeAvailable(.camera){
 			imagePicker.sourceType = .camera
